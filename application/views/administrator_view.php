@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
         <meta name="author" content="Coderthemes">
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>img/shortcut1.png">
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>img/shortcut.png">
         <title>KcFurnindo | Login Page</title>
         <link href="<?php echo base_url(); ?>backadmin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>backadmin/assets/css/core.css" rel="stylesheet" type="text/css" />

@@ -39,7 +39,7 @@
                         <a href="<?php echo site_url('admin/product'); ?>">Product</a>
                     </li>
                     <li class="active">
-                        Add Product
+                        Edit Product
                     </li>
                 </ol>
             </div>
@@ -48,12 +48,14 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-box">
-                    <h4 class="m-t-0 header-title"><b><i class="fa fa-plus-circle"></i> Add Data Product</b></h4>
-                    <p class="text-muted m-b-30 font-13">Input Product</p>
+                    <h4 class="m-t-0 header-title"><b><i class="fa fa-edit"></i> Edit Data Product</b></h4>
+                    <p class="text-muted m-b-30 font-13">Edit Product</p>
                     <p>Fields with * are required.</p>
 
-                    <form class="form-horizontal" role="form" action="<?php echo site_url('admin/product/savedata'); ?>" method="post" enctype="multipart/form-data"> 
+                    <form class="form-horizontal" role="form" action="<?php echo site_url('admin/product/updatedata'); ?>" method="post" enctype="multipart/form-data"> 
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                    <input type="hidden" class="form-control" name="id" value="<?php echo $detail->product_id; ?>">
+
                     <div class="row">
                         <div class="col-md-12">                                    
                             <div class="form-group"> 
@@ -61,28 +63,52 @@
                                 <div class="col-md-9">
                                     <select class="form-control" name="lstMain" id="lstMain" onchange="TampilSubKategory()" required autofocus>
                                         <option value="0">- Choose Main Category -</option>
-                                        <?php foreach($listMain as $m) { ?>
-                                        <option value="<?php echo $m->category_id; ?>" <?php echo set_select('lstMain', $m->category_id); ?>><?php echo $m->category_name; ?></option>
-                                        <?php } ?>
+                                        <?php 
+                                        foreach($listMain as $m) { 
+                                            if ($detail->main_category == $m->category_id) {
+                                        ?>
+                                            <option value="<?php echo $m->category_id; ?>" selected><?php echo $m->category_name; ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $m->category_id; ?>"><?php echo $m->category_name; ?></option>
+                                        <?php 
+                                            }
+                                        } 
+                                        ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Sub Category *</label> 
                                 <div class="col-md-9">
-                                    <?php
-                                    $style_subcategory = 'class="form-control" id="lstSubCategory" onChange="TampilCategory()" required';
-                                    echo form_dropdown("lstSubCategory", array('' => '- Choose Sub Category -'), '',$style_subcategory);
-                                    ?>
+                                    <select class="form-control" name="lstSubCategory" id="lstSubCategory" onChange="TampilCategory()" required>
+                                        <option value="">- Choose Sub Category -</option>
+                                        <?php 
+                                        foreach($listSubCategory as $s) {
+                                            if ($detail->sub_category == $s->category_id) {
+                                        ?>
+                                        <option value="<?php echo $s->category_id; ?>" selected><?php echo $s->category_name; ?></option>
+                                        <?php 
+                                            } 
+                                        } 
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Category *</label> 
                                 <div class="col-md-9">
-                                    <?php
-                                    $style_category = 'class="form-control" id="lstCategory" required';
-                                    echo form_dropdown("lstCategory", array('' => '- Choose Category -'), '',$style_category);
-                                    ?>
+                                    <select class="form-control" name="lstCategory" id="lstCategory" required>
+                                        <option value="">- Choose Sub Category -</option>
+                                        <?php 
+                                        foreach($listCategory as $c) {
+                                            if ($detail->category_id == $c->category_id) {
+                                        ?>
+                                        <option value="<?php echo $c->category_id; ?>" selected><?php echo $c->category_name; ?></option>
+                                        <?php 
+                                            } 
+                                        } 
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group"> 
@@ -90,29 +116,37 @@
                                 <div class="col-md-9">
                                     <select class="form-control" name="lstBrand" required>
                                         <option value="0">- Choose Brand -</option>
-                                        <?php foreach($listBrand as $b) { ?>
-                                        <option value="<?php echo $b->brand_id; ?>" <?php echo set_select('lstBrand', $b->brand_id); ?>><?php echo $b->brand_name; ?></option>
-                                        <?php } ?>
+                                        <?php 
+                                        foreach($listBrand as $b) {
+                                            if ($detail->brand_id == $b->brand_id) {
+                                        ?>
+                                        <option value="<?php echo $b->brand_id; ?>" selected><?php echo $b->brand_name; ?></option>
+                                        <?php } else { ?>
+                                        <option value="<?php echo $b->brand_id; ?>"><?php echo $b->brand_name; ?></option>
+                                        <?php 
+                                            } 
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Product Name *</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="name" placeholder="Input Product Name" value="<?php echo set_value('name'); ?>"  autocomplete="off" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Input Product Name" value="<?php echo $detail->product_name; ?>"  autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Description *</label>
                                 <div class="col-md-9">
-                                    <textarea class="summernote" name="desc" rows="10"><?php echo set_value('desc'); ?></textarea>
+                                    <textarea class="summernote" name="desc" rows="10"><?php echo $detail->product_desc; ?></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">New Product ?</label>
                                 <div class="col-md-9">
                                     <div class="checkbox checkbox-warning">
-                                        <input name="chkNew" type="checkbox" value="1" >
+                                        <input name="chkNew" type="checkbox" value="1" <?php if ($detail->product_new==1) { echo 'checked'; } ?>>
                                         <label>Yes</label>
                                     </div>
                                 </div>
@@ -121,7 +155,7 @@
                                 <label class="col-md-3 control-label">Best Product ?</label>
                                 <div class="col-md-9">
                                     <div class="checkbox checkbox-warning">
-                                        <input name="chkBest" type="checkbox" value="1" >
+                                        <input name="chkBest" type="checkbox" value="1" <?php if ($detail->product_best==1) { echo 'checked'; } ?>>
                                         <label>Yes</label>
                                     </div>
                                 </div>
@@ -130,13 +164,23 @@
                                 <label class="col-md-3 control-label">Special Product ?</label>
                                 <div class="col-md-9">
                                     <div class="checkbox checkbox-warning">
-                                        <input name="chkSpecial" type="checkbox" value="1" >
+                                        <input name="chkSpecial" type="checkbox" value="1" <?php if ($detail->product_special==1) { echo 'checked'; } ?>>
                                         <label>Yes</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Upload Image</label> 
+                                <label class="col-md-3 control-label">Image</label> 
+                                <div class="col-md-9">
+                                    <?php if (!empty($detail->product_image)) { ?>
+                                    <img src="<?php echo base_url(); ?>img/product/<?php echo $detail->product_image; ?>" width="30%"/>
+                                    <?php } else { ?>
+                                    <img src="<?php echo base_url(); ?>img/noimage.png"/>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Change Image</label> 
                                 <div class="col-md-9">
                                     <div class="fileupload fileupload-new" data-provides="fileupload">
                                         <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
@@ -161,12 +205,12 @@
                     </div> 
 
                     <a href="<?php echo site_url('admin/product'); ?>" class="btn btn-warning btn-custom waves-effect waves-light btn-sm"><i class="fa fa-times"></i> Cancel</a>
-                    <button type="submit" class="btn btn-info btn-custom waves-effect waves-light btn-sm"><i class="fa fa-floppy-o"></i> Save</button>
+                    <button type="submit" class="btn btn-info btn-custom waves-effect waves-light btn-sm"><i class="fa fa-floppy-o"></i> Update</button>
 
                     </form>
                 </div>
             </div>
         </div>
-
+        
     </div>
 </div>

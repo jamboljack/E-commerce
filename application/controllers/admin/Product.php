@@ -41,7 +41,7 @@ class Product extends CI_Controller {
 		if (!empty($_FILES['userfile']['name'])) {
 			$jam 	= time();
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
-			$config['file_name']    	= 'Brand_'.$name.'_'.$jam.'.jpg';
+			$config['file_name']    	= 'Product_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/product/';
 			$config['allowed_types'] 	= 'jpg|png|gif|png';		
 			$config['overwrite'] 		= TRUE;
@@ -63,11 +63,20 @@ class Product extends CI_Controller {
  		redirect(site_url('admin/product'));
 	}
 
+	public function editdata($product_id) {
+		$data['listMain'] 			= $this->product_model->select_main()->result();
+		$data['listBrand'] 			= $this->product_model->select_brand()->result();
+		$data['listSubCategory'] 	= $this->product_model->select_SubCategory()->result();
+		$data['listCategory'] 		= $this->product_model->select_Kategori()->result();
+		$data['detail'] 			= $this->product_model->select_detail($product_id)->row();
+		$this->template->display('admin/product_edit_view', $data);
+	}
+
 	public function updatedata() {
 		if (!empty($_FILES['userfile']['name'])) {
 			$jam 	= time();
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
-			$config['file_name']    	= 'Brand_'.$name.'_'.$jam.'.jpg';
+			$config['file_name']    	= 'Product_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/product/';
 			$config['allowed_types'] 	= 'jpg|png|gif|png';		
 			$config['overwrite'] 		= TRUE;
@@ -76,8 +85,8 @@ class Product extends CI_Controller {
 			$config['image_library'] 	= 'gd2';
 			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
 			$config['maintain_ratio'] 	= TRUE;
-			$config['width'] 			= 100; // 100 Px
-			$config['height'] 			= 100; // 100 px
+			$config['width'] 			= 500; // 100 Px
+			$config['height'] 			= 500; // 100 px
 			$this->load->library('image_lib',$config);
 			$this->image_lib->resize();
 		} elseif (empty($_FILES['userfile']['name'])){

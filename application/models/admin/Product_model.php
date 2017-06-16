@@ -64,6 +64,24 @@ class Product_model extends CI_Model {
 		
 		return $this->db->get();
 	}
+
+	function select_SubCategory() {
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_level', 'Level-1');
+		$this->db->order_by('category_no', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_Kategori() {
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_level', 'Level-2');
+		$this->db->order_by('category_no', 'asc');
+		
+		return $this->db->get();
+	}
 		
 	function insert_data() {
 		if (!empty($_FILES['userfile']['name'])) {
@@ -98,19 +116,43 @@ class Product_model extends CI_Model {
 		$this->db->insert('furnindo_product', $data);
 	}
 
+	function select_detail($product_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_product');
+		$this->db->where('product_id', $product_id);
+		
+		return $this->db->get();
+	}
+
 	function update_data() {
 		$product_id     	= $this->input->post('id');
 
 		if (!empty($_FILES['userfile']['name'])) {
-			$data = array(	'product_name'		=> trim($this->input->post('name', 'true')),
+			$data = array(	'main_category'		=> $this->input->post('lstMain', 'true'),
+							'sub_category'		=> $this->input->post('lstSubCategory', 'true'),
+							'category_id'		=> $this->input->post('lstCategory', 'true'),
+							'brand_id'			=> $this->input->post('lstBrand', 'true'),
+							'product_name'		=> strtoupper(trim($this->input->post('name', 'true'))),
 							'product_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
-							'product_image' 		=> $this->upload->file_name,
-				   			'product_update' 		=> date('Y-m-d H:i')
+							'product_desc'		=> $this->input->post('desc', 'true'),
+							'product_image' 	=> $this->upload->file_name,
+							'product_new'		=> $this->input->post('chkNew', 'true'),
+							'product_best'		=> $this->input->post('chkBest', 'true'),
+							'product_special'	=> $this->input->post('chkSpecial', 'true'),
+				   			'product_update' 	=> date('Y-m-d H:i:s')
 			);
 		} else {
-			$data = array(	'product_name'		=> trim($this->input->post('name', 'true')),
+			$data = array(	'main_category'		=> $this->input->post('lstMain', 'true'),
+							'sub_category'		=> $this->input->post('lstSubCategory', 'true'),
+							'category_id'		=> $this->input->post('lstCategory', 'true'),
+							'brand_id'			=> $this->input->post('lstBrand', 'true'),
+							'product_name'		=> strtoupper(trim($this->input->post('name', 'true'))),
 							'product_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
-				   			'product_update' 		=> date('Y-m-d H:i')
+							'product_desc'		=> $this->input->post('desc', 'true'),
+							'product_new'		=> $this->input->post('chkNew', 'true'),
+							'product_best'		=> $this->input->post('chkBest', 'true'),
+							'product_special'	=> $this->input->post('chkSpecial', 'true'),
+				   			'product_update' 	=> date('Y-m-d H:i:s')
 			);
 		}
 
