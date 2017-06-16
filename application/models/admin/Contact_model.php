@@ -22,7 +22,6 @@ class Contact_model extends CI_Model {
 						'contact_zipcode'	=> trim($this->input->post('zipcode', 'true')),
 						'contact_phone'		=> trim($this->input->post('phone', 'true')),
 						'contact_wa'		=> trim($this->input->post('wa', 'true')),
-						'contact_bbm'		=> strtoupper(trim($this->input->post('bbm', 'true'))),
 						'contact_email'		=> trim($this->input->post('email', 'true')),
 						'contact_work'		=> trim($this->input->post('work', 'true')),
 						'contact_update' 	=> date('Y-m-d H:i')

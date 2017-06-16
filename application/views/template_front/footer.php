@@ -8,11 +8,11 @@ $detailKontak = $this->menu_model->select_contact()->row();
                 <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <h5>Contact Details</h5>
                 <ul>
-                    <li class="address"><i class="fa fa-map-marker"></i><?php echo $detailKontak->contact_address; ?></li>
+                    <li class="address"><i class="fa fa-map-marker"></i><?php echo $detailKontak->contact_address; ?><br><?php echo $detailKontak->contact_city; ?><br><?php echo $detailKontak->contact_region; ?> - <?php echo $detailKontak->contact_zipcode; ?></li>
                     <li class="mobile"><i class="fa fa-phone"></i><?php echo $detailKontak->contact_phone; ?></li>
-                    <li class="email"><i class="fa fa-envelope"></i>Send email via our <a href="<?php echo site_url('contact'); ?>">Contact Us</a>
                     <li class="mobile"><i class="fa fa-whatsapp"></i>WA : <?php echo $detailKontak->contact_wa; ?></li>
-                    <li class="mobile"><i class="fa fa-bbm"></i>PIN BBM : <?php echo $detailKontak->contact_bbm; ?></li>
+                    <li class="email"><i class="fa fa-envelope"></i>Send email via our <a href="<?php echo site_url('contact'); ?>">Contact Us</a>
+                    <li class="mobile"><i class="fa fa-support"></i><?php echo $detailKontak->contact_work; ?></li>
                 </ul>
                 </div>
                 <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
@@ -34,21 +34,14 @@ $detailKontak = $this->menu_model->select_contact()->row();
                 <p>KcFurnindo Jepara © 2017</p>
             </div>
             <div class="social pull-right flip"> 
-                <a href="#" target="_blank"> 
-                    <img data-toggle="tooltip" src="image/socialicons/facebook.png" alt="Facebook" title="Facebook">
+                <?php 
+                $listSocial = $this->menu_model->select_social()->result();
+                foreach($listSocial as $s) {
+                ?>
+                <a href="http://<?php echo $s->social_url; ?>" target="_blank">
+                    <img data-toggle="tooltip" src="<?php echo base_url(); ?>img/socialicons/<?php echo $s->social_icon; ?>" alt="<?php echo $s->social_name; ?>" title="<?php echo $s->social_name; ?>">
                 </a> 
-                <a href="#" target="_blank"> 
-                    <img data-toggle="tooltip" src="image/socialicons/twitter.png" alt="Twitter" title="Twitter">
-                </a>
-                <a href="#" target="_blank"> 
-                    <img data-toggle="tooltip" src="image/socialicons/google_plus.png" alt="Google+" title="Google+">
-                </a>
-                <a href="#" target="_blank">
-                    <img data-toggle="tooltip" src="image/socialicons/pinterest.png" alt="Pinterest" title="Pinterest">
-                </a>
-                <a href="#" target="_blank">
-                    <img data-toggle="tooltip" src="image/socialicons/rss.png" alt="RSS" title="RSS">
-                </a>
+                <?php } ?>
             </div>
         </div>
     </div>

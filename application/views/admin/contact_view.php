@@ -67,19 +67,13 @@ if ($this->session->flashdata('notification')) { ?>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Phone *</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" name="phone" value="<?php echo $detail->contact_phone; ?>" pattern="^[0-9]{1,12}$" title="Numeric, 12 Character" maxlength="12" required autocomplete="off">
+                                    <input type="text" class="form-control" name="phone" value="<?php echo $detail->contact_phone; ?>" title="Numeric, 20 Character" maxlength="20" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">WhatsApp *</label>
                                 <div class="col-md-3">
-                                    <input type="text" class="form-control" name="wa" value="<?php echo $detail->contact_wa; ?>" pattern="^[0-9]{1,12}$" title="Numeric, 12 Character" maxlength="12" required autocomplete="off">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">BBM *</label>
-                                <div class="col-md-3">
-                                    <input type="text" class="form-control" name="bbm" value="<?php echo $detail->contact_bbm; ?>" maxlength="8" required autocomplete="off">
+                                    <input type="text" class="form-control" name="wa" value="<?php echo $detail->contact_wa; ?>" maxlength="20" required autocomplete="off">
                                 </div>
                             </div>
                             <div class="form-group">

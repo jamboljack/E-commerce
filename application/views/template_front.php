@@ -69,7 +69,6 @@
   
     <?php echo $_footer; ?>
 
-    <!-- Facebook Side Block Start -->
     <div id="facebook" class="fb-left sort-order-1">
         <div class="facebook_icon"><i class="fa fa-facebook"></i></div>
         <div class="fb-page" data-href="https://www.facebook.com/kcfurnindo" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true" data-show-posts="false">
@@ -88,14 +87,11 @@
         }(document, 'script', 'facebook-jssdk'));
         </script>
     </div>
-    <!-- Facebook Side Block End -->
-    <!-- Twitter Side Block Start -->
     <div id="twitter_footer" class="twit-left sort-order-2">
         <div class="twitter_icon"><i class="fa fa-twitter"></i></div>
-        <a class="twitter-timeline" href="https://twitter.com/" data-chrome="nofooter noscrollbar transparent" data-theme="light" data-tweet-limit="2" data-related="twitterapi,twitter" data-aria-polite="assertive" data-widget-id="347621595801608192">Tweets by @</a>
+        <a class="twitter-timeline" href="https://twitter.com/" data-chrome="nofooter noscrollbar transparent" data-theme="light" data-tweet-limit="2" data-related="twitterapi,twitter" data-aria-polite="assertive" data-widget-id="141223653">Tweets by @</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
-    <!-- Twitter Side Block End -->
 </div>
 <!-- JS Part Start-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>

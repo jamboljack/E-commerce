@@ -11,7 +11,6 @@ class Category extends CI_Controller {
 	
 	public function index() {
 		if($this->session->userdata('logged_in_furnindo')) {
-			$data['error'] 		= 'false';	
 			$data['listData'] 	= $this->category_model->select_all()->result();
 			$this->template->display('admin/category_view', $data);
 		} else {
@@ -28,7 +27,7 @@ class Category extends CI_Controller {
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
 			$config['file_name']    	= 'Category_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/category/';
-			$config['allowed_types'] 	= 'jpg|png|gif|png';		
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';		
 			$config['overwrite'] 		= TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');
@@ -63,7 +62,7 @@ class Category extends CI_Controller {
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
 			$config['file_name']    	= 'Category_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/category/';
-			$config['allowed_types'] 	= 'jpg|png|gif|png';		
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
 			$config['overwrite'] 		= TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');

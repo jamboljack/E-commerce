@@ -25,15 +25,15 @@ class Brand extends CI_Controller {
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
 			$config['file_name']    	= 'Brand_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/brand/';
-			$config['allowed_types'] 	= 'jpg|png|gif|png';		
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
 			$config['overwrite'] 		= TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');
 			$config['image_library'] 	= 'gd2';
 			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
 			$config['maintain_ratio'] 	= TRUE;
-			$config['width'] 			= 100; // 100 Px
-			$config['height'] 			= 100; // 100 px
+			$config['width'] 			= 300; // 100 Px
+			$config['height'] 			= 300; // 100 px
 			$this->load->library('image_lib',$config);
 			$this->image_lib->resize();
 		} elseif (empty($_FILES['userfile']['name'])){
@@ -51,15 +51,15 @@ class Brand extends CI_Controller {
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
 			$config['file_name']    	= 'Brand_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/brand/';
-			$config['allowed_types'] 	= 'jpg|png|gif|png';		
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
 			$config['overwrite'] 		= TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');
 			$config['image_library'] 	= 'gd2';
 			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
 			$config['maintain_ratio'] 	= TRUE;
-			$config['width'] 			= 100; // 100 Px
-			$config['height'] 			= 100; // 100 px
+			$config['width'] 			= 300; // 100 Px
+			$config['height'] 			= 300; // 100 px
 			$this->load->library('image_lib',$config);
 			$this->image_lib->resize();
 		} elseif (empty($_FILES['userfile']['name'])){

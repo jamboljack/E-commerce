@@ -16,20 +16,18 @@ if ($this->session->flashdata('notification')) { ?>
     $(function() {
         $(document).on("click",'.edit_button', function(e) {
             var id          = $(this).data('id');
-            var sub         = $(this).data('sub');
             var name        = $(this).data('name');
-            var level        = $(this).data('level');
+            var url        = $(this).data('url');
             $(".id").val(id);
-            $(".sub").val(sub);
             $(".name").val(name);
-            $(".level").val(level);
+            $(".url").val(url);
         })
     });
 </script>
 <!-- Hapus -->
 <script>
-    function hapusData(category_id) {
-        var id = category_id;
+    function hapusData(social_id) {
+        var id = social_id;
         swal({
             title: 'Anda Yakin ?',
             text: 'Data ini akan di Hapus !',type: 'warning',
@@ -40,7 +38,7 @@ if ($this->session->flashdata('notification')) { ?>
             cancelButtonText: 'No',
             closeOnConfirm: true
         }, function() {
-            window.location.href="<?php echo site_url('admin/category/deletedata'); ?>"+"/"+id
+            window.location.href="<?php echo site_url('admin/social/deletedata'); ?>"+"/"+id
         });
     }
 </script>
@@ -50,43 +48,27 @@ if ($this->session->flashdata('notification')) { ?>
         <div class="modal-content">
             <div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title"><i class="fa fa-plus-circle"></i> Add Data Category</h4> 
+                <h4 class="modal-title"><i class="fa fa-plus-circle"></i> Add Data Social Media</h4> 
             </div>            
-            <form action="<?php echo site_url('admin/category/savedata'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo site_url('admin/social/savedata'); ?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <div class="modal-body">
                 <div class="row"> 
                     <div class="col-md-12"> 
                         <div class="form-group"> 
-                            <label class="control-label">Category Name</label> 
-                            <input type="text" class="form-control" placeholder="Input Category Name" name="name" autocomplete="off" required autofocus> 
+                            <label class="control-label">Social Media Name</label> 
+                            <input type="text" class="form-control" placeholder="Input Social Media Name" name="name" autocomplete="off" required autofocus> 
                         </div> 
                     </div>
                     <div class="col-md-12"> 
                         <div class="form-group"> 
-                            <label class="control-label">Sub Category</label> 
-                            <select class="form-control" name="lstSubCategory">
-                                <option value="0">- Choose Sub Category -</option>
-                                <?php foreach($listData as $r) { ?>
-                                <option value="<?php echo $r->category_id; ?>" <?php echo set_select('lstSubCategory', $r->category_id); ?>><?php echo $r->category_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div> 
-                    </div>
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label class="control-label">Level</label> 
-                            <select class="form-control" name="lstLevel" required>
-                                <option value="">- Choose Level -</option>
-                                <option value="Main">Main</option>
-                                <option value="Level-1">Level-1</option>
-                                <option value="Level-2">Level-2</option>
-                            </select>
+                            <label class="control-label">Social Media URL</label> 
+                            <input type="text" class="form-control" placeholder="Input Social Media URL" name="url" autocomplete="off" required> 
                         </div> 
                     </div>
                     <div class="col-md-12"> 
                         <div class="form-group">
-                            <label class="control-label">Upload Image</label> 
+                            <label class="control-label">Upload Icon</label> 
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
                                     <img src="<?php echo base_url(); ?>img/noimage.png" alt="" />
@@ -102,7 +84,7 @@ if ($this->session->flashdata('notification')) { ?>
                             </div>
                             <div class="clearfix margin-top-10">
                                 <span class="label label-danger">NOTE !</span>
-                                <span>Level : Main (920 x 380 pixel) | Level-1 (200 x 200 pixel)</span>
+                                <span>Resolution : 32 x 32 pixel (Landscape)</span>
                             </div>
                         </div>
                     </div>
@@ -123,10 +105,10 @@ if ($this->session->flashdata('notification')) { ?>
         <div class="modal-content">
             <div class="modal-header"> 
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> 
-                <h4 class="modal-title"><i class="fa fa-edit"></i> Edit Data Category</h4> 
+                <h4 class="modal-title"><i class="fa fa-edit"></i> Edit Data Social Media</h4> 
             </div>
             
-            <form action="<?php echo site_url('admin/category/updatedata'); ?>" method="post" enctype="multipart/form-data">
+            <form action="<?php echo site_url('admin/social/updatedata'); ?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <input type="hidden" class="form-control id" name="id">
 
@@ -134,35 +116,19 @@ if ($this->session->flashdata('notification')) { ?>
                 <div class="row"> 
                     <div class="col-md-12"> 
                         <div class="form-group"> 
-                            <label class="control-label">Category Name</label> 
-                            <input type="text" class="form-control name" placeholder="Input Category Name" name="name" autocomplete="off" required> 
+                            <label class="control-label">Social Media Name</label> 
+                            <input type="text" class="form-control name" placeholder="Input Social Media Name" name="name" autocomplete="off" required> 
                         </div> 
                     </div>
                     <div class="col-md-12"> 
                         <div class="form-group"> 
-                            <label class="control-label">Sub Category</label> 
-                            <select class="form-control sub" name="lstSubCategory">
-                                <option value="0">- Choose Sub Category -</option>
-                                <?php foreach($listData as $r) { ?>
-                                <option value="<?php echo $r->category_id; ?>" <?php echo set_select('lstSubCategory', $r->category_id); ?>><?php echo $r->category_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div> 
-                    </div>
-                    <div class="col-md-12"> 
-                        <div class="form-group"> 
-                            <label class="control-label">Level</label> 
-                            <select class="form-control level" name="lstLevel" required>
-                                <option value="">- Choose Level -</option>
-                                <option value="Main">Main</option>
-                                <option value="Level-1">Level-1</option>
-                                <option value="Level-2">Level-2</option>
-                            </select>
+                            <label class="control-label">Social Media URL</label> 
+                            <input type="text" class="form-control url" placeholder="Input Social Media URL" name="url" autocomplete="off" required> 
                         </div> 
                     </div>
                     <div class="col-md-12"> 
                         <div class="form-group">
-                            <label class="control-label">Change Image</label> 
+                            <label class="control-label">Change Icon</label> 
                             <div class="fileupload fileupload-new" data-provides="fileupload">
                                 <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
                                     <img src="<?php echo base_url(); ?>img/noimage.png" alt="" />
@@ -178,7 +144,7 @@ if ($this->session->flashdata('notification')) { ?>
                             </div>
                             <div class="clearfix margin-top-10">
                                 <span class="label label-danger">NOTE !</span>
-                                <span>Level : Main (920 x 380 pixel) | Level-1 (200 x 200 pixel)</span>
+                                <span>Resolution : 100 x 100 pixel (Landscape)</span>
                             </div>
                         </div>
                     </div> 
@@ -204,16 +170,27 @@ if ($this->session->flashdata('notification')) { ?>
                         <a href="#">Master Data</a>
                     </li>
                     <li class="active">
-                        Category
+                        Social Media
                     </li>
                 </ol>
             </div>
         </div>
 
+        <?php if ($error == 'true') { ?>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-danger">
+                    <i class='fa fa-warning'></i> <b>ERROR !!</b>
+                    <?php echo validation_errors(); ?>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
+        
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-box table-responsive">                    
-                    <h4 class="m-t-0 header-title"><b>Category List</b></h4>
+                    <h4 class="m-t-0 header-title"><b>Social Media List</b></h4>
                     <br>
                     <button type="button" class="btn btn-primary btn-custom waves-effect waves-light btn-sm" data-toggle="modal" data-target="#adddata"><i class="fa fa-plus-circle"></i> Add Data</button>
                     <br><br>
@@ -221,11 +198,9 @@ if ($this->session->flashdata('notification')) { ?>
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th width="10%">Number</th>
-                                <th>Category Name</th>
-                                <th width="10%">Level</th>
-                                <th width="20%">Image</th>
-                                <th width="10%">Number Order</th>
+                                <th>Social Media Name</th>
+                                <th width="20%">URL</th>
+                                <th width="20%">Icon</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -233,39 +208,25 @@ if ($this->session->flashdata('notification')) { ?>
                             <?php
                             $no = 1;
                             foreach($listData as $r) {
-                                $category_id = $r->category_id;
+                                $social_id = $r->social_id;
                             ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
-                                <td><?php echo $r->category_no; ?></td>
-                                <td><?php echo $r->category_name; ?></td>
-                                <td><?php echo $r->category_level; ?></td>
+                                <td><?php echo $r->social_name; ?></td>
+                                <td><?php echo $r->social_url; ?></td>
                                 <td>
                                     <?php 
-                                    if (empty($r->category_image)) {
+                                    if (empty($r->social_icon)) {
                                     ?>
-                                    <img src="<?php echo base_url(); ?>img/nocategory.jpg" width="50%">
+                                    <img src="<?php echo base_url(); ?>img/noicon.png">
                                     <?php } else { ?>
-                                    <img src="<?php echo base_url(); ?>img/category/<?php echo $r->category_image; ?>" width="50%">
+                                    <img src="<?php echo base_url(); ?>img/socialicons/<?php echo $r->social_icon; ?>">
                                     <?php } ?>
                                 </td>
                                 <td>
-                                    <div align="center">
-                                    <?php 
-                                        if ($r->category_no == 1) { 
-                                            echo ""; 
-                                        } else {
-                                        ?>
-                                        <a href="<?php echo site_url('admin/category/up/'.$r->category_id.'/'.$r->category_no); ?>" title="Up">&uarr;</a> 
-                                           &nbsp;&nbsp;&nbsp;&nbsp; 
-                                        <?php } ?>
-                                        <a href="<?php echo site_url('admin/category/down/'.$r->category_id.'/'.$r->category_no); ?>" title="Down">&darr;</a>
-                                    </div>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-warning btn-custom waves-effect waves-light btn-xs edit_button" data-toggle="modal" data-target="#editdata" data-id="<?php echo $r->category_id; ?>" data-sub="<?php echo $r->category_subid; ?>" data-name="<?php echo $r->category_name; ?>" data-level="<?php echo $r->category_level; ?>" title="Edit Data"><i class="icon-pencil"></i> Edit
+                                    <button type="button" class="btn btn-warning btn-custom waves-effect waves-light btn-xs edit_button" data-toggle="modal" data-target="#editdata" data-id="<?php echo $r->social_id; ?>" data-name="<?php echo $r->social_name; ?>" data-url="<?php echo $r->social_url; ?>" title="Edit Data"><i class="icon-pencil"></i> Edit
                                     </button>
-                                    <a onclick="hapusData(<?php echo $category_id; ?>)"><button class="btn btn-danger btn-custom waves-effect waves-light btn-xs" title="Delete Data"><i class="icon-trash"></i> Delete</button>
+                                    <a onclick="hapusData(<?php echo $social_id; ?>)"><button class="btn btn-danger btn-custom waves-effect waves-light btn-xs" title="Delete Data"><i class="icon-trash"></i> Delete</button>
                                     </a>
                                 </td>
                             </tr>

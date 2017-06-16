@@ -5,6 +5,7 @@ if ($uri == 'home') {
     $dashboard      = 'active';
     $data           = '';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = '';
@@ -16,6 +17,19 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = 'active subdrop';
     $slider         = 'active';
+    $social         = '';
+    $contact        = '';
+    $brand          = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = '';
+    $orders         = '';
+    $users          = '';
+} elseif ($uri == 'social') {
+    $dashboard      = '';
+    $data           = 'active subdrop';
+    $slider         = 'active';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = '';
@@ -27,6 +41,7 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = 'active subdrop';
     $slider         = '';
+    $social         = '';
     $contact        = 'active';
     $brand          = '';
     $category       = '';
@@ -38,6 +53,7 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = 'active subdrop';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = 'active';
     $category       = '';
@@ -49,6 +65,7 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = 'active subdrop';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = 'active';
@@ -60,6 +77,7 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = 'active subdrop';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = '';
@@ -71,6 +89,7 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = '';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = '';
@@ -82,6 +101,7 @@ if ($uri == 'home') {
     $dashboard      = '';
     $data           = '';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = '';
@@ -93,6 +113,7 @@ if ($uri == 'home') {
     $dashboard      = 'active';
     $data           = '';
     $slider         = '';
+    $social         = '';
     $contact        = '';
     $brand          = '';
     $category       = '';
@@ -114,6 +135,7 @@ if ($uri == 'home') {
                     <a href="javascript:void(0);" class="waves-effect <?php echo $data; ?>"><i class="fa fa-globe"></i> <span> Master Data </span> <span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
                         <li class="<?php echo $slider; ?>"><a href="<?php echo site_url('admin/slider'); ?>">Slider</a></li>
+                        <li class="<?php echo $social; ?>"><a href="<?php echo site_url('admin/social'); ?>">Social Media</a></li>
                         <li class="<?php echo $contact; ?>"><a href="<?php echo site_url('admin/contact'); ?>">Contact Us</a></li>
                         <li class="<?php echo $brand; ?>"><a href="<?php echo site_url('admin/brand'); ?>">Brand</a></li>
                         <li class="<?php echo $category; ?>"><a href="<?php echo site_url('admin/category'); ?>">Category</a></li>

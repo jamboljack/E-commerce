@@ -104,25 +104,26 @@ $detailKontak = $this->menu_model->select_contact()->row();
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li><a class="home_link" title="Home" href="<?php echo base_url(); ?>"><span>Home</span></a></li>
-                    <?php 
+                    <?php
+                    $listMainMenu   = $this->menu_model->select_main_menu()->result(); 
                     foreach($listMainMenu as $r) {
                     ?>
-                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/'.$r->category_id.'/'.$r->category_name_seo); ?>"><?php echo $r->category_name; ?></a>
+                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/item/'.$r->category_id.'/'.$r->category_name_seo); ?>"><?php echo $r->category_name; ?></a>
                         <?php 
                         // Tampilkan Sub Category Level-1
                         $category_id    = $r->category_id;
-                        $listLevel1     = $this->home_model->select_menu_level_1($category_id)->result();
+                        $listLevel1     = $this->menu_model->select_menu_level_1($category_id)->result();
                         if (count($listLevel1) > 0) { // Jika Ada Sub Category, maka Tampilkan
                         ?>
                         <div class="dropdown-menu">
                             <?php 
                             foreach($listLevel1 as $l) {
                             ?>
-                            <div class="column col-lg-2 col-md-3"><a href="<?php echo site_url('subcategory/'.$l->category_id.'/'.$l->category_name_seo); ?>"><?php echo $l->category_name; ?></a>
+                            <div class="column col-lg-2 col-md-3"><a href="<?php echo site_url('subcategory/item/'.$l->category_id.'/'.$l->category_name_seo); ?>"><?php echo $l->category_name; ?></a>
                                 <?php 
                                 // Tampilkan Sub Category Level-2
                                 $category_id = $l->category_id;
-                                $listLevel2 = $this->home_model->select_menu_level_2($category_id)->result();
+                                $listLevel2 = $this->menu_model->select_menu_level_2($category_id)->result();
                                 if (count($listLevel2) > 0) { // Jika Ada Sub Category, maka Tampilkan
                                 ?>
                                 <div>
@@ -130,7 +131,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                                         <?php 
                                         foreach($listLevel2 as $k) {
                                         ?>
-                                        <li><a href="<?php echo site_url('category/'.$k->category_id.'/'.$k->category_name_seo); ?>" ><?php echo $k->category_name; ?></a></li>
+                                        <li><a href="<?php echo site_url('category/item/'.$k->category_id.'/'.$k->category_name_seo); ?>" ><?php echo $k->category_name; ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>

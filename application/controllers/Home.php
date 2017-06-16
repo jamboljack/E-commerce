@@ -10,8 +10,8 @@ class Home extends CI_Controller{
 	}
 	
 	public function index() {
-		$data['listMainMenu'] 	= $this->home_model->select_main_menu()->result();
 		$data['listSlider'] 	= $this->home_model->select_slider()->result();
+		$data['listFeatured'] 	= $this->home_model->select_featured()->result();
 		$this->template_front->display('home_v', $data);
 	}	
 }

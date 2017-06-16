@@ -19,12 +19,12 @@ class Brand_model extends CI_Model {
 			$data = array(	'brand_name'		=> trim($this->input->post('name', 'true')),
 							'brand_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
 							'brand_image' 		=> $this->upload->file_name,
-				   			'brand_update' 		=> date('Y-m-d H:i')
+				   			'brand_update' 		=> date('Y-m-d H:i:s')
 			);
 		} else {
 			$data = array(	'brand_name'		=> trim($this->input->post('name', 'true')),
 							'brand_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
-				   			'brand_update' 		=> date('Y-m-d H:i')
+				   			'brand_update' 		=> date('Y-m-d H:i:s')
 			);
 		}
 
@@ -38,12 +38,12 @@ class Brand_model extends CI_Model {
 			$data = array(	'brand_name'		=> trim($this->input->post('name', 'true')),
 							'brand_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
 							'brand_image' 		=> $this->upload->file_name,
-				   			'brand_update' 		=> date('Y-m-d H:i')
+				   			'brand_update' 		=> date('Y-m-d H:i:s')
 			);
 		} else {
 			$data = array(	'brand_name'		=> trim($this->input->post('name', 'true')),
 							'brand_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
-				   			'brand_update' 		=> date('Y-m-d H:i')
+				   			'brand_update' 		=> date('Y-m-d H:i:s')
 			);
 		}
 

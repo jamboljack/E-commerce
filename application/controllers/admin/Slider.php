@@ -25,7 +25,7 @@ class Slider extends CI_Controller {
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
 			$config['file_name']    	= 'Slider_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/slider/';
-			$config['allowed_types'] 	= 'jpg|png|gif|png';		
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
 			$config['overwrite'] 		= TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');
@@ -51,7 +51,7 @@ class Slider extends CI_Controller {
 			$name 	= seo_title(trim($this->input->post('name', 'true')));
 			$config['file_name']    	= 'Slider_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] 		= './img/slider/';
-			$config['allowed_types'] 	= 'jpg|png|gif|png';		
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
 			$config['overwrite'] 		= TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');

@@ -14,11 +14,77 @@ class Menu_model extends CI_Model {
 		return $this->db->get();
 	}
 
-	function select_best_product() {
+	function select_main_menu() {
 		$this->db->select('*');
-		$this->db->from('furnindo_product');
-		$this->db->where('product_best', 1);
-		$this->db->order_by('product_name', 'asc');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_level', 'Main');
+		$this->db->order_by('category_no', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_menu_level_1($category_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_subid', $category_id);
+		$this->db->where('category_level', 'Level-1');
+		$this->db->order_by('category_no', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_menu_level_2($category_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_subid', $category_id);
+		$this->db->where('category_level', 'Level-2');
+		$this->db->order_by('category_no', 'asc');
+		
+		return $this->db->get();
+	}
+	
+	function select_best_product() {
+		$this->db->select('p.*, c.category_name');
+		$this->db->from('furnindo_product p');
+		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->where('p.product_best', 1);
+		$this->db->order_by('p.product_name', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_special_product() {
+		$this->db->select('p.*, c.category_name');
+		$this->db->from('furnindo_product p');
+		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->where('p.product_special', 1);
+		$this->db->order_by('p.product_name', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_new_product() {
+		$this->db->select('p.*, c.category_name');
+		$this->db->from('furnindo_product p');
+		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->where('p.product_new', 1);
+		$this->db->order_by('p.product_name', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_social() {
+		$this->db->select('*');
+		$this->db->from('furnindo_social');
+		$this->db->order_by('social_id', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_brand() {
+		$this->db->select('*');
+		$this->db->from('furnindo_brand');
+		$this->db->order_by('brand_name', 'asc');
 		
 		return $this->db->get();
 	}

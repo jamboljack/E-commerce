@@ -37,7 +37,7 @@ class Users extends CI_Controller {
 						
 				$config['file_name']    = 'Users_'.$name.'_'.$jam.'.jpg';
 				$config['upload_path'] = './img/avatar/';
-				$config['allowed_types'] = 'jpg|png|gif|png';		
+				$config['allowed_types'] = 'jpg|jpeg|png|gif|png';
 				$config['overwrite'] = TRUE;
 				$this->load->library('upload', $config);
 				$this->upload->do_upload('userfile');
@@ -72,7 +72,7 @@ class Users extends CI_Controller {
 					
 			$config['file_name']    = 'Users_'.$name.'_'.$jam.'.jpg';
 			$config['upload_path'] = './img/avatar/';
-			$config['allowed_types'] = 'jpg|png|gif|png';		
+			$config['allowed_types'] = 'jpg|jpeg|png|gif|png';
 			$config['overwrite'] = TRUE;
 			$this->load->library('upload', $config);
 			$this->upload->do_upload('userfile');
