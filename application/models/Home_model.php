@@ -34,5 +34,13 @@ class Home_model extends CI_Model {
 		
 		return $this->db->get();
 	}
+
+	function select_slider() {
+		$this->db->select('*');
+		$this->db->from('furnindo_slider');
+		$this->db->order_by('slider_id', 'asc');
+		
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/admin/Home_model.php */

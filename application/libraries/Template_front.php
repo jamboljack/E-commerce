@@ -11,6 +11,7 @@ class Template_front {
         $data['content']    = $this->_ci->load->view($template_front, $data,true);
         $data['_header']    = $this->_ci->load->view('template_front/header', $data,true);
         $data['_footer']    = $this->_ci->load->view('template_front/footer', $data,true);
+        $data['_sidebar']   = $this->_ci->load->view('template_front/sidebar', $data,true);
 
         $this->_ci->load->view('/template_front.php', $data);
     }

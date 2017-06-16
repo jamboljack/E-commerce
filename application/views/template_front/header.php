@@ -1,3 +1,6 @@
+<?php 
+$detailKontak = $this->menu_model->select_contact()->row();
+?>
 <div id="header">
     <nav id="top" class="htop">
         <div class="container">
@@ -5,8 +8,8 @@
                 <div class="pull-left flip left-top">
                     <div class="links">
                         <ul>
-                            <li class="mobile"><i class="fa fa-phone"></i>+91 9898777656</li>
-                            <li class="email"><a href="mailto:info@marketshop.com"><i class="fa fa-envelope"></i>info@marketshop.com</a></li>
+                            <li class="mobile"><i class="fa fa-phone"></i><?php echo $detailKontak->contact_phone; ?></li>
+                            <li class="email"><a href="mailto:<?php echo $detailKontak->contact_email; ?>"><i class="fa fa-envelope"></i><?php echo $detailKontak->contact_email; ?></a></li>
                             <li><a href="#">Wish List (0)</a></li>
                             <li><a href="checkout.html">Checkout</a></li>
                         </ul>
@@ -14,8 +17,8 @@
                 </div>
                 <div id="top-links" class="nav pull-right flip">
                     <ul>
-                        <li><a href="login.html">Login</a></li>
-                        <li><a href="register.html">Register</a></li>
+                        <li><a href="<?php echo site_url('login'); ?>">Login</a></li>
+                        <li><a href="<?php echo site_url('register'); ?>">Register</a></li>
                     </ul>
                 </div>
             </div>
@@ -25,14 +28,15 @@
         <div class="container">
             <div class="table-container">
                 <div class="col-table-cell col-lg-6 col-md-6 col-sm-12 col-xs-12 inner">
-                    <div id="logo"><a href="index.html"><img class="img-responsive" src="image/logo.png" title="MarketShop" alt="MarketShop" /></a></div>
+                    <div id="logo"><a href="<?php echo base_url(); ?>"><img class="img-responsive" src="<?php echo base_url(); ?>img/logo-header.png" title="KcFurnindo" alt="KcFurnindo" /></a></div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div id="cart">
                         <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="heading dropdown-toggle">
                             <span class="cart-icon pull-left flip"></span>
-                            <span id="cart-total">2 item(s) - $1,132.00</span>
+                            <span id="cart-total">0 item(s) in your chart</span>
                         </button>
+                        <!--
                         <ul class="dropdown-menu">
                             <li>
                                 <table class="table">
@@ -80,13 +84,16 @@
                                 </div>
                             </li>
                         </ul>
+                        -->
                     </div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">
-                    <div id="search" class="input-group">
-                        <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
-                        <button type="button" class="button-search"><i class="fa fa-search"></i></button>
-                    </div>
+                    <form action="" method="post">
+                        <div id="search" class="input-group">
+                            <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
+                            <button type="button" class="button-search"><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -96,41 +103,45 @@
         <div class="navbar-header"> <span class="visible-xs visible-sm"> Menu <b></b></span></div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a class="home_link" title="Home" href="index.html"><span>Home</span></a></li>
+                    <li><a class="home_link" title="Home" href="<?php echo base_url(); ?>"><span>Home</span></a></li>
                     <?php 
                     foreach($listMainMenu as $r) {
                     ?>
-                    <li class="mega-menu dropdown"><a><?php echo $r->category_name; ?></a>
+                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/'.$r->category_id.'/'.$r->category_name_seo); ?>"><?php echo $r->category_name; ?></a>
                         <?php 
                         // Tampilkan Sub Category Level-1
-                        $category_id = $r->category_id;
-                        $listLevel1 = $this->home_model->select_menu_level_1($category_id)->result();
+                        $category_id    = $r->category_id;
+                        $listLevel1     = $this->home_model->select_menu_level_1($category_id)->result();
                         if (count($listLevel1) > 0) { // Jika Ada Sub Category, maka Tampilkan
                         ?>
                         <div class="dropdown-menu">
                             <?php 
                             foreach($listLevel1 as $l) {
                             ?>
-                            <div class="column col-lg-2 col-md-3"><a href="category.html"><?php echo $l->category_name; ?></a>
+                            <div class="column col-lg-2 col-md-3"><a href="<?php echo site_url('subcategory/'.$l->category_id.'/'.$l->category_name_seo); ?>"><?php echo $l->category_name; ?></a>
+                                <?php 
+                                // Tampilkan Sub Category Level-2
+                                $category_id = $l->category_id;
+                                $listLevel2 = $this->home_model->select_menu_level_2($category_id)->result();
+                                if (count($listLevel2) > 0) { // Jika Ada Sub Category, maka Tampilkan
+                                ?>
                                 <div>
                                     <ul>
                                         <?php 
-                                        // Tampilkan Sub Category Level-2
-                                        $category_id = $l->category_id;
-                                        $listLevel2 = $this->home_model->select_menu_level_2($category_id)->result();
                                         foreach($listLevel2 as $k) {
                                         ?>
-                                        <li><a href="#" ><?php echo $k->category_name; ?></a></li>
+                                        <li><a href="<?php echo site_url('category/'.$k->category_id.'/'.$k->category_name_seo); ?>" ><?php echo $k->category_name; ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
+                                <?php } ?>    
                             </div>
                             <?php } ?>
                         </div>
                         <?php } ?>
                     </li>
                     <?php } ?>
-                    <li class="contact-link"><a href="contact-us.html">Contact Us</a></li>
+                    <li class="contact-link"><a href="<?php echo site_url('contact'); ?>">Contact Us</a></li>
                 </ul>
             </div>
         </nav>
