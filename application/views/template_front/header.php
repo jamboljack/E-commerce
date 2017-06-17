@@ -10,8 +10,8 @@ $detailKontak = $this->menu_model->select_contact()->row();
                         <ul>
                             <li class="mobile"><i class="fa fa-phone"></i><?php echo $detailKontak->contact_phone; ?></li>
                             <li class="email"><a href="mailto:<?php echo $detailKontak->contact_email; ?>"><i class="fa fa-envelope"></i><?php echo $detailKontak->contact_email; ?></a></li>
-                            <li><a href="#">Wish List (0)</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="<?php echo site_url('wishlist'); ?>">Wish List (0)</a></li>
+                            <li><a href="<?php echo site_url('checkout'); ?>">Checkout</a></li>
                         </ul>
                     </div>
                 </div>
@@ -28,7 +28,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
         <div class="container">
             <div class="table-container">
                 <div class="col-table-cell col-lg-6 col-md-6 col-sm-12 col-xs-12 inner">
-                    <div id="logo"><a href="<?php echo base_url(); ?>"><img class="img-responsive" src="<?php echo base_url(); ?>img/logo-header.png" title="KcFurnindo" alt="KcFurnindo" /></a></div>
+                    <div id="logo"><a href="<?php echo base_url(); ?>"><img class="img-responsive" src="<?php echo base_url(); ?>img/logo-header.png" title="KcFurnindo Jepara" alt="KcFurnindo Jepara" /></a></div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div id="cart">

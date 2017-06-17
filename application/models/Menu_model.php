@@ -88,5 +88,22 @@ class Menu_model extends CI_Model {
 		
 		return $this->db->get();
 	}
+
+	// Breadcrumb Main
+	function select_detail_main($main_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_id', $main_id);
+		
+		return $this->db->get();
+	}
+	// Breadcrumb Sub Level 1
+	function select_detail_subcategory($sub_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_id', $sub_id);
+		
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/admin/Menu_model.php */

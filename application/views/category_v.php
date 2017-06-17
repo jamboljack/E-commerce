@@ -1,4 +1,10 @@
 <div id="content" class="col-sm-9">
+    <?php if ($this->uri->segment(1) == 'maincategory') { ?>
+    <div class="slideshow single-slider owl-carousel">
+        <div class="item"> <a href="#"><img class="img-responsive" src="<?php echo base_url(); ?>img/category/<?php echo $detail->category_image; ?>" alt="<?php echo $detail->category_name; ?>" /></a> </div>
+    </div>
+    <?php } ?>
+
     <h1 class="title"><?php echo $detail->category_name; ?></h1>
     <div class="product-filter">
         <div class="row">
@@ -29,12 +35,12 @@
                 <div>
                     <div class="caption">
                         <h4><a href="<?php echo site_url('product/item/'.$p->product_id.'/'.$p->product_name_seo); ?>"><?php echo ucwords(strtolower($p->product_name)); ?></a></h4>
-                        <p class="price"><span class="price-new"></span></p>
+                        <p class="price"><span class="price-new"><?php echo $p->category_name; ?></span></p>
                     </div>
                     <div class="button-group">
-                        <a href="#"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>
+                        <a href="<?php echo site_url('chart/addtochart/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>
                         <div class="add-to-links">
-                            <a href="#"><button type="button" data-toggle="tooltip" title="" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button></a>
+                            <a href="<?php echo site_url('whistlist/addtowhistlist/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button type="button" data-toggle="tooltip" title="" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button></a>
                         </div>
                     </div>
                 </div>

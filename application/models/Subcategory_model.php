@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Maincategory_model extends CI_Model {
+class Subcategory_model extends CI_Model {
 	function __construct() {
 		parent::__construct();	
 	}
@@ -18,7 +18,7 @@ class Maincategory_model extends CI_Model {
 		$this->db->select('p.*, c.category_name');
 		$this->db->from('furnindo_product p');
 		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
-		$this->db->where('p.main_category', $category_id);
+		$this->db->where('p.sub_category', $category_id);
 		$this->db->order_by('p.product_name', 'asc');
 
 		return $this->db->get();
@@ -26,4 +26,4 @@ class Maincategory_model extends CI_Model {
 
 
 }
-/* Location: ./application/models/admin/Maincategory_model.php */
+/* Location: ./application/models/admin/Subcategory_model.php */

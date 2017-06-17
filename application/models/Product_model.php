@@ -1,24 +1,25 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Maincategory_model extends CI_Model {
+class Product_model extends CI_Model {
 	function __construct() {
 		parent::__construct();	
 	}
 		
-	function select_detail($category_id) {
+	function select_detail($product_id) {
 		$this->db->select('*');
-		$this->db->from('furnindo_category');
-		$this->db->where('category_id', $category_id);
+		$this->db->from('furnindo_product');
+		$this->db->where('product_id', $product_id);
 		
 		return $this->db->get();
 	}
 
-	function select_all_product($category_id) {
+	function select_other_product($category_id, $product_id) {
 		$this->db->select('p.*, c.category_name');
 		$this->db->from('furnindo_product p');
 		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
-		$this->db->where('p.main_category', $category_id);
+		$this->db->where('p.category_id', $category_id);
+		$this->db->where('p.product_id <>', $product_id);
 		$this->db->order_by('p.product_name', 'asc');
 
 		return $this->db->get();
@@ -26,4 +27,4 @@ class Maincategory_model extends CI_Model {
 
 
 }
-/* Location: ./application/models/admin/Maincategory_model.php */
+/* Location: ./application/models/admin/Product_model.php */

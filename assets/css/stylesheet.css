@@ -148,7 +148,7 @@ a:focus { outline:none; }
 #header .htop { background:#3e7cb4; }
 #header .header-row {
 	position:relative;
-	padding:35px 0;
+	padding:20px 0;
 }
 #header .header-row .inner { padding:0; }
 #header #logo img { display:inline-block!important; }

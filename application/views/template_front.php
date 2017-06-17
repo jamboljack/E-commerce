@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/stylesheet.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/owl.carousel.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/owl.transitions.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/js/swipebox/src/css/swipebox.min.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/responsive.css" />
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
 <!-- CSS Part End-->
@@ -22,9 +23,8 @@
     <?php echo $_header; ?>
 
     <div id="container">
-        
-        <!-- Feature Box Start-->
         <div class="container">
+            <?php if ($this->uri->segment(1) == '') { ?>
             <div class="custom-feature-box row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="feature-box fbox_1">
@@ -51,8 +51,34 @@
                     </div>
                 </div>
             </div>
+            <?php } else { ?>
+            <ul class="breadcrumb">
+                <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
+                <?php if ($this->uri->segment(1) == 'maincategory') { ?>
+                <li><a href="<?php echo site_url('maincategory/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
+                <?php 
+                } elseif ($this->uri->segment(1) == 'subcategory') {
+                    $main_id    = $detail->category_subid; // Main Level 
+                    $main       = $this->menu_model->select_detail_main($main_id)->row(); // Data Main Level
+                ?>
+                <li><a href="<?php echo site_url('maincategory/item/'.$main->category_id.'/'.$main->category_name_seo); ?>"><?php echo $main->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
+                <?php 
+                } elseif ($this->uri->segment(1) == 'category') {
+                    $sub_id         = $detail->category_subid; // Level-1
+                    $subcategory    = $this->menu_model->select_detail_subcategory($sub_id)->row(); // Data Level-1
+                    $main_id        = $subcategory->category_subid; // Main Level
+                    $main           = $this->menu_model->select_detail_main($main_id)->row(); // Data Main Level
+                ?>
+                <li><a href="<?php echo site_url('maincategory/item/'.$main->category_id.'/'.$main->category_name_seo); ?>"><?php echo $main->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->category_id.'/'.$subcategory->category_name_seo); ?>"><?php echo $subcategory->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('category/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
+                <?php } elseif ($this->uri->segment(1) == 'product') { ?>
+
+                <?php } ?>
+            </ul>
+            <?php } ?>
         </div>
-        <!-- Feature Box End-->
         
         <div class="container">
             <div class="row">
@@ -68,8 +94,7 @@
     </div>
   
     <?php echo $_footer; ?>
-
-    <div id="facebook" class="fb-left sort-order-1">
+<!--    <div id="facebook" class="fb-left sort-order-1">
         <div class="facebook_icon"><i class="fa fa-facebook"></i></div>
         <div class="fb-page" data-href="https://www.facebook.com/kcfurnindo" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="true" data-show-posts="false">
             <div class="fb-xfbml-parse-ignore">
@@ -92,6 +117,7 @@
         <a class="twitter-timeline" href="https://twitter.com/" data-chrome="nofooter noscrollbar transparent" data-theme="light" data-tweet-limit="2" data-related="twitterapi,twitter" data-aria-polite="assertive" data-widget-id="141223653">Tweets by @</a>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
     </div>
+-->
 </div>
 <!-- JS Part Start-->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-2.1.1.min.js"></script>
@@ -99,7 +125,31 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing-1.3.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dcjqaccordion.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.elevateZoom-3.0.8.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swipebox/lib/ios-orientationchange-fix.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/swipebox/src/js/jquery.swipebox.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+<script type="text/javascript">
+// Elevate Zoom for Product Page image
+$("#zoom_01").elevateZoom({
+    gallery:'gallery_01',
+    cursor: 'pointer',
+    galleryActiveClass: 'active',
+    imageCrossfade: true,
+    zoomWindowFadeIn: 500,
+    zoomWindowFadeOut: 500,
+    lensFadeIn: 500,
+    lensFadeOut: 500,
+    loadingIcon: '<?php echo base_url(); ?>assets/image/progress.gif'
+    }); 
+//////pass the images to swipebox
+$("#zoom_01").bind("click", function(e) {
+  var ez =   $('#zoom_01').data('elevateZoom');
+    $.swipebox(ez.getGalleryList());
+  return false;
+});
+</script>
 <!-- JS Part End-->
+
 </body>
 </html>
