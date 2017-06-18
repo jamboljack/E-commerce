@@ -3,11 +3,14 @@ $uri = $this->uri->segment(2);
 
 if ($uri == 'home') {
     $dashboard      = 'active';
-    $data           = '';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -15,11 +18,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'slider') {
     $dashboard      = '';
-    $data           = 'active subdrop';
+    $content        = 'active subdrop';
     $slider         = 'active';
     $social         = '';
     $contact        = '';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -27,11 +33,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'social') {
     $dashboard      = '';
-    $data           = 'active subdrop';
+    $content        = 'active subdrop';
     $slider         = 'active';
     $social         = '';
     $contact        = '';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -39,11 +48,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'contact') {
     $dashboard      = '';
-    $data           = 'active subdrop';
+    $content        = 'active subdrop';
     $slider         = '';
     $social         = '';
     $contact        = 'active';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -51,11 +63,29 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'brand') {
     $dashboard      = '';
-    $data           = 'active subdrop';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = 'active subdrop';
     $brand          = 'active';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = '';
+    $orders         = '';
+    $users          = '';
+} elseif ($uri == 'maincategory') {
+    $dashboard      = '';
+    $content        = '';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $data           = 'active subdrop';
+    $brand          = '';
+    $maincategory   = 'active';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -63,11 +93,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'category') {
     $dashboard      = '';
-    $data           = 'active subdrop';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = 'active subdrop';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = 'active';
     $product        = '';
     $transaction    = '';
@@ -75,11 +108,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'product') {
     $dashboard      = '';
-    $data           = 'active subdrop';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = 'active subdrop';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = 'active';
     $transaction    = '';
@@ -87,11 +123,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'orders') {
     $dashboard      = '';
-    $data           = '';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = 'active subdrop';
@@ -99,11 +138,14 @@ if ($uri == 'home') {
     $users          = '';
 } elseif ($uri == 'users') {
     $dashboard      = '';
-    $data           = '';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -111,11 +153,14 @@ if ($uri == 'home') {
     $users          = 'active';
 } else {
     $dashboard      = 'active';
-    $data           = '';
+    $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $data           = '';
     $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
     $category       = '';
     $product        = '';
     $transaction    = '';
@@ -132,18 +177,25 @@ if ($uri == 'home') {
                     <a href="<?php echo base_url(); ?>" class="waves-effect <?php echo $dashboard; ?>"><i class="fa fa-home"></i> <span> Dashboard </span></a>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect <?php echo $data; ?>"><i class="fa fa-globe"></i> <span> Master Data </span> <span class="menu-arrow"></span> </a>
+                    <a href="javascript:void(0);" class="waves-effect <?php echo $content; ?>"><i class="fa fa-tasks"></i> <span> Master Content </span> <span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
                         <li class="<?php echo $slider; ?>"><a href="<?php echo site_url('admin/slider'); ?>">Slider</a></li>
                         <li class="<?php echo $social; ?>"><a href="<?php echo site_url('admin/social'); ?>">Social Media</a></li>
                         <li class="<?php echo $contact; ?>"><a href="<?php echo site_url('admin/contact'); ?>">Contact Us</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect <?php echo $data; ?>"><i class="fa fa-database"></i> <span> Master Data </span> <span class="menu-arrow"></span> </a>
+                    <ul class="list-unstyled">
                         <li class="<?php echo $brand; ?>"><a href="<?php echo site_url('admin/brand'); ?>">Brand</a></li>
+                        <li class="<?php echo $maincategory; ?>"><a href="<?php echo site_url('admin/maincategory'); ?>">Main Category</a></li>
+                        <li class="<?php echo $subcategory; ?>"><a href="<?php echo site_url('admin/subcategory'); ?>">Sub Category</a></li>
                         <li class="<?php echo $category; ?>"><a href="<?php echo site_url('admin/category'); ?>">Category</a></li>
                         <li class="<?php echo $product; ?>"><a href="<?php echo site_url('admin/product'); ?>">Product</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect <?php echo $transaction; ?>"><i class="fa fa-tasks"></i> <span> Transaction </span> <span class="menu-arrow"></span> </a>
+                    <a href="javascript:void(0);" class="waves-effect <?php echo $transaction; ?>"><i class="fa fa-edit"></i> <span> Transaction </span> <span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
                         <li class="<?php echo $orders; ?>"><a href="<?php echo site_url('admin/orders'); ?>">Orders List</a></li>
                     </ul>

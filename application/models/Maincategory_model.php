@@ -15,11 +15,11 @@ class Maincategory_model extends CI_Model {
 	}
 
 	function select_all_product($category_id) {
-		$this->db->select('p.*, c.category_name');
-		$this->db->from('furnindo_product p');
-		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
-		$this->db->where('p.main_category', $category_id);
-		$this->db->order_by('p.product_name', 'asc');
+		$this->db->select('*');
+		$this->db->from('furnindo_category');
+		$this->db->where('category_subid', $category_id);
+		$this->db->where('category_level', 'Level-1');
+		$this->db->order_by('category_no', 'asc');
 
 		return $this->db->get();
 	}

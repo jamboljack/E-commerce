@@ -19,71 +19,31 @@ class Category extends CI_Controller {
 		}
 	}
 
+	public function adddata() {
+		$data['listMain'] 	= $this->category_model->select_main_category()->result();
+		$this->template->display('admin/category_add_view', $data);
+	}
+
+	// dijalankan saat Main Category di klik
+    public function pilih_subcategory() {
+        $data['listSubCategory']     = $this->category_model->select_sub_category($this->uri->segment(4));
+        $this->load->view('admin/drop_down_sub_category_view', $data);
+    }
+
 	public function savedata() {
-		$lvl 	= $this->input->post('lstLevel', 'true'); // Level
-
-		if (!empty($_FILES['userfile']['name'])) {
-			$jam 	= time();
-			$name 	= seo_title(trim($this->input->post('name', 'true')));
-			$config['file_name']    	= 'Category_'.$name.'_'.$jam.'.jpg';
-			$config['upload_path'] 		= './img/category/';
-			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';		
-			$config['overwrite'] 		= TRUE;
-			$this->load->library('upload', $config);
-			$this->upload->do_upload('userfile');
-			$config['image_library'] 	= 'gd2';
-			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
-			$config['maintain_ratio'] 	= TRUE;
-			
-			if ($lvl == 'Main') {
-				$config['width'] 			= 920;
-				$config['height'] 			= 380;
-			} else {
-				$config['width'] 			= 200;
-				$config['height'] 			= 200;
-			}
-			
-			$this->load->library('image_lib',$config);
-			$this->image_lib->resize();
-		} elseif (empty($_FILES['userfile']['name'])){
-			$config['file_name'] = '';
-		}
-
 		$this->category_model->insert_data();
 		$this->session->set_flashdata('notification','Save Data Success.');
 	 	redirect(site_url('admin/category'));
 	}
 
+	public function editdata($category_id) {
+		$data['listMain'] 			= $this->category_model->select_main_category()->result();
+		$data['listSubCategory'] 	= $this->category_model->select_SubCategory()->result();
+		$data['detail'] 			= $this->category_model->select_detail($category_id)->row();
+		$this->template->display('admin/category_edit_view', $data);
+	}
+
 	public function updatedata() {
-		$lvl 	= $this->input->post('lstLevel', 'true'); // Level
-
-		if (!empty($_FILES['userfile']['name'])) {
-			$jam 	= time();
-			$name 	= seo_title(trim($this->input->post('name', 'true')));
-			$config['file_name']    	= 'Category_'.$name.'_'.$jam.'.jpg';
-			$config['upload_path'] 		= './img/category/';
-			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
-			$config['overwrite'] 		= TRUE;
-			$this->load->library('upload', $config);
-			$this->upload->do_upload('userfile');
-			$config['image_library'] 	= 'gd2';
-			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
-			$config['maintain_ratio'] 	= TRUE;
-			
-			if ($lvl == 'Main') {
-				$config['width'] 			= 920;
-				$config['height'] 			= 380;
-			} else {
-				$config['width'] 			= 200;
-				$config['height'] 			= 200;
-			}
-			
-			$this->load->library('image_lib',$config);
-			$this->image_lib->resize();
-		} elseif (empty($_FILES['userfile']['name'])){
-			$config['file_name'] = '';
-		}
-
 		$this->category_model->update_data();
 		$this->session->set_flashdata('notification','Update Data Success.');
  		redirect(site_url('admin/category'));

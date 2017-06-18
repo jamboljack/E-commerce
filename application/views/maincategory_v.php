@@ -30,22 +30,11 @@
         <?php foreach($listProduct as $p) { ?>
         <div class="product-layout product-list col-xs-12">
             <div class="product-thumb">
-                <div class="image"><a href="<?php echo site_url('product/item/'.$p->product_id.'/'.$p->product_name_seo); ?>"><img src="<?php echo base_url(); ?>img/product/<?php echo $p->product_image; ?>" alt="<?php echo ucwords(strtolower($p->product_name)); ?>" title="<?php echo ucwords(strtolower($p->product_name)); ?>" class="img-responsive" /></a>
+                <div class="image"><a href="<?php echo site_url('subcategory/item/'.$p->category_id.'/'.$p->category_name_seo); ?>"><img src="<?php echo base_url(); ?>img/category/<?php echo $p->category_image; ?>" alt="<?php echo ucwords(strtolower($p->category_name)); ?>" title="<?php echo ucwords(strtolower($p->category_name)); ?>" class="img-responsive" /></a>
                 </div>
                 <div>
                     <div class="caption">
-                        <h4><a href="<?php echo site_url('product/item/'.$p->product_id.'/'.$p->product_name_seo); ?>"><?php echo ucwords(strtolower($p->product_name)); ?></a></h4>
-                        <?php if ($this->uri->segment(1) == 'subcategory') { ?>
-                        <p class="price"><span class="price-new"><?php echo $p->category_name; ?></span></p>
-                        <?php } else { ?>
-                        <br>
-                        <?php }?>
-                    </div>
-                    <div class="button-group">
-                        <a href="<?php echo site_url('chart/addtochart/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>
-                        <div class="add-to-links">
-                            <a href="<?php echo site_url('whistlist/addtowhistlist/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button type="button" data-toggle="tooltip" title="" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button></a>
-                        </div>
+                        <h4><a href="<?php echo site_url('subcategory/item/'.$p->category_id.'/'.$p->category_name_seo); ?>"><?php echo ucwords(strtolower($p->category_name)); ?></a></h4>
                     </div>
                 </div>
             </div>

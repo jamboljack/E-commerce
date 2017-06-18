@@ -17,7 +17,7 @@ class Maincategory extends CI_Controller{
 		$category_id 			= $this->uri->segment(3);
 		$data['detail'] 		= $this->maincategory_model->select_detail($category_id)->row();
 		$data['listProduct'] 	= $this->maincategory_model->select_all_product($category_id)->result();
-		$this->template_front->display('category_v', $data);
+		$this->template_front->display('maincategory_v', $data);
 	}
 }
 /* Location: ./application/controller/Maincategory.php */
