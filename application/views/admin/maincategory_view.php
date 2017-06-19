@@ -17,10 +17,8 @@ if ($this->session->flashdata('notification')) { ?>
         $(document).on("click",'.edit_button', function(e) {
             var id          = $(this).data('id');
             var name        = $(this).data('name');
-            var collection  = $(this).data('collection');
             $(".id").val(id);
             $(".name").val(name);
-            $(".collection").val(collection);
         })
     });
 </script>

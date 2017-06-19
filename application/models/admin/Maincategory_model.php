@@ -54,7 +54,27 @@ class Maincategory_model extends CI_Model {
 		$this->db->update('furnindo_maincategory', $data);
 	}
 
+	function select_image($kode) {
+		$this->db->select('*');
+		$this->db->from('furnindo_maincategory');
+		$this->db->where('maincategory_id', $kode);
+		
+		return $this->db->get();
+	}
+
 	function delete_data($kode) {
+		// Hapus File Image
+		/*$image 		= $this->maincategory_model->select_image($kode)->row();
+		$filename 	= $image->maincategory_image;
+		$path 		= '../img/maincategory/'.$filename;
+      	if(is_file($path)){      		
+        	unlink(base_url().'/img/maincategory'.$filename);
+        	unlink($path);
+        	echo 'File '.$filename.' has been deleted';
+      	} else {
+      		echo 'Could not delete '.$filename.', file does not exist';
+      		echo '<br>'.$path;
+      	}*/
 		$this->db->where('maincategory_id', $kode);
 		$this->db->delete('furnindo_maincategory');
 	}

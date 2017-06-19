@@ -16,6 +16,7 @@ class Product extends CI_Controller{
 	public function item($product_id) {
 		$product_id 			= $this->uri->segment(3);
 		$data['detail'] 		= $this->product_model->select_detail($product_id)->row();
+		$data['listImage'] 		= $this->product_model->select_all_image($product_id)->result();
 		$this->template_front->display('product_v', $data);
 	}
 }

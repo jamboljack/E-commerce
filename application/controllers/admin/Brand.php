@@ -10,7 +10,7 @@ class Brand extends CI_Controller {
 	}
 	
 	public function index() {
-		if($this->session->userdata('logged_in_furnindo')) {	
+		if($this->session->userdata('logged_in_furnindo')) {
 			$data['listData'] 		= $this->brand_model->select_all()->result();
 			$this->template->display('admin/brand_view', $data);
 		} else {

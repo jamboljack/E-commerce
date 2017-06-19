@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lstRegion").select2({});
+    });
+</script>
+
 <div class="content">
     <div class="container">
          <div class="row">
@@ -21,7 +27,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Username *</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" value="<?php echo set_value('username'); ?>" name="username" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" title="Jangan Gunakan SPASI, Max. 20 Karakter" placeholder="Input Username" autocomplete="off" autofocus required>
+                                    <input type="text" class="form-control" value="<?php echo set_value('username'); ?>" name="username" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{1,20}$" title="Don't Use SPACE, Max. 20 Character" placeholder="Input Username" autocomplete="off" autofocus required>
                                     <?php echo form_error('username', '<p class="help-block alert-danger">','</p>'); ?>
                                 </div>
                             </div>
@@ -33,23 +39,55 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">N I P *</label>
+                                <label class="col-md-3 control-label">Name *</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nip" placeholder="Input N I P" value="<?php echo set_value('nip'); ?>"  autocomplete="off" required>
-                                    <?php echo form_error('nip', '<p class="help-block alert-danger">','</p>'); ?>
+                                    <input type="text" class="form-control" name="name" placeholder="Input Name" value="<?php echo set_value('name'); ?>"  autocomplete="off" required>
+                                    <?php echo form_error('name', '<p class="help-block alert-danger">','</p>'); ?>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Nama Lengkap *</label>
+                                <label class="col-md-3 control-label">Address *</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nama" placeholder="Input Nama Lengkap" value="<?php echo set_value('nama'); ?>"  autocomplete="off" required>
-                                    <?php echo form_error('nama', '<p class="help-block alert-danger">','</p>'); ?>
+                                    <input type="text" class="form-control" name="address" placeholder="Input Address" value="<?php echo set_value('address'); ?>"  autocomplete="off" required>
+                                    <?php echo form_error('address', '<p class="help-block alert-danger">','</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group"> 
+                                <label class="col-md-3 control-label">Region *</label> 
+                                <div class="col-md-4">
+                                    <select class="form-control select2" name="lstRegion" id="lstRegion" required>
+                                        <option value="">- Choose Region -</option>
+                                        <?php foreach($listRegion as $r) { ?>
+                                        <option value="<?php echo $r->region_id; ?>" <?php echo set_select('lstRegion', $r->region_id); ?>><?php echo $r->region_name; ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Jabatan</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Input Jabatan" value="<?php echo set_value('jabatan'); ?>"  autocomplete="off">
+                                <label class="col-md-3 control-label">City *</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="city" placeholder="Input City" value="<?php echo set_value('city'); ?>"  autocomplete="off" required>
+                                    <?php echo form_error('city', '<p class="help-block alert-danger">','</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Zip Code</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="zipcode" placeholder="Input Zip Code" value="<?php echo set_value('zipcode'); ?>" maxlength="5" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mobile *</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="mobile" placeholder="Input Mobile Number" value="<?php echo set_value('mobile'); ?>" pattern="^[0-9]{1,12}$" title="Don't Use SPACE, Max. 12 Character" maxlength="12"  autocomplete="off" required>
+                                    <?php echo form_error('mobile', '<p class="help-block alert-danger">','</p>'); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Phone *</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="phone" placeholder="Input Phone Number" value="<?php echo set_value('phone'); ?>"  autocomplete="off" required>
+                                    <?php echo form_error('phone', '<p class="help-block alert-danger">','</p>'); ?>
                                 </div>
                             </div>
                             <div class="form-group"> 
@@ -58,31 +96,8 @@
                                     <select class="form-control" name="lstLevel" required>
                                         <option value="">- Pilih Level User -</option>
                                         <option value="Admin" <?php echo set_select('lstLevel', 'Admin'); ?>>Admin</option>
-                                        <option value="Operator" <?php echo set_select('lstLevel', 'Operator'); ?>>Operator</option>
+                                        <option value="Member" <?php echo set_select('lstLevel', 'Member'); ?>>Member</option>
                                     </select>
-                                </div>
-                            </div> 
-                            
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Upload Avatar</label> 
-                                <div class="col-md-9">
-                                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                            <img src="<?php echo base_url(); ?>img/noimage.png" alt="" />
-                                        </div>
-                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
-                                        <div>
-                                            <span class="btn btn-blue btn-file">
-                                            <span class="fileupload-new"><i class="icon-paper-clip"></i> Browse</span>
-                                            <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
-                                                <input type="file" class="default" name="userfile" />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix margin-top-10">
-                                        <span class="label label-danger">NOTE !</span>
-                                        <span>Resolution : 60 x 60 pixel (Landscape)</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

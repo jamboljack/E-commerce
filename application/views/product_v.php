@@ -6,11 +6,15 @@
                 <div class="image">
                     <img class="img-responsive" itemprop="image" id="zoom_01" src="<?php echo base_url(); ?>img/product/<?php echo $detail->product_image; ?>" title="<?php echo ucwords(strtolower($detail->product_name)); ?>" alt="<?php echo ucwords(strtolower($detail->product_name)); ?>" data-zoom-image="<?php echo base_url(); ?>img/product/<?php echo $detail->product_image; ?>" />
                 </div>
+                <?php if (count($listImage) > 0) { ?>
                 <div class="center-block text-center"><span class="zoom-gallery"><i class="fa fa-search"></i> Click image for Gallery</span></div>
                 <div class="image-additional" id="gallery_01">
                     <!-- Perulangan Image Lain -->
-                    <a class="thumbnail" href="#" data-zoom-image="image/product/macbook_air_1-500x500.jpg" data-image="image/product/macbook_air_1-350x350.jpg" title="Laptop Silver black"> <img src="image/product/macbook_air_1-66x66.jpg" title="Laptop Silver black" alt = "Laptop Silver black"/></a> 
+                    <?php foreach($listImage as $i) { ?>
+                    <a class="thumbnail" href="#" data-zoom-image="<?php echo base_url(); ?>img/product/<?php echo $i->image_file; ?>" data-image="<?php echo base_url(); ?>img/product/<?php echo $i->image_file; ?>" title=""> <img src="<?php echo base_url(); ?>img/product/<?php echo $i->image_file; ?>" title="" alt=""/></a>
+                    <?php } ?>
                 </div>
+                <?php } ?>
             </div>
             <div class="col-sm-6">
                 <ul class="list-unstyled description">

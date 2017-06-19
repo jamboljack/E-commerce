@@ -1,54 +1,48 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users_model extends CI_Model 
-{
+class Users_model extends CI_Model {
 	function __construct() {
 		parent::__construct();	
 	}
 		
 	function select_all() {
 		$this->db->select('*');
-		$this->db->from('rtlh_users');
-		$this->db->order_by('user_nama', 'asc');
+		$this->db->from('furnindo_users');
+		$this->db->order_by('user_name', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_region() {
+		$this->db->select('*');
+		$this->db->from('furnindo_region');
+		$this->db->order_by('region_name', 'asc');
 		
 		return $this->db->get();
 	}
 		
 	function insert_data() {
-		if (!empty($_FILES['userfile']['name'])) {
-			$data = array(
-					'user_username'		=> trim($this->input->post('username')),
-					'user_password'		=> sha1(trim($this->input->post('password'))),
-					'user_nip'			=> trim(strtoupper($this->input->post('nip'))),
-					'user_nama'			=> trim(strtoupper($this->input->post('nama'))),
-					'user_jabatan'		=> trim(strtoupper($this->input->post('jabatan'))),
-					'user_level'		=> $this->input->post('lstLevel'),
-					'user_status'		=> 'Aktif',
-					'user_image' 		=> $this->upload->file_name,
-				   	'user_date_update' 	=> date('Y-m-d'),
-				   	'user_time_update' 	=> date('Y-m-d H:i:s')
-				);
-		} else {
-			$data = array(
-					'user_username'		=> trim($this->input->post('username')),
-					'user_password'		=> sha1(trim($this->input->post('password'))),
-					'user_nip'			=> trim(strtoupper($this->input->post('nip'))),
-					'user_nama'			=> trim(strtoupper($this->input->post('nama'))),
-					'user_jabatan'		=> trim(strtoupper($this->input->post('jabatan'))),
-					'user_level'		=> $this->input->post('lstLevel'),
-					'user_status'		=> 'Aktif',
-				   	'user_date_update' 	=> date('Y-m-d'),
-				   	'user_time_update' 	=> date('Y-m-d H:i:s')
-				);
-		}
+		$data = array(	'user_username'		=> trim($this->input->post('username', 'true')),
+						'user_password'		=> sha1(trim($this->input->post('password', 'true'))),
+						'user_name'			=> strtoupper(trim($this->input->post('name', 'true'))),
+						'user_address'		=> strtoupper(trim($this->input->post('address', 'true'))),
+						'region_id'			=> $this->input->post('lstRegion', 'true'),
+						'user_city'			=> strtoupper(trim($this->input->post('city', 'true'))),
+						'user_zipcode'		=> trim($this->input->post('zipcode', 'true')),
+						'user_mobile'		=> trim($this->input->post('mobile', 'true')),
+						'user_phone'		=> trim($this->input->post('phone', 'true')),
+						'user_level'		=> $this->input->post('lstLevel', 'true'),
+				   		'user_date_create' 	=> date('Y-m-d H:i:s'),
+				   		'user_update' 		=> date('Y-m-d H:i:s')
+		);
 
-		$this->db->insert('rtlh_users', $data);
+		$this->db->insert('furnindo_users', $data);
 	}
 
 	function select_detail($user_username) {
 		$this->db->select('*');
-		$this->db->from('rtlh_users');
+		$this->db->from('furnindo_users');
 		$this->db->where('user_username', $user_username);
 		
 		return $this->db->get();
@@ -59,57 +53,32 @@ class Users_model extends CI_Model
 		$password 			= trim($this->input->post('password'));
 
 		if (empty($password)) {
-			if (!empty($_FILES['userfile']['name'])) {
-				$data = array(
-					'user_nip'			=> trim(strtoupper($this->input->post('nip'))),
-					'user_nama'			=> trim(strtoupper($this->input->post('nama'))),
-					'user_jabatan'		=> trim(strtoupper($this->input->post('jabatan'))),
-					'user_level'		=> $this->input->post('lstLevel'),
-					'user_status'		=> $this->input->post('lstStatus'),
-					'user_image' 		=> $this->upload->file_name,
-				   	'user_date_update' 	=> date('Y-m-d'),
-				   	'user_time_update' 	=> date('Y-m-d H:i:s')
-				);
-			} else {
-				$data = array(
-					'user_nip'			=> trim(strtoupper($this->input->post('nip'))),
-					'user_nama'			=> trim(strtoupper($this->input->post('nama'))),
-					'user_jabatan'		=> trim(strtoupper($this->input->post('jabatan'))),
-					'user_level'		=> $this->input->post('lstLevel'),
-					'user_status'		=> $this->input->post('lstStatus'),
-				   	'user_date_update' 	=> date('Y-m-d'),
-				   	'user_time_update' 	=> date('Y-m-d H:i:s')
-				);
-			}			
+			$data = array(	'user_name'			=> strtoupper(trim($this->input->post('name', 'true'))),
+							'user_address'		=> strtoupper(trim($this->input->post('address', 'true'))),
+							'region_id'			=> $this->input->post('lstRegion', 'true'),
+							'user_city'			=> strtoupper(trim($this->input->post('city', 'true'))),
+							'user_zipcode'		=> trim($this->input->post('zipcode', 'true')),
+							'user_mobile'		=> trim($this->input->post('mobile', 'true')),
+							'user_phone'		=> trim($this->input->post('phone', 'true')),
+							'user_level'		=> $this->input->post('lstLevel', 'true'),
+				   			'user_update' 		=> date('Y-m-d H:i:s')
+			);
 		} else {
-			if (!empty($_FILES['userfile']['name'])) {
-				$data = array(
-					'user_password' 	=> sha1(trim($this->input->post('password'))),
-					'user_nip'			=> trim(strtoupper($this->input->post('nip'))),
-					'user_nama'			=> trim(strtoupper($this->input->post('nama'))),
-					'user_jabatan'		=> trim(strtoupper($this->input->post('jabatan'))),
-					'user_level'		=> $this->input->post('lstLevel'),
-					'user_status'		=> $this->input->post('lstStatus'),
-					'user_image' 		=> $this->upload->file_name,
-				   	'user_date_update' 	=> date('Y-m-d'),
-				   	'user_time_update' 	=> date('Y-m-d H:i:s')
-				);
-			} else {
-				$data = array(
-					'user_password' 	=> sha1(trim($this->input->post('password'))),
-					'user_nip'			=> trim(strtoupper($this->input->post('nip'))),
-					'user_nama'			=> trim(strtoupper($this->input->post('nama'))),
-					'user_jabatan'		=> trim(strtoupper($this->input->post('jabatan'))),
-					'user_level'		=> $this->input->post('lstLevel'),
-					'user_status'		=> $this->input->post('lstStatus'),
-				   	'user_date_update' 	=> date('Y-m-d'),
-				   	'user_time_update' 	=> date('Y-m-d H:i:s')
-				);
-			}
+			$data = array(	'user_password'		=> sha1(trim($this->input->post('password', 'true'))),
+							'user_name'			=> strtoupper(trim($this->input->post('name', 'true'))),
+							'user_address'		=> strtoupper(trim($this->input->post('address', 'true'))),
+							'region_id'			=> $this->input->post('lstRegion', 'true'),
+							'user_city'			=> strtoupper(trim($this->input->post('city', 'true'))),
+							'user_zipcode'		=> trim($this->input->post('zipcode', 'true')),
+							'user_mobile'		=> trim($this->input->post('mobile', 'true')),
+							'user_phone'		=> trim($this->input->post('phone', 'true')),
+							'user_level'		=> $this->input->post('lstLevel', 'true'),
+				   			'user_update' 		=> date('Y-m-d H:i:s')
+			);
 		}
 
 		$this->db->where('user_username', $user_username);
-		$this->db->update('rtlh_users', $data);
+		$this->db->update('furnindo_users', $data);
 	}
 }
 /* Location: ./application/models/admin/Users_model.php */

@@ -6,6 +6,7 @@ class Maincategory extends CI_Controller {
 		parent::__construct();
 		if(!$this->session->userdata('logged_in_furnindo')) redirect(base_url());		
 		$this->load->library('template');
+		$this->load->helper('file');
 		$this->load->model('admin/maincategory_model');
 	}
 	

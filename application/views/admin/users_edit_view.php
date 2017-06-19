@@ -1,3 +1,9 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#lstRegion").select2({});
+    });
+</script>
+
 <div class="content">
     <div class="container">
          <div class="row">
@@ -34,21 +40,58 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">N I P *</label>
+                                <label class="col-md-3 control-label">Name *</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nip" placeholder="Input N I P" value="<?php echo $detail->user_nip; ?>"  autocomplete="off" required>
+                                    <input type="text" class="form-control" name="name" placeholder="Input Name" value="<?php echo $detail->user_name; ?>"  autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Nama Lengkap *</label>
+                                <label class="col-md-3 control-label">Address *</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="nama" placeholder="Input Nama Lengkap" value="<?php echo $detail->user_nama; ?>"  autocomplete="off" required>
+                                    <input type="text" class="form-control" name="address" placeholder="Input Address" value="<?php echo $detail->user_address; ?>"  autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="form-group"> 
+                                <label class="col-md-3 control-label">Region *</label> 
+                                <div class="col-md-4">
+                                    <select class="form-control select2" name="lstRegion" id="lstRegion" required>
+                                        <option value="">- Choose Region -</option>
+                                        <?php
+                                        foreach($listRegion as $r) { 
+                                            if ($detail->region_id == $r->region_id) {
+                                        ?>
+                                        <option value="<?php echo $r->region_id; ?>" selected><?php echo $r->region_name; ?></option>
+                                        <?php } else { ?>
+                                        <option value="<?php echo $r->region_id; ?>"><?php echo $r->region_name; ?></option>
+                                        <?php 
+                                            }
+                                        } 
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Jabatan</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="jabatan" placeholder="Input Jabatan" value="<?php echo $detail->user_jabatan; ?>" autocomplete="off">
+                                <label class="col-md-3 control-label">City *</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="city" placeholder="Input City" value="<?php echo $detail->user_city; ?>" autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Zip Code</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="zipcode" placeholder="Input Zip Code" value="<?php echo $detail->user_zipcode; ?>" maxlength="5" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mobile *</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="mobile" placeholder="Input Mobile Number" value="<?php echo $detail->user_mobile; ?>" pattern="^[0-9]{1,12}$" title="Don't Use SPACE, Max. 12 Character" maxlength="12"  autocomplete="off" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Phone *</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="phone" placeholder="Input Phone Number" value="<?php echo $detail->user_phone; ?>" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="form-group"> 
@@ -57,50 +100,8 @@
                                     <select class="form-control" name="lstLevel" required>
                                         <option value="">- Pilih Level User -</option>
                                         <option value="Admin" <?php if ($detail->user_level == 'Admin') { echo 'selected'; } ?>>Admin</option>
-                                        <option value="Operator" <?php if ($detail->user_level == 'Operator') { echo 'selected'; } ?>>Operator</option>
+                                        <option value="Member" <?php if ($detail->user_level == 'Member') { echo 'selected'; } ?>>Member</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="form-group"> 
-                                <label class="col-md-3 control-label">Status *</label> 
-                                <div class="col-md-4">
-                                    <select class="form-control" name="lstStatus" required>
-                                        <option value="">- Pilih Status -</option>
-                                        <option value="Aktif" <?php if ($detail->user_status == 'Aktif') { echo 'selected'; } ?>>Aktif</option>
-                                        <option value="Tidak Aktif" <?php if ($detail->user_status == 'Tidak Aktif') { echo 'selected'; } ?>>Tidak Aktif</option>
-                                    </select>
-                                </div>
-                            </div> 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Avatar</label> 
-                                <div class="col-md-9">
-                                    <?php if (empty($detail->user_image)) { ?>
-                                    <img src="<?php echo base_url(); ?>img/noimage.png" alt="" />
-                                    <?php } else { ?>
-                                    <img src="<?php echo base_url(); ?>img/avatar/<?php echo $detail->user_image; ?>" alt="" />
-                                    <?php }?>                                    
-                                </div>
-                            </div>                            
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Upload Avatar</label> 
-                                <div class="col-md-9">
-                                    <div class="fileupload fileupload-new" data-provides="fileupload">
-                                        <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
-                                            <img src="<?php echo base_url(); ?>img/noimage.png" alt="" />
-                                        </div>
-                                        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
-                                        <div>
-                                            <span class="btn btn-blue btn-file">
-                                            <span class="fileupload-new"><i class="icon-paper-clip"></i> Browse</span>
-                                            <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
-                                                <input type="file" class="default" name="userfile" />
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix margin-top-10">
-                                        <span class="label label-danger">NOTE !</span>
-                                        <span>Resolution : 60 x 60 pixel (Landscape)</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

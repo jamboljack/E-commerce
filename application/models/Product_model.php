@@ -28,6 +28,12 @@ class Product_model extends CI_Model {
 		return $this->db->get();
 	}
 
+	function select_all_image($product_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_product_image');
+		$this->db->where('product_id', $product_id);
 
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/admin/Product_model.php */

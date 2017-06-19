@@ -17,8 +17,19 @@ $detailKontak = $this->menu_model->select_contact()->row();
                 </div>
                 <div id="top-links" class="nav pull-right flip">
                     <ul>
+                        <?php if (!$this->session->userdata('logged_in_member')) { ?>
                         <li><a href="<?php echo site_url('login'); ?>">Login</a></li>
                         <li><a href="<?php echo site_url('register'); ?>">Register</a></li>
+                        <?php } else { ?>
+                        <li class="dropdown" id="my_account"><a href="#">My Account <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="<?php echo site_url('myaccount'); ?>">My Account</a></li>
+                            <li><a href="<?php echo site_url('order_history'); ?>">Order History</a></li>
+                            <li><a href="<?php echo site_url('order_information'); ?>">Order Information</a></li>
+                        </ul>
+                        </li>
+                        <li><a href="<?php echo site_url('myaccount/logout'); ?>">Logout</a></li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -36,23 +47,17 @@ $detailKontak = $this->menu_model->select_contact()->row();
                             <span class="cart-icon pull-left flip"></span>
                             <span id="cart-total">0 item(s) in your chart</span>
                         </button>
-                        <!--
                         <ul class="dropdown-menu">
                             <li>
                                 <table class="table">
                                 <tbody>
                                     <tr>
-                                        <td class="text-center"><a href="product.html"><img class="img-thumbnail" title="Xitefun Causal Wear Fancy Shoes" alt="Xitefun Causal Wear Fancy Shoes" src="image/product/sony_vaio_1-50x50.jpg"></a></td>
+                                        <td class="text-center">
+                                            <a href="product.html"><img class="img-thumbnail" title="Xitefun Causal Wear Fancy Shoes" alt="Xitefun Causal Wear Fancy Shoes" src="image/product/sony_vaio_1-50x50.jpg"></a>
+                                        </td>
                                         <td class="text-left"><a href="product.html">Xitefun Causal Wear Fancy Shoes</a></td>
                                         <td class="text-right">x 1</td>
                                         <td class="text-right">$902.00</td>
-                                        <td class="text-center"><button class="btn btn-danger btn-xs remove" title="Remove" onClick="" type="button"><i class="fa fa-times"></i></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"><a href="product.html"><img class="img-thumbnail" title="Aspire Ultrabook Laptop" alt="Aspire Ultrabook Laptop" src="image/product/samsung_tab_1-50x50.jpg"></a></td>
-                                        <td class="text-left"><a href="product.html">Aspire Ultrabook Laptop</a></td>
-                                        <td class="text-right">x 1</td>
-                                        <td class="text-right">$230.00</td>
                                         <td class="text-center"><button class="btn btn-danger btn-xs remove" title="Remove" onClick="" type="button"><i class="fa fa-times"></i></button></td>
                                     </tr>
                                 </tbody>
@@ -60,31 +65,10 @@ $detailKontak = $this->menu_model->select_contact()->row();
                             </li>
                             <li>
                                 <div>
-                                    <table class="table table-bordered">
-                                    <tbody>
-                                        <tr>
-                                            <td class="text-right"><strong>Sub-Total</strong></td>
-                                            <td class="text-right">$940.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>Eco Tax (-2.00)</strong></td>
-                                            <td class="text-right">$4.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>VAT (20%)</strong></td>
-                                            <td class="text-right">$188.00</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="text-right"><strong>Total</strong></td>
-                                            <td class="text-right">$1,132.00</td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
-                                    <p class="checkout"><a href="cart.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> View Cart</a>&nbsp;&nbsp;&nbsp;<a href="checkout.html" class="btn btn-primary"><i class="fa fa-share"></i> Checkout</a></p>
+                                    <p class="checkout"><a href="<?php echo site_url('chart'); ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> View Cart</a>&nbsp;&nbsp;&nbsp;<a href="<?php echo site_url('checkout'); ?>" class="btn btn-primary"><i class="fa fa-share"></i> Checkout</a></p>
                                 </div>
                             </li>
                         </ul>
-                        -->
                     </div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">

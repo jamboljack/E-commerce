@@ -35,11 +35,10 @@ if ($this->session->flashdata('notification')) { ?>
                             <tr>
                                 <th width="5%">No</th>
                                 <th width="10%">Username</th>
-                                <th width="15%">N I P</th>
-                                <th>Nama Lengkap</th>
-                                <th width="15%">Jabatan</th>
-                                <th width="15%">Level</th>
-                                <th width="10%">Avatar</th>
+                                <th width="20%">Name</th>
+                                <th>Address</th>
+                                <th width="15%">Phone</th>
+                                <th width="10%">Level</th>
                                 <th width="8%">Action</th>
                             </tr>
                         </thead>
@@ -52,19 +51,10 @@ if ($this->session->flashdata('notification')) { ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $r->user_username; ?></td>
-                                <td><?php echo $r->user_nip; ?></td>
-                                <td><?php echo $r->user_nama; ?></td>
-                                <td><?php echo $r->user_jabatan; ?></td>
+                                <td><?php echo ucwords(strtolower($r->user_name)); ?></td>
+                                <td><?php echo ucwords(strtolower($r->user_address)); ?></td>
+                                <td><?php echo $r->user_phone; ?></td>
                                 <td><?php echo $r->user_level; ?></td>
-                                <td>
-                                    <?php 
-                                    if (empty($r->user_image)) {
-                                    ?>
-                                    <img src="<?php echo base_url(); ?>img/avatar.png" width="50%">
-                                    <?php } else { ?>
-                                    <img src="<?php echo base_url(); ?>img/avatar/<?php echo $r->user_image; ?>" width="50%">
-                                    <?php } ?>
-                                </td>
                                 <td>
                                     <a href="<?php echo site_url('admin/users/editdata').'/'.$user_username; ?>">
                                         <button type="button" class="btn btn-warning btn-custom waves-effect waves-light btn-xs" title="Edit Data"><i class="icon-pencil"></i> Edit

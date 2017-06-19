@@ -86,6 +86,14 @@
                 <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
                 <li><a href="<?php echo site_url('category/item/'.$category->category_id.'/'.$category->category_name_seo); ?>"><?php echo $category->category_name; ?></a></li>
                 <li><a href="<?php echo site_url('product/item/'.$detail->product_id.'/'.$detail->product_name_seo); ?>"><?php echo ucwords(strtolower($detail->product_name)); ?></a></li>
+                <?php } if ($this->uri->segment(1) == 'contact') { ?>
+                <li><a href="<?php echo site_url('contact'); ?>">Contact Us</a></li>
+                <?php } if ($this->uri->segment(1) == 'login') { ?>
+                <li><a href="#">Account</a></li>
+                <li><a href="<?php echo site_url('login'); ?>">Login</a></li>
+                <?php } if ($this->uri->segment(1) == 'register') { ?>
+                <li><a href="#">Account</a></li>
+                <li><a href="<?php echo site_url('register'); ?>">Register</a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
