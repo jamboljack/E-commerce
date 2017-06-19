@@ -19,6 +19,13 @@ class Category extends CI_Controller{
 		$data['listProduct'] 	= $this->category_model->select_all_product($category_id)->result();
 		$this->template_front->display('category_v', $data);
 	}
+
+	public function collection($category_id) {
+		$category_id 			= $this->uri->segment(3);
+		$data['detail'] 		= $this->category_model->select_detail($category_id)->row();
+		$data['listProduct'] 	= $this->category_model->select_all_collection($category_id)->result();
+		$this->template_front->display('category_v', $data);
+	}
 }
 /* Location: ./application/controller/Category.php */
 ?>

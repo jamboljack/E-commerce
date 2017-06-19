@@ -105,33 +105,40 @@ $detailKontak = $this->menu_model->select_contact()->row();
                 <ul class="nav navbar-nav">
                     <li><a class="home_link" title="Home" href="<?php echo base_url(); ?>"><span>Home</span></a></li>
                     <?php
-                    $listMainMenu   = $this->menu_model->select_main_menu()->result(); 
+                    $listMainMenu   = $this->menu_model->select_main_category()->result(); 
                     foreach($listMainMenu as $r) {
+                        $maincategory_collect = $r->maincategory_collect; // Status Collect
+                        if ($maincategory_collect == 1) {
+                            $subfunction = 'collection';
+                        } else {
+                            $subfunction = 'item';
+                        }
+                        // Tampilkan Sub Category
+                        $maincategory_id    = $r->maincategory_id;
+                        $listSubCategory    = $this->menu_model->select_sub_category($maincategory_id)->result();
+                        if (count($listSubCategory) > 1) { // Jika Ada Sub Category lebih dari 1, maka Mega Menu
                     ?>
-                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/item/'.$r->category_id.'/'.$r->category_name_seo); ?>"><?php echo $r->category_name; ?></a>
+                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/item/'.$r->maincategory_id.'/'.$r->maincategory_name_seo); ?>"><?php echo $r->maincategory_name; ?></a>
                         <?php 
-                        // Tampilkan Sub Category Level-1
-                        $category_id    = $r->category_id;
-                        $listLevel1     = $this->menu_model->select_menu_level_1($category_id)->result();
-                        if (count($listLevel1) > 0) { // Jika Ada Sub Category, maka Tampilkan
+                        if (count($listSubCategory) > 0) { // Jika Ada Sub Category, maka Tampilkan
                         ?>
                         <div class="dropdown-menu">
                             <?php 
-                            foreach($listLevel1 as $l) {
+                            foreach($listSubCategory as $l) {
                             ?>
-                            <div class="column col-lg-2 col-md-3"><a href="<?php echo site_url('subcategory/item/'.$l->category_id.'/'.$l->category_name_seo); ?>"><?php echo $l->category_name; ?></a>
+                            <div class="column col-lg-2 col-md-3"><a href="<?php echo site_url('subcategory/item/'.$l->subcategory_id.'/'.$l->subcategory_name_seo); ?>"><?php echo $l->subcategory_name; ?></a>
                                 <?php 
-                                // Tampilkan Sub Category Level-2
-                                $category_id = $l->category_id;
-                                $listLevel2 = $this->menu_model->select_menu_level_2($category_id)->result();
-                                if (count($listLevel2) > 0) { // Jika Ada Sub Category, maka Tampilkan
+                                // Tampilkan Category
+                                $subcategory_id = $l->subcategory_id;
+                                $listCategory   = $this->menu_model->select_category($subcategory_id)->result();
+                                if (count($listCategory) > 0) { // Jika Ada Sub Category, maka Tampilkan
                                 ?>
                                 <div>
                                     <ul>
                                         <?php 
-                                        foreach($listLevel2 as $k) {
+                                        foreach($listCategory as $k) {
                                         ?>
-                                        <li><a href="<?php echo site_url('category/item/'.$k->category_id.'/'.$k->category_name_seo); ?>" ><?php echo $k->category_name; ?></a></li>
+                                        <li><a href="<?php echo site_url('category/'.$subfunction.'/'.$k->category_id.'/'.$k->category_name_seo); ?>" ><?php echo $k->category_name; ?></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -141,7 +148,34 @@ $detailKontak = $this->menu_model->select_contact()->row();
                         </div>
                         <?php } ?>
                     </li>
-                    <?php } ?>
+                    <?php } else { ?>
+                    <li class="dropdown information-link"><a href="<?php echo site_url('maincategory/item/'.$r->maincategory_id.'/'.$r->maincategory_name_seo); ?>"><?php echo $r->maincategory_name; ?></a>
+                        <div class="dropdown-menu">
+                            <?php 
+                            foreach($listSubCategory as $l) {
+                            ?>
+                            <ul>
+                                <?php 
+                                // Tampilkan Category
+                                $subcategory_id = $l->subcategory_id;
+                                $listCategory   = $this->menu_model->select_category($subcategory_id)->result();
+                                if (count($listCategory) > 0) { // Jika Ada Category, maka Tampilkan
+                                    $no = 1;
+                                    foreach($listCategory as $k) {
+                                ?>
+                                <li><a href="<?php echo site_url('category/'.$subfunction.'/'.$k->category_id.'/'.$k->category_name_seo); ?>" ><?php echo $k->category_name; ?></a></li>
+                                <?php
+                                        $no++;
+                                    }
+                                }
+                                ?>
+                            </ul>
+                            <?php } ?>
+                        </div>
+                    </li>
+                    <?php }
+                    } 
+                    ?>
                     <li class="contact-link"><a href="<?php echo site_url('contact'); ?>">Contact Us</a></li>
                 </ul>
             </div>

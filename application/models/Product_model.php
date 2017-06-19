@@ -7,9 +7,12 @@ class Product_model extends CI_Model {
 	}
 		
 	function select_detail($product_id) {
-		$this->db->select('*');
-		$this->db->from('furnindo_product');
-		$this->db->where('product_id', $product_id);
+		$this->db->select('p.*, m.*');
+		$this->db->from('furnindo_product p');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
+		$this->db->join('furnindo_subcategory s', 'c.subcategory_id = s.subcategory_id');
+		$this->db->join('furnindo_maincategory m', 's.maincategory_id = m.maincategory_id');
+		$this->db->where('p.product_id', $product_id);
 		
 		return $this->db->get();
 	}

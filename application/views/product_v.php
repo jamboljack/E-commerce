@@ -14,8 +14,10 @@
             </div>
             <div class="col-sm-6">
                 <ul class="list-unstyled description">
-                    <li><b>Brand :</b> <a href="#"><span itemprop="brand"><?php echo ucwords(strtolower($detail->product_name)); ?></span></a></li>
-                    <li><b>Availability:</b> <span class="instock">In Stock</span></li>
+                    <li><a href="<?php echo site_url('maincategory/item/'.$detail->maincategory_id.'/'.$detail->maincategory_name_seo); ?>"><span itemprop="brand"><?php echo ucwords(strtolower($detail->maincategory_name)); ?></span></a></li>
+                    <li><span itemprop="brand"><?php echo ucwords(strtolower($detail->product_name)); ?></span></li>
+                    <li><b>Price :</b> <span itemprop="brand">Contact Us</span></li>
+                    <li><b>Availability :</b> <span class="instock">In Stock</span></li>
                 </ul>
                 <div id="product">
                 <h3 class="subtitle">Available Options</h3>

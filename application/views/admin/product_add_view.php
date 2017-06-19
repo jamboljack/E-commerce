@@ -1,29 +1,8 @@
 <script type="text/javascript">
-    function TampilSubKategory() {
-        category_id = document.getElementById("lstMain").value;
-        $.ajax({
-            url:"<?php echo base_url();?>admin/product/pilih_subcategory/"+category_id+"",
-            success: function(response) {
-                $("#lstSubCategory").html(response);
-            },
-            dataType:"html"
-        });
-        return false;
-    }
-</script>
-
-<script type="text/javascript">
-    function TampilCategory() {
-        category_id = document.getElementById("lstSubCategory").value;
-        $.ajax({
-            url:"<?php echo base_url();?>admin/product/pilih_category/"+category_id+"",
-            success: function(response) {
-                $("#lstCategory").html(response);
-            },
-            dataType:"html"
-        });
-        return false;
-    }
+    $(document).ready(function () {
+        $("#lstCategory").select2({});
+        $("#lstCollection").select2({});
+    });
 </script>
 
 <div class="content">
@@ -57,41 +36,31 @@
                     <div class="row">
                         <div class="col-md-12">                                    
                             <div class="form-group"> 
-                                <label class="col-md-3 control-label">Main Category *</label> 
+                                <label class="col-md-3 control-label">Category *</label> 
                                 <div class="col-md-9">
-                                    <select class="form-control" name="lstMain" id="lstMain" onchange="TampilSubKategory()" required autofocus>
-                                        <option value="0">- Choose Main Category -</option>
-                                        <?php foreach($listMain as $m) { ?>
-                                        <option value="<?php echo $m->category_id; ?>" <?php echo set_select('lstMain', $m->category_id); ?>><?php echo $m->category_name; ?></option>
+                                    <select class="form-control select2" name="lstCategory" id="lstCategory"  required autofocus>
+                                        <option value="">- Choose Category -</option>
+                                        <?php foreach($listSubCategory as $s) { ?>
+                                        <optgroup label="<?php echo $s->maincategory_name.' - '.$s->subcategory_name; ?>">
+                                            <?php 
+                                            $subcategory_id = $s->subcategory_id;
+                                            $listCategory   = $this->product_model->select_category($subcategory_id)->result();
+                                            foreach($listCategory as $c) {
+                                            ?>
+                                            <option value="<?php echo $c->category_id; ?>" <?php echo set_select('lstCategory', $c->category_id); ?>><?php echo $c->category_name; ?></option>
+                                            <?php } ?>
+                                        </optgroup>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Sub Category *</label> 
-                                <div class="col-md-9">
-                                    <?php
-                                    $style_subcategory = 'class="form-control" id="lstSubCategory" onChange="TampilCategory()" required';
-                                    echo form_dropdown("lstSubCategory", array('' => '- Choose Sub Category -'), '',$style_subcategory);
-                                    ?>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Category *</label> 
-                                <div class="col-md-9">
-                                    <?php
-                                    $style_category = 'class="form-control" id="lstCategory" required';
-                                    echo form_dropdown("lstCategory", array('' => '- Choose Category -'), '',$style_category);
-                                    ?>
-                                </div>
-                            </div>
                             <div class="form-group"> 
-                                <label class="col-md-3 control-label">Brand *</label> 
+                                <label class="col-md-3 control-label">Collection (Opsional)</label> 
                                 <div class="col-md-9">
-                                    <select class="form-control" name="lstBrand" required>
-                                        <option value="0">- Choose Brand -</option>
-                                        <?php foreach($listBrand as $b) { ?>
-                                        <option value="<?php echo $b->brand_id; ?>" <?php echo set_select('lstBrand', $b->brand_id); ?>><?php echo $b->brand_name; ?></option>
+                                    <select class="form-control select2" name="lstCollection" id="lstCollection">
+                                        <option value="">- Choose Collection -</option>
+                                        <?php foreach($listCollection as $c) { ?>
+                                        <option value="<?php echo $c->category_id; ?>" <?php echo set_select('lstCollection', $c->category_id); ?>><?php echo $c->category_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

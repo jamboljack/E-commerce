@@ -55,26 +55,37 @@
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
                 <?php if ($this->uri->segment(1) == 'maincategory') { ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('maincategory/item/'.$detail->maincategory_id.'/'.$detail->maincategory_name_seo); ?>"><?php echo $detail->maincategory_name; ?></a></li>
                 <?php 
                 } elseif ($this->uri->segment(1) == 'subcategory') {
-                    $main_id    = $detail->category_subid; // Main Level 
-                    $main       = $this->menu_model->select_detail_main($main_id)->row(); // Data Main Level
+                    $maincategory_id    = $detail->maincategory_id; // Main Category
+                    $main               = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
                 ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$main->category_id.'/'.$main->category_name_seo); ?>"><?php echo $main->category_name; ?></a></li>
-                <li><a href="<?php echo site_url('subcategory/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('maincategory/item/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/item/'.$detail->subcategory_id.'/'.$detail->subcategory_name_seo); ?>"><?php echo $detail->subcategory_name; ?></a></li>
                 <?php 
                 } elseif ($this->uri->segment(1) == 'category') {
-                    $sub_id         = $detail->category_subid; // Level-1
-                    $subcategory    = $this->menu_model->select_detail_subcategory($sub_id)->row(); // Data Level-1
-                    $main_id        = $subcategory->category_subid; // Main Level
-                    $main           = $this->menu_model->select_detail_main($main_id)->row(); // Data Main Level
+                    $subcategory_id = $detail->subcategory_id; // Sub Category
+                    $subcategory    = $this->menu_model->select_detail_subcategory($subcategory_id)->row(); // Data Sub Category
+                    $maincategory_id= $subcategory->maincategory_id; // Main Category
+                    $main           = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
                 ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$main->category_id.'/'.$main->category_name_seo); ?>"><?php echo $main->category_name; ?></a></li>
-                <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->category_id.'/'.$subcategory->category_name_seo); ?>"><?php echo $subcategory->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('maincategory/item/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
                 <li><a href="<?php echo site_url('category/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
-                <?php } elseif ($this->uri->segment(1) == 'product') { ?>
-
+                <?php 
+                } elseif ($this->uri->segment(1) == 'product') { 
+                    $category_id    = $detail->category_id; // Category
+                    $category       = $this->menu_model->select_detail_category($category_id)->row(); // Data Category
+                    $subcategory_id = $category->subcategory_id; // Sub Category
+                    $subcategory    = $this->menu_model->select_detail_subcategory($subcategory_id)->row(); // Data Sub Category
+                    $maincategory_id= $subcategory->maincategory_id; // Main Category
+                    $main           = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                ?>
+                <li><a href="<?php echo site_url('maincategory/item/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('category/item/'.$category->category_id.'/'.$category->category_name_seo); ?>"><?php echo $category->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('product/item/'.$detail->product_id.'/'.$detail->product_name_seo); ?>"><?php echo ucwords(strtolower($detail->product_name)); ?></a></li>
                 <?php } ?>
             </ul>
             <?php } ?>

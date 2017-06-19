@@ -1,29 +1,8 @@
 <script type="text/javascript">
-    function TampilSubKategory() {
-        category_id = document.getElementById("lstMain").value;
-        $.ajax({
-            url:"<?php echo base_url();?>admin/product/pilih_subcategory/"+category_id+"",
-            success: function(response) {
-                $("#lstSubCategory").html(response);
-            },
-            dataType:"html"
-        });
-        return false;
-    }
-</script>
-
-<script type="text/javascript">
-    function TampilCategory() {
-        category_id = document.getElementById("lstSubCategory").value;
-        $.ajax({
-            url:"<?php echo base_url();?>admin/product/pilih_category/"+category_id+"",
-            success: function(response) {
-                $("#lstCategory").html(response);
-            },
-            dataType:"html"
-        });
-        return false;
-    }
+    $(document).ready(function () {
+        $("#lstCategory").select2({});
+        $("#lstCollection").select2({});
+    });
 </script>
 
 <div class="content">
@@ -59,73 +38,44 @@
                     <div class="row">
                         <div class="col-md-12">                                    
                             <div class="form-group"> 
-                                <label class="col-md-3 control-label">Main Category *</label> 
-                                <div class="col-md-9">
-                                    <select class="form-control" name="lstMain" id="lstMain" onchange="TampilSubKategory()" required autofocus>
-                                        <option value="0">- Choose Main Category -</option>
-                                        <?php 
-                                        foreach($listMain as $m) { 
-                                            if ($detail->main_category == $m->category_id) {
-                                        ?>
-                                            <option value="<?php echo $m->category_id; ?>" selected><?php echo $m->category_name; ?></option>
-                                        <?php } else { ?>
-                                            <option value="<?php echo $m->category_id; ?>"><?php echo $m->category_name; ?></option>
-                                        <?php 
-                                            }
-                                        } 
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Sub Category *</label> 
-                                <div class="col-md-9">
-                                    <select class="form-control" name="lstSubCategory" id="lstSubCategory" onChange="TampilCategory()" required>
-                                        <option value="">- Choose Sub Category -</option>
-                                        <?php 
-                                        foreach($listSubCategory as $s) {
-                                            if ($detail->sub_category == $s->category_id) {
-                                        ?>
-                                        <option value="<?php echo $s->category_id; ?>" selected><?php echo $s->category_name; ?></option>
-                                        <?php 
-                                            } 
-                                        } 
-                                        ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-md-3 control-label">Category *</label> 
                                 <div class="col-md-9">
-                                    <select class="form-control" name="lstCategory" id="lstCategory" required>
-                                        <option value="">- Choose Sub Category -</option>
-                                        <?php 
-                                        foreach($listCategory as $c) {
-                                            if ($detail->category_id == $c->category_id) {
-                                        ?>
-                                        <option value="<?php echo $c->category_id; ?>" selected><?php echo $c->category_name; ?></option>
-                                        <?php 
+                                    <select class="form-control select2" name="lstCategory" id="lstCategory"  required autofocus>
+                                        <option value="">- Choose Category -</option>
+                                        <?php foreach($listSubCategory as $s) { ?>
+                                        <optgroup label="<?php echo $s->maincategory_name.' - '.$s->subcategory_name; ?>">
+                                            <?php 
+                                            $subcategory_id = $s->subcategory_id;
+                                            $listCategory   = $this->product_model->select_category($subcategory_id)->result();
+                                            foreach($listCategory as $c) {
+                                                if ($detail->category_id == $c->category_id) {
+                                            ?>
+                                            <option value="<?php echo $c->category_id; ?>" selected><?php echo $c->category_name; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $c->category_id; ?>"><?php echo $c->category_name; ?></option>
+                                            <?php } 
                                             } 
-                                        } 
-                                        ?>
+                                            ?>
+                                        </optgroup>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group"> 
-                                <label class="col-md-3 control-label">Brand *</label> 
+                                <label class="col-md-3 control-label">Collection (Opsional)</label> 
                                 <div class="col-md-9">
-                                    <select class="form-control" name="lstBrand" required>
-                                        <option value="0">- Choose Brand -</option>
+                                    <select class="form-control select2" name="lstCollection" id="lstCollection">
+                                        <option value="">- Choose Collection -</option>
                                         <?php 
-                                        foreach($listBrand as $b) {
-                                            if ($detail->brand_id == $b->brand_id) {
+                                        foreach($listCollection as $c) {
+                                            if ($detail->collection_id == $c->category_id) {
                                         ?>
-                                        <option value="<?php echo $b->brand_id; ?>" selected><?php echo $b->brand_name; ?></option>
+                                        <option value="<?php echo $c->category_id; ?>" selected><?php echo $c->category_name; ?></option>
                                         <?php } else { ?>
-                                        <option value="<?php echo $b->brand_id; ?>"><?php echo $b->brand_name; ?></option>
+                                        <option value="<?php echo $c->category_id; ?>"><?php echo $c->category_name; ?></option>
                                         <?php 
-                                            } 
-                                        }
+                                            }
+                                        } 
                                         ?>
                                     </select>
                                 </div>

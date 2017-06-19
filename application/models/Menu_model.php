@@ -14,30 +14,27 @@ class Menu_model extends CI_Model {
 		return $this->db->get();
 	}
 
-	function select_main_menu() {
+	function select_main_category() {
 		$this->db->select('*');
-		$this->db->from('furnindo_category');
-		$this->db->where('category_level', 'Main');
-		$this->db->order_by('category_no', 'asc');
+		$this->db->from('furnindo_maincategory');
+		$this->db->order_by('maincategory_no', 'asc');
 		
 		return $this->db->get();
 	}
 
-	function select_menu_level_1($category_id) {
+	function select_sub_category($maincategory_id) {
 		$this->db->select('*');
-		$this->db->from('furnindo_category');
-		$this->db->where('category_subid', $category_id);
-		$this->db->where('category_level', 'Level-1');
-		$this->db->order_by('category_no', 'asc');
+		$this->db->from('furnindo_subcategory');
+		$this->db->where('maincategory_id', $maincategory_id);
+		$this->db->order_by('subcategory_no', 'asc');
 		
 		return $this->db->get();
 	}
 
-	function select_menu_level_2($category_id) {
+	function select_category($subcategory_id) {
 		$this->db->select('*');
 		$this->db->from('furnindo_category');
-		$this->db->where('category_subid', $category_id);
-		$this->db->where('category_level', 'Level-2');
+		$this->db->where('subcategory_id', $subcategory_id);
 		$this->db->order_by('category_no', 'asc');
 		
 		return $this->db->get();
@@ -46,7 +43,7 @@ class Menu_model extends CI_Model {
 	function select_best_product() {
 		$this->db->select('p.*, c.category_name');
 		$this->db->from('furnindo_product p');
-		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
 		$this->db->where('p.product_best', 1);
 		$this->db->order_by('p.product_name', 'asc');
 		
@@ -56,7 +53,7 @@ class Menu_model extends CI_Model {
 	function select_special_product() {
 		$this->db->select('p.*, c.category_name');
 		$this->db->from('furnindo_product p');
-		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
 		$this->db->where('p.product_special', 1);
 		$this->db->order_by('p.product_name', 'asc');
 		
@@ -66,7 +63,7 @@ class Menu_model extends CI_Model {
 	function select_new_product() {
 		$this->db->select('p.*, c.category_name');
 		$this->db->from('furnindo_product p');
-		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
 		$this->db->where('p.product_new', 1);
 		$this->db->order_by('p.product_name', 'asc');
 		
@@ -89,19 +86,27 @@ class Menu_model extends CI_Model {
 		return $this->db->get();
 	}
 
-	// Breadcrumb Main
-	function select_detail_main($main_id) {
+	// Breadcrumb Main Category
+	function select_detail_main($maincategory_id) {
 		$this->db->select('*');
-		$this->db->from('furnindo_category');
-		$this->db->where('category_id', $main_id);
+		$this->db->from('furnindo_maincategory');
+		$this->db->where('maincategory_id', $maincategory_id);
 		
 		return $this->db->get();
 	}
-	// Breadcrumb Sub Level 1
-	function select_detail_subcategory($sub_id) {
+	// Breadcrumb Sub Category
+	function select_detail_subcategory($subcategory_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_subcategory');
+		$this->db->where('subcategory_id', $subcategory_id);
+		
+		return $this->db->get();
+	}
+	// Breadcrumb Category
+	function select_detail_category($category_id) {
 		$this->db->select('*');
 		$this->db->from('furnindo_category');
-		$this->db->where('category_id', $sub_id);
+		$this->db->where('category_id', $category_id);
 		
 		return $this->db->get();
 	}

@@ -24,6 +24,15 @@ class Category_model extends CI_Model {
 		return $this->db->get();
 	}
 
+	function select_all_collection($category_id) {
+		$this->db->select('p.*, c.category_name');
+		$this->db->from('furnindo_product p');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
+		$this->db->where('p.collection_id', $category_id);
+		$this->db->order_by('p.product_name', 'asc');
+
+		return $this->db->get();
+	}
 
 }
 /* Location: ./application/models/admin/Category_model.php */

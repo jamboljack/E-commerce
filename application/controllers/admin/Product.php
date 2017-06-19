@@ -20,22 +20,10 @@ class Product extends CI_Controller {
 	}
 
 	public function adddata() {
-		$data['listMain'] 	= $this->product_model->select_main()->result();
-		$data['listBrand'] 	= $this->product_model->select_brand()->result();
+		$data['listSubCategory'] 	= $this->product_model->select_subcategory()->result();
+		$data['listCollection']		= $this->product_model->select_collection()->result();
 		$this->template->display('admin/product_add_view', $data);
 	}
-
-	// dijalankan saat Main Category di klik
-    public function pilih_subcategory() {
-        $data['listSubCategory']     = $this->product_model->select_sub_category($this->uri->segment(4));
-        $this->load->view('admin/drop_down_sub_category_view', $data);
-    }
-
-    // dijalankan saat Sub Category di klik
-    public function pilih_category() {
-        $data['listCategory']     = $this->product_model->select_category($this->uri->segment(4));
-        $this->load->view('admin/drop_down_category_view', $data);
-    }
 
 	public function savedata() {
 		if (!empty($_FILES['userfile']['name'])) {
@@ -64,10 +52,8 @@ class Product extends CI_Controller {
 	}
 
 	public function editdata($product_id) {
-		$data['listMain'] 			= $this->product_model->select_main()->result();
-		$data['listBrand'] 			= $this->product_model->select_brand()->result();
-		$data['listSubCategory'] 	= $this->product_model->select_SubCategory()->result();
-		$data['listCategory'] 		= $this->product_model->select_Kategori()->result();
+		$data['listSubCategory'] 	= $this->product_model->select_subcategory()->result();
+		$data['listCollection']		= $this->product_model->select_collection()->result();
 		$data['detail'] 			= $this->product_model->select_detail($product_id)->row();
 		$this->template->display('admin/product_edit_view', $data);
 	}
@@ -107,6 +93,51 @@ class Product extends CI_Controller {
 			$this->product_model->delete_data($kode);
 			$this->session->set_flashdata('notification','Delete Data Success.');
 			redirect(site_url('admin/product'));
+		}
+	}
+
+	public function listimage($product_id = '') {
+		$product_id 		= $this->uri->segment(4);
+		$data['detail'] 	= $this->product_model->select_detail($product_id)->row();
+		$data['listData'] 	= $this->product_model->select_all_image($product_id)->result();
+		$this->template->display('admin/product_image_view', $data);
+	}
+
+	public function savedataimage() {
+		if (!empty($_FILES['userfile']['name'])) {
+			$jam 	= time();
+			$name 	= seo_title(trim($this->input->post('name', 'true')));
+			$config['file_name']    	= 'Product_Image_'.$name.'_'.$jam.'.jpg';
+			$config['upload_path'] 		= './img/product/';
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';
+			$config['overwrite'] 		= TRUE;
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('userfile');
+			$config['image_library'] 	= 'gd2';
+			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width'] 			= 500; // 100 Px
+			$config['height'] 			= 500; // 100 px
+			$this->load->library('image_lib',$config);
+			$this->image_lib->resize();
+		} elseif (empty($_FILES['userfile']['name'])){
+			$config['file_name'] = '';
+		}
+
+		$this->product_model->insert_data_image();
+		$this->session->set_flashdata('notification','Save Data Image Success.');
+ 		redirect(site_url('admin/product/listimage/'.$this->uri->segment(4)));
+	}
+
+	public function deletedataimage($kode) {
+		$kode = $this->security->xss_clean($this->uri->segment(5));
+
+		if ($kode == null) {
+			redirect(site_url('admin/product/listimage/'.$this->uri->segment(4)));
+		} else {
+			$this->product_model->delete_data_image($kode);
+			$this->session->set_flashdata('notification','Delete Data Image Success.');
+			redirect(site_url('admin/product/listimage/'.$this->uri->segment(4)));
 		}
 	}
 }

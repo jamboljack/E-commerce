@@ -48,7 +48,7 @@
                                 <label class="col-md-3 control-label">Main Category *</label> 
                                 <div class="col-md-9">
                                     <select class="form-control" name="lstMainCategory" id="lstMainCategory" onchange="TampilSubKategory()" required autofocus>
-                                        <option value="0">- Choose Main Category -</option>
+                                        <option value="">- Choose Main Category -</option>
                                         <?php 
                                         foreach($listMain as $m) { 
                                             if ($detail->maincategory_id == $m->maincategory_id) {

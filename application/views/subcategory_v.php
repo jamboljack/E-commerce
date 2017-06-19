@@ -1,11 +1,11 @@
 <div id="content" class="col-sm-9">
     <?php if ($this->uri->segment(1) == 'maincategory') { ?>
     <div class="slideshow single-slider owl-carousel">
-        <div class="item"> <a href="#"><img class="img-responsive" src="<?php echo base_url(); ?>img/category/<?php echo $detail->category_image; ?>" alt="<?php echo $detail->category_name; ?>" /></a> </div>
+        <div class="item"> <a href="#"><img class="img-responsive" src="<?php echo base_url(); ?>img/subcategory/<?php echo $detail->subcategory_image; ?>" alt="<?php echo $detail->subcategory_name; ?>" /></a> </div>
     </div>
     <?php } ?>
 
-    <h1 class="title"><?php echo $detail->category_name; ?></h1>
+    <h1 class="title"><?php echo $detail->subcategory_name; ?></h1>
     <div class="product-filter">
         <div class="row">
             <div class="col-md-7 col-sm-5">
@@ -27,7 +27,7 @@
     </div>
     <br />
     <div class="row products-category">
-        <?php foreach($listProduct as $p) { ?>
+        <?php foreach($listCategory as $p) { ?>
         <div class="product-layout product-list col-xs-12">
             <div class="product-thumb">
                 <div class="image"><a href="<?php echo site_url('product/item/'.$p->product_id.'/'.$p->product_name_seo); ?>"><img src="<?php echo base_url(); ?>img/product/<?php echo $p->product_image; ?>" alt="<?php echo ucwords(strtolower($p->product_name)); ?>" title="<?php echo ucwords(strtolower($p->product_name)); ?>" class="img-responsive" /></a>
@@ -35,7 +35,11 @@
                 <div>
                     <div class="caption">
                         <h4><a href="<?php echo site_url('product/item/'.$p->product_id.'/'.$p->product_name_seo); ?>"><?php echo ucwords(strtolower($p->product_name)); ?></a></h4>
+                        <?php if ($this->uri->segment(1) == 'subcategory') { ?>
                         <p class="price"><span class="price-new"><?php echo $p->category_name; ?></span></p>
+                        <?php } else { ?>
+                        <br>
+                        <?php }?>
                     </div>
                     <div class="button-group">
                         <a href="<?php echo site_url('chart/addtochart/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>

@@ -17,7 +17,7 @@ class Home_model extends CI_Model {
 	function select_featured() {
 		$this->db->select('p.*, c.category_name');
 		$this->db->from('furnindo_product p');
-		$this->db->join('furnindo_category c', 'p.main_category = c.category_id');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
 		$this->db->order_by('p.product_id', 'desc');
 		$this->db->limit(15);
 		

@@ -35,11 +35,7 @@
                 <div>
                     <div class="caption">
                         <h4><a href="<?php echo site_url('product/item/'.$p->product_id.'/'.$p->product_name_seo); ?>"><?php echo ucwords(strtolower($p->product_name)); ?></a></h4>
-                        <?php if ($this->uri->segment(1) == 'subcategory') { ?>
-                        <p class="price"><span class="price-new"><?php echo $p->category_name; ?></span></p>
-                        <?php } else { ?>
                         <br>
-                        <?php }?>
                     </div>
                     <div class="button-group">
                         <a href="<?php echo site_url('chart/addtochart/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>

@@ -13,10 +13,10 @@ class Maincategory extends CI_Controller{
 		redirect(base_url());
 	}
 
-	public function item($category_id) {
-		$category_id 			= $this->uri->segment(3);
-		$data['detail'] 		= $this->maincategory_model->select_detail($category_id)->row();
-		$data['listProduct'] 	= $this->maincategory_model->select_all_product($category_id)->result();
+	public function item($maincategory_id) {
+		$maincategory_id 		= $this->uri->segment(3);
+		$data['detail'] 		= $this->maincategory_model->select_detail($maincategory_id)->row();
+		$data['listSubCategory']= $this->maincategory_model->select_sub_category($maincategory_id)->result();
 		$this->template_front->display('maincategory_v', $data);
 	}
 }

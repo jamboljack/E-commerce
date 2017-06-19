@@ -23,7 +23,6 @@
         <link href="<?php echo base_url(); ?>backadmin/assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
         <!-- Select2 -->
         <link href="<?php echo base_url(); ?>backadmin/assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
-
         <!-- Core -->
         <link href="<?php echo base_url(); ?>backadmin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>backadmin/assets/css/core.css" rel="stylesheet" type="text/css" />

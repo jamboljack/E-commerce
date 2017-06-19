@@ -11,7 +11,7 @@ if ($this->session->flashdata('notification')) { ?>
     });
 </script>
 <? } ?>
-
+<!-- Hapus Data -->
 <script>
     function hapusData(product_id) {
         var id = product_id;
@@ -60,10 +60,11 @@ if ($this->session->flashdata('notification')) { ?>
                             <tr>
                                 <th width="5%">No</th>
                                 <th>Product Name</th>
-                                <th width="15%">Main Category</th>
-                                <th width="15%">Category</th>
+                                <th width="20%">Category</th>
+                                <th width="10%">Collection</th>
                                 <th width="10%">Status</th>
-                                <th width="15%">Image</th>
+                                <th width="10%">Image</th>
+                                <th width="5%">Other</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -75,14 +76,15 @@ if ($this->session->flashdata('notification')) { ?>
                                 $Best       = ($r->product_best==1?'Best':'');
                                 $New        = ($r->product_new==1?'New':'');
                                 $Special    = ($r->product_special==1?'Special':'');
+                                $Collect    = !empty($r->collection)?$r->collection:'-';
                             ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo ucwords(strtolower($r->product_name)); ?></td>
-                                <td><?php echo $r->main; ?></td>
-                                <td><?php echo $r->category; ?></td>
+                                <td><?php echo $r->maincategory_name.' <i class="fa fa-angle-right"></i> '.$r->subcategory_name.' <i class="fa fa-angle-right"></i> '.$r->category_name; ?></td>
+                                <td><?php echo $Collect; ?></td>
                                 <td><?php echo $Best.' '.$New.' '.$Special; ?></td>
-                                <td>
+                                <td align="center">
                                     <?php 
                                     if (empty($r->product_image)) {
                                     ?>
@@ -90,6 +92,9 @@ if ($this->session->flashdata('notification')) { ?>
                                     <?php } else { ?>
                                     <img src="<?php echo base_url(); ?>img/product/<?php echo $r->product_image; ?>" width="50%">
                                     <?php } ?>
+                                </td>
+                                <td align="center">
+                                    <a href="<?php echo site_url('admin/product/listimage/'.$product_id); ?>" title="Other Image Product"><i class="fa fa-image"></i></a>
                                 </td>
                                 <td>
                                     <a href="<?php echo site_url('admin/product/editdata').'/'.$product_id; ?>">

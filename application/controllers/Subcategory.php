@@ -13,11 +13,11 @@ class Subcategory extends CI_Controller{
 		redirect(base_url());
 	}
 
-	public function item($category_id) {
-		$category_id 			= $this->uri->segment(3);
-		$data['detail'] 		= $this->subcategory_model->select_detail($category_id)->row();
-		$data['listProduct'] 	= $this->subcategory_model->select_all_product($category_id)->result();
-		$this->template_front->display('category_v', $data);
+	public function item($subcategory_id) {
+		$subcategory_id 		= $this->uri->segment(3);
+		$data['detail'] 		= $this->subcategory_model->select_detail($subcategory_id)->row();
+		$data['listCategory'] 	= $this->subcategory_model->select_all_category($subcategory_id)->result();
+		$this->template_front->display('subcategory_v', $data);
 	}
 }
 /* Location: ./application/controller/Subcategory.php */
