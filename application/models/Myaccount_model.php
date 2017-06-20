@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Register_model extends CI_Model {
+class Myaccount_model extends CI_Model {
 	function __construct() {
 		parent::__construct();	
 	}
@@ -14,12 +14,14 @@ class Register_model extends CI_Model {
 		return $this->db->get();
 	}
 
-	function select_detail($key) {
+	function select_detail() {
+		$username = $this->session->userdata('username');
+
 		$this->db->select('*');
 		$this->db->from('furnindo_users');
-		$this->db->where('user_key_activation', $key);
+		$this->db->where('user_username', $username);
 		
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Register_model.php */
+/* Location: ./application/models/admin/Myaccount_model.php */

@@ -33,6 +33,7 @@ class Users_model extends CI_Model {
 						'user_mobile'		=> trim($this->input->post('mobile', 'true')),
 						'user_phone'		=> trim($this->input->post('phone', 'true')),
 						'user_level'		=> $this->input->post('lstLevel', 'true'),
+						'user_status'		=> 'Active',
 				   		'user_date_create' 	=> date('Y-m-d H:i:s'),
 				   		'user_update' 		=> date('Y-m-d H:i:s')
 		);
@@ -61,6 +62,7 @@ class Users_model extends CI_Model {
 							'user_mobile'		=> trim($this->input->post('mobile', 'true')),
 							'user_phone'		=> trim($this->input->post('phone', 'true')),
 							'user_level'		=> $this->input->post('lstLevel', 'true'),
+							'user_status'		=> $this->input->post('lstStatus', 'true'),
 				   			'user_update' 		=> date('Y-m-d H:i:s')
 			);
 		} else {
@@ -73,6 +75,7 @@ class Users_model extends CI_Model {
 							'user_mobile'		=> trim($this->input->post('mobile', 'true')),
 							'user_phone'		=> trim($this->input->post('phone', 'true')),
 							'user_level'		=> $this->input->post('lstLevel', 'true'),
+							'user_status'		=> $this->input->post('lstStatus', 'true'),
 				   			'user_update' 		=> date('Y-m-d H:i:s')
 			);
 		}

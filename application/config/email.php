@@ -1,0 +1,10 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
+$config['protocol']		= 'smtp'; 
+$config['smtp_host']	= 'mail.hotelhomkudus.com'; 
+$config['smtp_port']	= '26'; 
+$config['smtp_timeout'] = '300'; 
+$config['smtp_user']	= 'no-reply@hotelhomkudus.com'; 
+$config['smtp_pass']	= 'jambolj4ck'; 
+$config['charset']		= 'utf-8'; 
+$config['newline']		= "\r\n"; 
+$config['mailtype'] 	= 'html';

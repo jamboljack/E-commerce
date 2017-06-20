@@ -17,15 +17,16 @@ class Administrator extends CI_Controller {
 	}
 
 	public function validasi() {
-		$username 	= trim($this->input->post('username', 'true'));
-		$password 	= trim($this->input->post('password', 'true'));
-		$temp_user 	= $this->administrator_model->get_user($username)->row();
-		$num_user 	= count($temp_user);
 		$this->form_validation->set_rules('username', 'Username', 'trim|required');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('administrator_view');
 		} else {
+			$username 	= trim($this->input->post('username', 'true'));
+			$password 	= trim($this->input->post('password', 'true'));
+			$temp_user 	= $this->administrator_model->get_user($username)->row();
+			$num_user 	= count($temp_user);
 			if ($num_user == 0) {
 				$this->session->set_flashdata('notification','<b>Maaf !! Username Anda Tidak Terdaftar.</b>');
 				redirect(site_url('administrator'));

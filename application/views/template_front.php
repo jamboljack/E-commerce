@@ -94,6 +94,8 @@
                 <?php } if ($this->uri->segment(1) == 'register') { ?>
                 <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('register'); ?>">Register</a></li>
+                <?php } if ($this->uri->segment(1) == 'myaccount') { ?>
+                <li><a href="#">My Account</a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
@@ -101,9 +103,14 @@
         
         <div class="container">
             <div class="row">
-                <!-- Left Part Start-->
-                <?php echo $_sidebar; ?>
-                <!-- Left Part End-->
+                <?php 
+                if ($this->uri->segment(1) == 'myaccount') {
+                    echo $_sidebar2; 
+                } else {
+                    echo $_sidebar; 
+                }
+                ?>
+                
                 <!--Middle Part Start-->
                 <?php echo $content; ?>
                 <!--Middle Part End-->

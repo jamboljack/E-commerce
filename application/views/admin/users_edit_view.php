@@ -104,6 +104,16 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group"> 
+                                <label class="col-md-3 control-label">Status</label> 
+                                <div class="col-md-4">
+                                    <select class="form-control" name="lstStatus" required>
+                                        <option value="">- Pilih Status User -</option>
+                                        <option value="Active" <?php if ($detail->user_status == 'Active') { echo 'selected'; } ?>>Active</option>
+                                        <option value="Non Active" <?php if ($detail->user_status == 'Non Active') { echo 'selected'; } ?>>Non Active</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div> 
 

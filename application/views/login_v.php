@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="alert alert-danger">
-                <i class='fa fa-warning'></i> <b>ERROR !!</b>
+                <i class="fa fa-exclamation-circle"></i> <b>ERROR !!</b>
                 <?php echo validation_errors(); ?>
             </div>
         </div>
@@ -18,8 +18,8 @@
             <?php
             if ($this->session->flashdata('notificationregister')) {
             ?>
-            <div class="alert alert-block alert-success fade in" align="center">
-                <?php echo $this->session->flashdata('notificationregister'); ?>
+            <div class="alert alert-success">
+                <i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('notificationregister'); ?>
             </div>
             <?php
             }
@@ -29,7 +29,7 @@
             <form action="<?php echo site_url('register/sendemail'); ?>" method="post">
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
             <div class="form-group">
-                <input type="email" name="email" value="" placeholder="E-Mail Address" class="form-control" required />
+                <input type="email" name="email" placeholder="E-Mail Address" class="form-control" autocomplete="off" required />
             </div>
             <p>* Password will be sent to your email directly, please check your inbox after registering<br>
             ** If you do not receive any email from us, try checking your Spam Folder or contact us for any assistance
@@ -40,17 +40,27 @@
 
         <div class="col-sm-6">
             <h2 class="subtitle">Returning Customer</h2>
+            <?php
+            if ($this->session->flashdata('notificationerror')) {
+            ?>
+            <div class="alert alert-danger">
+                <i class="fa fa-exclamation-circle"></i> <?php echo $this->session->flashdata('notificationerror'); ?>
+            </div>
+            <?php
+            }
+            ?>
             <p><strong>I am a returning customer</strong></p>
-            <form action="<?php echo site_url('login/checkdata'); ?>" method="post">
+            
+            <form action="<?php echo site_url('login/validasi'); ?>" method="post">
             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
             <div class="form-group">
-                <label class="control-label" for="input-email">E-Mail Address</label>
-                <input type="email" name="email" value="" placeholder="E-Mail Address" class="form-control" required autofocus />
+                <label class="control-label">E-Mail Address</label>
+                <input type="email" name="email" placeholder="E-Mail Address" class="form-control" autocomplete="off" required />
             </div>
             <div class="form-group">
-                <label class="control-label" for="input-password">Password</label>
-                <input type="password" name="password" value="" placeholder="Password" class="form-control" required />
+                <label class="control-label">Password</label>
+                <input type="password" name="password"  placeholder="Password" class="form-control" autocomplete="off" required />
                 <br />
                 <a href="<?php echo site_url('forgotpassword'); ?>">Forgotten Password</a>
             </div>

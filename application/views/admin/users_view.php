@@ -39,6 +39,7 @@ if ($this->session->flashdata('notification')) { ?>
                                 <th>Address</th>
                                 <th width="15%">Phone</th>
                                 <th width="10%">Level</th>
+                                <th width="10%">Status</th>
                                 <th width="8%">Action</th>
                             </tr>
                         </thead>
@@ -47,6 +48,11 @@ if ($this->session->flashdata('notification')) { ?>
                             $no = 1;
                             foreach($listData as $r) {
                                 $user_username = $r->user_username;
+                                if ($r->user_status == 'Active') {
+                                    $status = '<span class="label label-success">Active</span>';
+                                } else {
+                                    $status = '<span class="label label-danger">Non Active</span>';
+                                }
                             ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
@@ -55,6 +61,7 @@ if ($this->session->flashdata('notification')) { ?>
                                 <td><?php echo ucwords(strtolower($r->user_address)); ?></td>
                                 <td><?php echo $r->user_phone; ?></td>
                                 <td><?php echo $r->user_level; ?></td>
+                                <td><?php echo $status; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('admin/users/editdata').'/'.$user_username; ?>">
                                         <button type="button" class="btn btn-warning btn-custom waves-effect waves-light btn-xs" title="Edit Data"><i class="icon-pencil"></i> Edit
