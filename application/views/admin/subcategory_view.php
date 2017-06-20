@@ -83,7 +83,7 @@ if ($this->session->flashdata('notification')) { ?>
                                     <span class="btn btn-blue btn-file">
                                     <span class="fileupload-new"><i class="icon-paper-clip"></i> Browse</span>
                                     <span class="fileupload-exists"><i class="icon-undo"></i> Change</span>
-                                        <input type="file" class="default" name="userfile" />
+                                        <input type="file" class="default" name="userfile" required />
                                     </span>
                                 </div>
                             </div>

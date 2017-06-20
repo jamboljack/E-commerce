@@ -1,8 +1,9 @@
 <div id="content" class="col-sm-9">
-    <h1 class="title">My Account</h1>
-    <p class="lead">Hello, <strong><?php echo ucwords(strtolower($this->session->userdata('nama'))); ?></strong> - To update your account information.</p>
-    <form class="form-horizontal" action="<?php echo site_url('myaccount/updatedata'); ?>" method="post">
+    <h1 class="title">Payment Address</h1>
+    <p class="lead">Hello, <strong><?php echo ucwords(strtolower($this->session->userdata('nama'))); ?></strong> - To Change your Payment Address.</p>
+    <form class="form-horizontal" action="<?php echo site_url('payment/updatedata'); ?>" method="post">
     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+    <input type="hidden" class="form-control" name="id" value="<?php echo $detail->payment_id; ?>">
 
     <?php
     if ($this->session->flashdata('notification')) {
@@ -15,17 +16,17 @@
     ?>
 
     <fieldset id="account">
-        <legend>Personal Detail</legend>
+        <legend>Payment Address Detail</legend>
         <div class="form-group required">
-            <label class="col-sm-2 control-label">Name</label>
+            <label class="col-sm-2 control-label">Company Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Name" value="<?php echo $detail->user_name; ?>" name="name" autocomplete="off" required autofocus>
+                <input type="text" class="form-control" placeholder="Company Name" value="<?php echo $detail->payment_company; ?>" name="name" autocomplete="off" required autofocus>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Address</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Address" value="<?php echo $detail->user_address; ?>" name="address" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Address" value="<?php echo $detail->payment_address; ?>" name="address" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
@@ -50,25 +51,19 @@
         <div class="form-group required">
             <label class="col-sm-2 control-label">City</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="City" value="<?php echo $detail->user_city; ?>" name="city" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="City" value="<?php echo $detail->payment_city; ?>" name="city" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Zip Code</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Zip Code" value="<?php echo $detail->user_zipcode; ?>" name="zipcode" maxlength="5" autocomplete="off" required>
-            </div>
-        </div>
-        <div class="form-group required">
-            <label class="col-sm-2 control-label">Mobile</label>
-            <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Mobile" value="<?php echo $detail->user_mobile; ?>" name="mobile" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Zip Code" value="<?php echo $detail->payment_zipcode; ?>" name="zipcode" maxlength="5" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Phone</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Phone" value="<?php echo $detail->user_phone; ?>" name="phone" autocomplete="off" required>
+                <input type="text" class="form-control" placeholder="Phone" value="<?php echo $detail->payment_phone; ?>" name="phone" autocomplete="off" required>
             </div>
         </div>
     </fieldset>

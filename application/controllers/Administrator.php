@@ -35,11 +35,13 @@ class Administrator extends CI_Controller {
 				$num_account = count($temp_account);
 
 				if ($num_account > 0) {
-					$array_item = array('username' 					=> $temp_account->user_username,
-										'nama' 						=> $temp_account->user_name,
-										'level' 					=> $temp_account->user_level,
-										'logged_in_furnindo' 		=> TRUE
-										);
+					$array_item = array(
+									'username' 			=> $temp_account->user_username,
+									'nama' 				=> $temp_account->user_name,
+									'level' 			=> $temp_account->user_level,
+									'logged_in_furnindo' => TRUE
+					);
+					
 					$this->session->set_userdata($array_item);
 					redirect(site_url('admin/home'));
 				} else {

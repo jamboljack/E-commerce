@@ -23,6 +23,15 @@ class Maincategory_model extends CI_Model {
 		return $this->db->get();
 	}
 
+	function select_all_category($maincategory_id) {
+		$this->db->select('c.*, m.*');
+		$this->db->from('furnindo_category c');
+		$this->db->join('furnindo_subcategory s', 'c.subcategory_id = s.subcategory_id');
+		$this->db->join('furnindo_maincategory m', 's.maincategory_id = m.maincategory_id');
+		$this->db->where('m.maincategory_id', $maincategory_id);
+		$this->db->order_by('c.category_no', 'asc');
 
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/admin/Maincategory_model.php */

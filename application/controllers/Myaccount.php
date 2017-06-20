@@ -21,6 +21,12 @@ class Myaccount extends CI_Controller{
 		}
 	}
 
+	public function updatedata() {
+		$this->myaccount_model->update_data();
+		$this->session->set_flashdata('notification','Update Data Success.');
+ 		redirect(site_url('myaccount'));
+	}
+
 	public function logout() {
 		$this->output->set_header('Last-Modified: ' . gmdate("D, d M Y H:i:s") . 'GMT');
 		$this->output->set_header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');

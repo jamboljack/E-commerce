@@ -54,37 +54,63 @@
             <?php } else { ?>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
-                <?php if ($this->uri->segment(1) == 'maincategory') { ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$detail->maincategory_id.'/'.$detail->maincategory_name_seo); ?>"><?php echo $detail->maincategory_name; ?></a></li>
+                <?php 
+                if ($this->uri->segment(1) == 'maincategory') { 
+                    $maincategory_collect   = $detail->maincategory_collect; // Status Collect
+                    if ($maincategory_collect == 1) {
+                        $subfunction = 'collection';
+                    } else {
+                        $subfunction = 'item';
+                    }
+                ?>
+                <li><a href="<?php echo site_url('maincategory/'.$subfunction.'/'.$detail->maincategory_id.'/'.$detail->maincategory_name_seo); ?>"><?php echo $detail->maincategory_name; ?></a></li>
                 <?php 
                 } elseif ($this->uri->segment(1) == 'subcategory') {
-                    $maincategory_id    = $detail->maincategory_id; // Main Category
-                    $main               = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                    $maincategory_id        = $detail->maincategory_id; // Main Category
+                    $main                   = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                    $maincategory_collect   = $main->maincategory_collect; // Status Collect
+                    if ($maincategory_collect == 1) {
+                        $subfunction = 'collection';
+                    } else {
+                        $subfunction = 'item';
+                    }
                 ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('maincategory/'.$subfunction.'/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
                 <li><a href="<?php echo site_url('subcategory/item/'.$detail->subcategory_id.'/'.$detail->subcategory_name_seo); ?>"><?php echo $detail->subcategory_name; ?></a></li>
                 <?php 
                 } elseif ($this->uri->segment(1) == 'category') {
-                    $subcategory_id = $detail->subcategory_id; // Sub Category
-                    $subcategory    = $this->menu_model->select_detail_subcategory($subcategory_id)->row(); // Data Sub Category
-                    $maincategory_id= $subcategory->maincategory_id; // Main Category
-                    $main           = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                    $subcategory_id     = $detail->subcategory_id; // Sub Category
+                    $subcategory        = $this->menu_model->select_detail_subcategory($subcategory_id)->row(); // Data Sub Category
+                    $maincategory_id    = $subcategory->maincategory_id; // Main Category
+                    $main               = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                    $maincategory_collect   = $main->maincategory_collect; // Status Collect
+                    if ($maincategory_collect == 1) {
+                        $subfunction = 'collection';
+                    } else {
+                        $subfunction = 'item';
+                    }
                 ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
-                <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
-                <li><a href="<?php echo site_url('category/item/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('maincategory/'.$subfunction.'/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/'.$subfunction.'/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('category/'.$subfunction.'/'.$detail->category_id.'/'.$detail->category_name_seo); ?>"><?php echo $detail->category_name; ?></a></li>
                 <?php 
                 } elseif ($this->uri->segment(1) == 'product') { 
-                    $category_id    = $detail->category_id; // Category
-                    $category       = $this->menu_model->select_detail_category($category_id)->row(); // Data Category
-                    $subcategory_id = $category->subcategory_id; // Sub Category
-                    $subcategory    = $this->menu_model->select_detail_subcategory($subcategory_id)->row(); // Data Sub Category
-                    $maincategory_id= $subcategory->maincategory_id; // Main Category
-                    $main           = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                    $category_id        = $detail->category_id; // Category
+                    $category           = $this->menu_model->select_detail_category($category_id)->row(); // Data Category
+                    $subcategory_id     = $category->subcategory_id; // Sub Category
+                    $subcategory        = $this->menu_model->select_detail_subcategory($subcategory_id)->row(); // Data Sub Category
+                    $maincategory_id    = $subcategory->maincategory_id; // Main Category
+                    $main               = $this->menu_model->select_detail_main($maincategory_id)->row(); // Data Main Category
+                    $maincategory_collect   = $main->maincategory_collect; // Status Collect
+                    if ($maincategory_collect == 1) {
+                        $subfunction = 'collection';
+                    } else {
+                        $subfunction = 'item';
+                    }
                 ?>
-                <li><a href="<?php echo site_url('maincategory/item/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
-                <li><a href="<?php echo site_url('subcategory/item/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
-                <li><a href="<?php echo site_url('category/item/'.$category->category_id.'/'.$category->category_name_seo); ?>"><?php echo $category->category_name; ?></a></li>
+                <li><a href="<?php echo site_url('maincategory/'.$subfunction.'/'.$main->maincategory_id.'/'.$main->maincategory_name_seo); ?>"><?php echo $main->maincategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('subcategory/'.$subfunction.'/'.$subcategory->subcategory_id.'/'.$subcategory->subcategory_name_seo); ?>"><?php echo $subcategory->subcategory_name; ?></a></li>
+                <li><a href="<?php echo site_url('category/'.$subfunction.'/'.$category->category_id.'/'.$category->category_name_seo); ?>"><?php echo $category->category_name; ?></a></li>
                 <li><a href="<?php echo site_url('product/item/'.$detail->product_id.'/'.$detail->product_name_seo); ?>"><?php echo ucwords(strtolower($detail->product_name)); ?></a></li>
                 <?php } if ($this->uri->segment(1) == 'contact') { ?>
                 <li><a href="<?php echo site_url('contact'); ?>">Contact Us</a></li>
@@ -95,7 +121,14 @@
                 <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('register'); ?>">Register</a></li>
                 <?php } if ($this->uri->segment(1) == 'myaccount') { ?>
-                <li><a href="#">My Account</a></li>
+                <li><a href="#">Account</a></li>
+                <li><a href="<?php echo site_url('myaccount'); ?>">My Account</a></li>
+                <?php } if ($this->uri->segment(1) == 'changepassword') { ?>
+                <li><a href="#">Account</a></li>
+                <li><a href="<?php echo site_url('changepassword'); ?>">Change Password</a></li>
+                <?php } if ($this->uri->segment(1) == 'payment') { ?>
+                <li><a href="#">Account</a></li>
+                <li><a href="<?php echo site_url('payment'); ?>">Payment Address</a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
@@ -103,14 +136,14 @@
         
         <div class="container">
             <div class="row">
-                <?php 
-                if ($this->uri->segment(1) == 'myaccount') {
+                <?php
+                $uri1 = $this->uri->segment(1);
+                if ($uri1=='myaccount' || $uri1=='changepassword' || $uri1=='payment') {
                     echo $_sidebar2; 
                 } else {
                     echo $_sidebar; 
                 }
-                ?>
-                
+                ?>                
                 <!--Middle Part Start-->
                 <?php echo $content; ?>
                 <!--Middle Part End-->

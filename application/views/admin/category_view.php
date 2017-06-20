@@ -59,11 +59,12 @@ if ($this->session->flashdata('notification')) { ?>
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th width="10%">Number</th>
+                                <th width="5%">Number</th>
                                 <th width="15%">Main Category</th>
                                 <th width="15%">Sub Category</th>
                                 <th>Category Name</th>
                                 <th width="10%">Order</th>
+                                <th width="10%">Image</th>
                                 <th width="15%">Action</th>
                             </tr>
                         </thead>
@@ -91,6 +92,15 @@ if ($this->session->flashdata('notification')) { ?>
                                         <?php } ?>
                                         <a href="<?php echo site_url('admin/category/down/'.$r->category_id.'/'.$r->category_no); ?>" title="Down">&darr;</a>
                                     </div>
+                                </td>
+                                <td>
+                                    <?php 
+                                    if (empty($r->category_image)) {
+                                    ?>
+                                    <img src="<?php echo base_url(); ?>img/noproduct.jpg" width="50%">
+                                    <?php } else { ?>
+                                    <img src="<?php echo base_url(); ?>img/category/<?php echo $r->category_image; ?>" width="50%">
+                                    <?php } ?>
                                 </td>
                                 <td>
                                     <a href="<?php echo site_url('admin/category/editdata').'/'.$category_id; ?>">

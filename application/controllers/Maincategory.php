@@ -19,6 +19,13 @@ class Maincategory extends CI_Controller{
 		$data['listSubCategory']= $this->maincategory_model->select_sub_category($maincategory_id)->result();
 		$this->template_front->display('maincategory_v', $data);
 	}
+
+	public function collection($maincategory_id) {
+		$maincategory_id 		= $this->uri->segment(3);
+		$data['detail'] 		= $this->maincategory_model->select_detail($maincategory_id)->row();
+		$data['listCategory'] 	= $this->maincategory_model->select_all_category($maincategory_id)->result();
+		$this->template_front->display('maincategorycollect_v', $data);
+	}
 }
 /* Location: ./application/controller/Maincategory.php */
 ?>

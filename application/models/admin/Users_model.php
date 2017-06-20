@@ -7,9 +7,10 @@ class Users_model extends CI_Model {
 	}
 		
 	function select_all() {
-		$this->db->select('*');
-		$this->db->from('furnindo_users');
-		$this->db->order_by('user_name', 'asc');
+		$this->db->select('u.*, r.region_name');
+		$this->db->from('furnindo_users u');
+		$this->db->join('furnindo_region r', 'u.region_id = r.region_id');
+		$this->db->order_by('u.user_name', 'asc');
 		
 		return $this->db->get();
 	}

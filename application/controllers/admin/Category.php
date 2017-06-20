@@ -31,6 +31,28 @@ class Category extends CI_Controller {
     }
 
 	public function savedata() {
+		if (!empty($_FILES['userfile']['name'])) {
+			$jam 	= time();
+			$name 	= seo_title(trim($this->input->post('name', 'true')));
+
+			$config['file_name']    	= 'Category_'.$name.'_'.$jam.'.jpg';
+			$config['upload_path'] 		= './img/category/';
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';		
+			$config['overwrite'] 		= TRUE;
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('userfile');
+			$config['image_library'] 	= 'gd2';
+			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width'] 			= 200;
+			$config['height'] 			= 200;
+			
+			$this->load->library('image_lib',$config);
+			$this->image_lib->resize();
+		} elseif (empty($_FILES['userfile']['name'])){
+			$config['file_name'] = '';
+		}
+
 		$this->category_model->insert_data();
 		$this->session->set_flashdata('notification','Save Data Success.');
 	 	redirect(site_url('admin/category'));
@@ -44,6 +66,28 @@ class Category extends CI_Controller {
 	}
 
 	public function updatedata() {
+		if (!empty($_FILES['userfile']['name'])) {
+			$jam 	= time();
+			$name 	= seo_title(trim($this->input->post('name', 'true')));
+
+			$config['file_name']    	= 'Category_'.$name.'_'.$jam.'.jpg';
+			$config['upload_path'] 		= './img/category/';
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif|png';		
+			$config['overwrite'] 		= TRUE;
+			$this->load->library('upload', $config);
+			$this->upload->do_upload('userfile');
+			$config['image_library'] 	= 'gd2';
+			$config['source_image'] 	= $this->upload->upload_path.$this->upload->file_name;
+			$config['maintain_ratio'] 	= TRUE;
+			$config['width'] 			= 200;
+			$config['height'] 			= 200;
+			
+			$this->load->library('image_lib',$config);
+			$this->image_lib->resize();
+		} elseif (empty($_FILES['userfile']['name'])){
+			$config['file_name'] = '';
+		}
+		
 		$this->category_model->update_data();
 		$this->session->set_flashdata('notification','Update Data Success.');
  		redirect(site_url('admin/category'));

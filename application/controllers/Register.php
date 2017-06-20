@@ -40,7 +40,7 @@ class Register extends CI_Controller{
 			// Send Email
 			$sender_email 	= 'no-reply@hotelhomkudus.com';
 			$sender_name 	= 'no-reply';
-			$subject 		= 'Registration Success';
+			$subject 		= 'Email Confirmation';
 			$message 		= '<html><body>';
 			$message 		.= '<table>';
 			$message 		.= '<tr>
@@ -73,7 +73,7 @@ class Register extends CI_Controller{
 			$this->email->message($message);
 			$this->email->send();
 
-			$this->session->set_flashdata('notificationregister','E-Mail Send Activation.');
+			$this->session->set_flashdata('notificationregister','Send Email Confirmation Successfull.');
 	 		redirect(site_url('register'));
 	 	}
 	}
@@ -114,8 +114,16 @@ class Register extends CI_Controller{
 			$this->db->where('user_key_activation', $key);
 			$this->db->update('furnindo_users', $data);
 
+			// Username/Email
+			$email          = $this->input->post('email', 'true'); 
+			// Input ke Tabel Payment
+			$data = array(	'user_username'		=> $email,
+				   			'payment_update' 	=> date('Y-m-d H:i:s')
+			);
+
+			$this->db->insert('furnindo_payment', $data);
+
 			// Send Email
-			$email          = $this->input->post('email', 'true');
 			$sender_email 	= 'no-reply@hotelhomkudus.com';
 			$sender_name 	= 'no-reply';
 			$subject 		= 'Registration Success';

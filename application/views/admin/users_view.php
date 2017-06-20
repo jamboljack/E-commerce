@@ -35,9 +35,9 @@ if ($this->session->flashdata('notification')) { ?>
                             <tr>
                                 <th width="5%">No</th>
                                 <th width="10%">Username</th>
-                                <th width="20%">Name</th>
-                                <th>Address</th>
-                                <th width="15%">Phone</th>
+                                <th>Name</th>
+                                <th width="10%">Region</th>
+                                <th width="10%">Phone</th>
                                 <th width="10%">Level</th>
                                 <th width="10%">Status</th>
                                 <th width="8%">Action</th>
@@ -58,10 +58,10 @@ if ($this->session->flashdata('notification')) { ?>
                                 <td><?php echo $no; ?></td>
                                 <td><?php echo $r->user_username; ?></td>
                                 <td><?php echo ucwords(strtolower($r->user_name)); ?></td>
-                                <td><?php echo ucwords(strtolower($r->user_address)); ?></td>
+                                <td><?php echo ucwords(strtolower($r->region_name)); ?></td>
                                 <td><?php echo $r->user_phone; ?></td>
-                                <td><?php echo $r->user_level; ?></td>
-                                <td><?php echo $status; ?></td>
+                                <td align="center"><?php echo $r->user_level; ?></td>
+                                <td align="center"><?php echo $status; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('admin/users/editdata').'/'.$user_username; ?>">
                                         <button type="button" class="btn btn-warning btn-custom waves-effect waves-light btn-xs" title="Edit Data"><i class="icon-pencil"></i> Edit

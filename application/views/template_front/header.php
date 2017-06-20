@@ -10,8 +10,10 @@ $detailKontak = $this->menu_model->select_contact()->row();
                         <ul>
                             <li class="mobile"><i class="fa fa-phone"></i><?php echo $detailKontak->contact_phone; ?></li>
                             <li class="email"><a href="mailto:<?php echo $detailKontak->contact_email; ?>"><i class="fa fa-envelope"></i><?php echo $detailKontak->contact_email; ?></a></li>
+                            <?php if ($this->session->userdata('logged_in_member')) { ?>
                             <li><a href="<?php echo site_url('wishlist'); ?>">Wish List (0)</a></li>
                             <li><a href="<?php echo site_url('checkout'); ?>">Checkout</a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
@@ -21,7 +23,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                         <li><a href="<?php echo site_url('login'); ?>">Login</a></li>
                         <li><a href="<?php echo site_url('register'); ?>">Register</a></li>
                         <?php } else { ?>
-                        <li class="dropdown" id="my_account"><a href="#">My Account <i class="fa fa-caret-down"></i></a>
+                        <li class="dropdown" id="my_account"><a href="#">Halo, <?php echo ucwords(strtolower($this->session->userdata('nama')));  ?> <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="<?php echo site_url('myaccount'); ?>">My Account</a></li>
                             <li><a href="<?php echo site_url('order_history'); ?>">Order History</a></li>
@@ -72,7 +74,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                     </div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">
-                    <form action="" method="post">
+                    <form action="<?php echo site_url('search'); ?>" method="post">
                         <div id="search" class="input-group">
                             <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
                             <button type="button" class="button-search"><i class="fa fa-search"></i></button>
@@ -102,7 +104,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                         $listSubCategory    = $this->menu_model->select_sub_category($maincategory_id)->result();
                         if (count($listSubCategory) > 1) { // Jika Ada Sub Category lebih dari 1, maka Mega Menu
                     ?>
-                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/item/'.$r->maincategory_id.'/'.$r->maincategory_name_seo); ?>"><?php echo $r->maincategory_name; ?></a>
+                    <li class="mega-menu dropdown"><a href="<?php echo site_url('maincategory/'.$subfunction.'/'.$r->maincategory_id.'/'.$r->maincategory_name_seo); ?>"><?php echo $r->maincategory_name; ?></a>
                         <?php 
                         if (count($listSubCategory) > 0) { // Jika Ada Sub Category, maka Tampilkan
                         ?>
@@ -133,7 +135,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                         <?php } ?>
                     </li>
                     <?php } else { ?>
-                    <li class="dropdown information-link"><a href="<?php echo site_url('maincategory/item/'.$r->maincategory_id.'/'.$r->maincategory_name_seo); ?>"><?php echo $r->maincategory_name; ?></a>
+                    <li class="dropdown information-link"><a href="<?php echo site_url('maincategory/'.$subfunction.'/'.$r->maincategory_id.'/'.$r->maincategory_name_seo); ?>"><?php echo $r->maincategory_name; ?></a>
                         <div class="dropdown-menu">
                             <?php 
                             foreach($listSubCategory as $l) {

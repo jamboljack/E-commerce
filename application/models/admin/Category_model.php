@@ -46,11 +46,18 @@ class Category_model extends CI_Model {
 		$subcategory_id 	= $this->input->post('lstSubCategory', 'true');
 		$category_name		= ucwords(strtolower($this->input->post('name', 'true')));
 		$category_name_seo	= seo_title($this->input->post('name', 'true'));
+		$category_image		= $this->upload->file_name;
 		$update 			= date('Y-m-d H:i:s');
 
-		return $this->db->query("INSERT INTO furnindo_category 
-		(maincategory_id, subcategory_id, category_no, category_name, category_name_seo, category_update)
-		VALUES ('$maincategory_id', '$subcategory_id', (SELECT (c.category_no+1) FROM furnindo_category c ORDER BY c.category_no DESC LIMIT 1), '$category_name', '$category_name_seo', '$update')");
+		if (!empty($_FILES['userfile']['name'])) {
+			return $this->db->query("INSERT INTO furnindo_category 
+			(maincategory_id, subcategory_id, category_no, category_name, category_name_seo, category_image, category_update)
+			VALUES ('$maincategory_id', '$subcategory_id', (SELECT (c.category_no+1) FROM furnindo_category c ORDER BY c.category_no DESC LIMIT 1), '$category_name', '$category_name_seo', '$category_image', '$update')");
+		} else {
+			return $this->db->query("INSERT INTO furnindo_category 
+			(maincategory_id, subcategory_id, category_no, category_name, category_name_seo, category_update)
+			VALUES ('$maincategory_id', '$subcategory_id', (SELECT (c.category_no+1) FROM furnindo_category c ORDER BY c.category_no DESC LIMIT 1), '$category_name', '$category_name_seo', '$update')");
+		}
 	}
 
 	function select_detail($category_id) {
@@ -72,12 +79,22 @@ class Category_model extends CI_Model {
 	function update_data() {
 		$category_id     	= $this->input->post('id');
 
-		$data = array(	'maincategory_id'	=> $this->input->post('lstMainCategory', 'true'),
-						'subcategory_id'	=> $this->input->post('lstSubCategory', 'true'),
-						'category_name'		=> ucwords(strtolower($this->input->post('name', 'true'))),
-						'category_name_seo'	=> seo_title($this->input->post('name', 'true')),
-				   		'category_update' 	=> date('Y-m-d H:i:s')
-		);
+		if (!empty($_FILES['userfile']['name'])) {
+			$data = array(	'maincategory_id'	=> $this->input->post('lstMainCategory', 'true'),
+							'subcategory_id'	=> $this->input->post('lstSubCategory', 'true'),
+							'category_name'		=> ucwords(strtolower($this->input->post('name', 'true'))),
+							'category_name_seo'	=> seo_title($this->input->post('name', 'true')),
+							'category_image' 	=> $this->upload->file_name,
+					   		'category_update' 	=> date('Y-m-d H:i:s')
+			);
+		} else {
+			$data = array(	'maincategory_id'	=> $this->input->post('lstMainCategory', 'true'),
+							'subcategory_id'	=> $this->input->post('lstSubCategory', 'true'),
+							'category_name'		=> ucwords(strtolower($this->input->post('name', 'true'))),
+							'category_name_seo'	=> seo_title($this->input->post('name', 'true')),
+					   		'category_update' 	=> date('Y-m-d H:i:s')
+			);
+		}
 
 		$this->db->where('category_id', $category_id);
 		$this->db->update('furnindo_category', $data);

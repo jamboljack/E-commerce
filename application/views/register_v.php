@@ -36,13 +36,13 @@ function CekList() {
         <div class="form-group required">
             <label class="col-sm-2 control-label">Name</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Name" value="<?php echo set_value('name'); ?>" name="name" required autofocus>
+                <input type="text" class="form-control" placeholder="Name" value="<?php echo set_value('name'); ?>" name="name" autocomplete="off" required autofocus>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Address</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" placeholder="Address" value="<?php echo set_value('address'); ?>" name="address" required>
+                <input type="text" class="form-control" placeholder="Address" value="<?php echo set_value('address'); ?>" name="address" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
@@ -59,25 +59,25 @@ function CekList() {
         <div class="form-group required">
             <label class="col-sm-2 control-label">City</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="City" value="<?php echo set_value('city'); ?>" name="city" required>
+                <input type="text" class="form-control" placeholder="City" value="<?php echo set_value('city'); ?>" name="city" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Zip Code</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Zip Code" value="<?php echo set_value('zipcode'); ?>" name="zipcode" maxlength="5" required>
+                <input type="text" class="form-control" placeholder="Zip Code" value="<?php echo set_value('zipcode'); ?>" name="zipcode" maxlength="5" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Mobile</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" required>
+                <input type="text" class="form-control" placeholder="Mobile" value="<?php echo set_value('mobile'); ?>" name="mobile" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Phone</label>
             <div class="col-sm-5">
-                <input type="text" class="form-control" placeholder="Phone" value="<?php echo set_value('phone'); ?>" name="phone" required>
+                <input type="text" class="form-control" placeholder="Phone" value="<?php echo set_value('phone'); ?>" name="phone" autocomplete="off" required>
             </div>
         </div>
     </fieldset>
@@ -85,14 +85,14 @@ function CekList() {
         <legend>Your Password</legend>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Password</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="Password" name="password" required>
+            <div class="col-sm-5">
+                <input type="password" class="form-control" placeholder="Password" name="password" autocomplete="off" required>
             </div>
         </div>
         <div class="form-group required">
             <label class="col-sm-2 control-label">Password Confirm</label>
-            <div class="col-sm-10">
-                <input type="password" class="form-control" placeholder="Password Confirm" name="passwordconfirm" required>
+            <div class="col-sm-5">
+                <input type="password" class="form-control" placeholder="Password Confirm" name="passwordconfirm" autocomplete="off" required>
             </div>
         </div>
     </fieldset>
