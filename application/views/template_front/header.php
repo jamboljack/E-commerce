@@ -47,21 +47,36 @@ $detailKontak = $this->menu_model->select_contact()->row();
                     <div id="cart">
                         <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="heading dropdown-toggle">
                             <span class="cart-icon pull-left flip"></span>
-                            <span id="cart-total">0 item(s) in your chart</span>
+                            <?php 
+                            if ($this->session->userdata('logged_in_member')) { // Jika ada Session Login, Maka Tampilkan Item
+                                $listItem   = $this->menu_model->select_all_item()->result();
+                                $total      = count($listItem);
+                            } else {
+                                $total      = 0;
+                            }
+                            ?>
+                            <span id="cart-total"><?php echo $total; ?> item(s) in your chart</span>
                         </button>
+                        <?php if ($this->session->userdata('logged_in_member')) { ?>
                         <ul class="dropdown-menu">
                             <li>
                                 <table class="table">
                                 <tbody>
+                                    <?php 
+                                    foreach ($listItem as $r) {
+                                    ?>
                                     <tr>
                                         <td class="text-center">
-                                            <a href="product.html"><img class="img-thumbnail" title="Xitefun Causal Wear Fancy Shoes" alt="Xitefun Causal Wear Fancy Shoes" src="image/product/sony_vaio_1-50x50.jpg"></a>
+                                            <a href="<?php echo site_url('product/item/'.$r->product_id.'/'.$r->product_name_seo); ?>">
+                                            <img class="img-thumbnail" title="<?php echo ucwords(strtolower($r->product_name)); ?>" alt="<?php echo ucwords(strtolower($r->product_name)); ?>" src="<?php echo base_url(); ?>img/product/<?php echo $r->product_image; ?>" width="50" heigth="50"></a>
                                         </td>
-                                        <td class="text-left"><a href="product.html">Xitefun Causal Wear Fancy Shoes</a></td>
-                                        <td class="text-right">x 1</td>
-                                        <td class="text-right">$902.00</td>
-                                        <td class="text-center"><button class="btn btn-danger btn-xs remove" title="Remove" onClick="" type="button"><i class="fa fa-times"></i></button></td>
+                                        <td class="text-left"><a href="<?php echo site_url('product/item/'.$r->product_id.'/'.$r->product_name_seo); ?>"><?php echo ucwords(strtolower($r->product_name)); ?></a><br><?php echo ucwords(strtolower($r->category_name)); ?></td>
+                                        <td class="text-right"><?php echo $r->temp_qty; ?></td>
+                                        <td class="text-center">
+                                            <a href="<?php echo site_url('chart/deleteitem/'.$r->temp_id); ?>"><button class="btn btn-danger btn-xs remove" title="Remove" onClick="" type="button"><i class="fa fa-times"></i></button></a>
+                                        </td>
                                     </tr>
+                                    <?php } ?>
                                 </tbody>
                                 </table>
                             </li>
@@ -71,6 +86,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                                 </div>
                             </li>
                         </ul>
+                        <?php } ?>
                     </div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">

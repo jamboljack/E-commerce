@@ -38,7 +38,12 @@
                         <br>
                     </div>
                     <div class="button-group">
-                        <a href="<?php echo site_url('chart/addtochart/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button class="btn-primary" type="button"><span>Add to Cart</span></button></a>
+                        <form action="<?php echo site_url('chart/addtochart'); ?>" method="post">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        <input type="hidden" name="product_id" value="<?php echo $p->product_id; ?>">
+                        <input type="hidden" name="qty" value="1">
+                        <button class="btn-primary" type="submit"><span>Add to Cart</span></button>
+                        </form>
                         <div class="add-to-links">
                             <a href="<?php echo site_url('whistlist/addtowhistlist/'.$p->product_id.'/'.$p->product_name_seo); ?>"><button type="button" data-toggle="tooltip" title="" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button></a>
                         </div>

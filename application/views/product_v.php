@@ -27,14 +27,18 @@
                 <h3 class="subtitle">Available Options</h3>
                     <div class="cart">
                         <div>
+                            <form action="<?php echo site_url('chart/addtochart'); ?>" method="post">
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                            <input type="hidden" name="product_id" value="<?php echo $detail->product_id; ?>">                            
                             <div class="qty">
                                 <label class="control-label" for="input-quantity">Qty</label>
-                                <input type="text" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
+                                <input type="text" name="qty" value="1" size="2" id="input-quantity" class="form-control" autocomplete="off" />
                                 <a class="qtyBtn plus" href="javascript:void(0);">+</a><br />
                                 <a class="qtyBtn mines" href="javascript:void(0);">-</a>
                                 <div class="clear"></div>
                             </div>
-                            <a href="<?php echo site_url('chart/addtochart/'.$detail->product_id.'/'.$detail->product_name_seo); ?>"><button type="button" id="button-cart" class="btn btn-primary btn-lg">Add to Cart</button></a>
+                            <button type="submit" id="button-cart" class="btn btn-primary btn-lg">Add to Cart</button>
+                            </form>
                         </div>
                         <div>
                             <a href="<?php echo site_url('whistlist/addtowhistlist/'.$detail->product_id.'/'.$detail->product_name_seo); ?>"><button type="button" class="wishlist"><i class="fa fa-heart"></i> Add to Wish List</button></a>

@@ -18,7 +18,7 @@ function CekList() {
     <p>If you already have an account with us, please login at the <a href="<?php echo site_url('login'); ?>">Login Page</a>.</p>
     <form class="form-horizontal" action="<?php echo site_url('register/savedata/'.$this->uri->segment(3)); ?>" method="post">
     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-    <input type="hidden" class="form-control" name="email" value="<?php echo $detail->user_username; ?>">
+    <input type="hidden" name="email" value="<?php echo $detail->user_username; ?>">
 
     <?php if ($error == 'true') { ?>
     <div class="row">

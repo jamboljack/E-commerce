@@ -129,6 +129,11 @@
                 <?php } if ($this->uri->segment(1) == 'payment') { ?>
                 <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('payment'); ?>">Payment Address</a></li>
+                <?php } if ($this->uri->segment(1) == 'chart') { ?>
+                <li><a href="#">Shopping Chart</a></li>
+                <?php } if ($this->uri->segment(1) == 'checkout') { ?>
+                <li><a href="<?php echo site_url('chart'); ?>">Shopping Chart</a></li>
+                <li><a href="<?php echo site_url('checkout'); ?>">Checkout</a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
@@ -138,7 +143,7 @@
             <div class="row">
                 <?php
                 $uri1 = $this->uri->segment(1);
-                if ($uri1=='myaccount' || $uri1=='changepassword' || $uri1=='payment') {
+                if ($uri1=='myaccount' || $uri1=='changepassword' || $uri1=='payment' || $uri1=='chart' || $uri1=='checkout') {
                     echo $_sidebar2; 
                 } else {
                     echo $_sidebar; 
