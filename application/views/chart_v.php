@@ -11,6 +11,16 @@
     }
     ?>
 
+    <?php
+    if ($this->session->flashdata('notificationempty')) {
+    ?>
+    <div class="alert alert-danger">
+        <i class="fa fa-exclamation-circle"></i> <?php echo $this->session->flashdata('notificationempty'); ?>
+    </div>
+    <?php
+    }
+    ?>
+
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>

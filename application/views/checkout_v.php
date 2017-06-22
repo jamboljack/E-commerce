@@ -1,27 +1,73 @@
+<script language="JavaScript" type="text/JavaScript">
+function CekCopy() {    
+    var checker = document.getElementById('chkFill');
+    
+    checker.onchange = function(){
+        if (this.checked) {
+            $('.trgName').val(function(){
+                return $('.srcName').val()
+            })
+            $('.trgAddress').val(function(){
+                return $('.srcAddress').val()
+            })
+            $('.trgRegion').val(function(){
+                return $('.srcRegion').val()
+            })
+            $('.trgCity').val(function(){
+                return $('.srcCity').val()
+            })
+            $('.trgZipcode').val(function(){
+                return $('.srcZipcode').val()
+            })
+            $('.trgPhone').val(function(){
+                return $('.srcPhone').val()
+            })
+        } else {
+            
+        }   
+    }
+}
+</script>
+
+<script language="JavaScript" type="text/JavaScript">
+function CekList() {    
+    var checker = document.getElementById('chkCheck');
+    var sendbtn = document.getElementById('btnSave');
+    
+    checker.onchange = function(){
+        if (this.checked) {
+            sendbtn.disabled = false;
+        } else {
+            sendbtn.disabled = true;
+        }   
+    }
+}
+</script>
+
 <div id="content" class="col-sm-9">
     <h1 class="title">Checkout</h1>
-    <form action="<?php echo site_url('myaccount/updatedata'); ?>" method="post">
+    <form action="<?php echo site_url('checkout/savedata'); ?>" method="post">
     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><i class="fa fa-user"></i> Your Personal Details</h4>
+                    <h4 class="panel-title"><i class="fa fa-user"></i> Your Personal Detail</h4>
                 </div>
                 <div class="panel-body">
                     <fieldset id="account">
                         <div class="form-group">
                             <label class="control-label">Name</label>
-                            <input type="text" class="form-control" value="<?php echo ucwords(strtolower($detail->user_name)); ?>" name="name" readonly>
+                            <input type="text" class="srcName form-control" value="<?php echo ucwords(strtolower($detail->user_name)); ?>" name="name" readonly>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Address</label>
-                            <input type="text" class="form-control" value="<?php echo ucwords(strtolower($detail->user_address)); ?>" name="address" readonly>
+                            <input type="text" class="srcAddress form-control" value="<?php echo ucwords(strtolower($detail->user_address)); ?>" name="address" readonly>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Region</label>
-                            <select class="form-control" name="lstRegion" readonly>
+                            <select class="srcRegion form-control" name="lstRegion" readonly>
                                 <option value=""> --- Please Select --- </option>
                                 <?php 
                                 foreach($listRegion as $r) { 
@@ -38,15 +84,15 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">City</label>
-                            <input type="text" class="form-control" value="<?php echo ucwords(strtolower($detail->user_city)); ?>" name="city" readonly>
+                            <input type="text" class="srcCity form-control" value="<?php echo ucwords(strtolower($detail->user_city)); ?>" name="city" readonly>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Zip Code</label>
-                            <input type="text" class="form-control" value="<?php echo ucwords(strtolower($detail->user_zipcode)); ?>" name="zipcode" readonly>
+                            <input type="text" class="srcZipcode form-control" value="<?php echo ucwords(strtolower($detail->user_zipcode)); ?>" name="zipcode" readonly>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Phone</label>
-                            <input type="text" class="form-control" value="<?php echo $detail->user_phone; ?>" name="phone" readonly>
+                            <input type="text" class="srcPhone form-control" value="<?php echo $detail->user_phone; ?>" name="phone" readonly>
                         </div>
                     </fieldset>
                 </div>
@@ -59,17 +105,22 @@
                 </div>
                 <div class="panel-body">
                     <fieldset id="address" class="required">
+                        <div class="checkbox">
+                            <label><input type="checkbox" value="1" name="chkFill" id="chkFill" onclick="CekCopy()">
+                                My Shipping are the same with My Personal Detail.
+                            </label>
+                        </div>
                         <div class="form-group required">
                             <label class="control-label">Name</label>
-                            <input type="text" class="form-control" value="<?php echo set_value('ship_name'); ?>" name="ship_name" autocomplete="off" required autofocus>
+                            <input type="text" class="trgName form-control" value="<?php echo set_value('ship_name'); ?>" name="ship_name" autocomplete="off" required autofocus>
                         </div>
                         <div class="form-group required">
                             <label class="control-label">Address</label>
-                            <input type="text" class="form-control" value="<?php echo set_value('ship_address'); ?>" name="ship_address" autocomplete="off" required>
+                            <input type="text" class="trgAddress form-control" value="<?php echo set_value('ship_address'); ?>" name="ship_address" autocomplete="off" required>
                         </div>
                         <div class="form-group required">
                             <label class="control-label">Region</label>
-                            <select class="form-control" name="lstRegionShip" required>
+                            <select class="trgRegion form-control" name="lstRegionShip" required>
                                 <option value=""> --- Please Select --- </option>
                                 <?php 
                                 foreach($listRegion as $r) { 
@@ -82,20 +133,15 @@
                         </div>
                         <div class="form-group required">
                             <label class="control-label">City</label>
-                            <input type="text" class="form-control" value="<?php echo set_value('ship_city'); ?>" name="ship_city" autocomplete="off" required>
+                            <input type="text" class="trgCity form-control" value="<?php echo set_value('ship_city'); ?>" name="ship_city" autocomplete="off" required>
                         </div>
                         <div class="form-group required">
                             <label class="control-label">Zip Code</label>
-                            <input type="text" class="form-control" value="<?php echo set_value('ship_zipcode'); ?>" name="ship_zipcode" autocomplete="off" required>
+                            <input type="text" class="trgZipcode form-control" value="<?php echo set_value('ship_zipcode'); ?>" name="ship_zipcode" autocomplete="off" maxlength="5" pattern="^[0-9]{1,5}$" title="Numeric" required>
                         </div>
                         <div class="form-group required">
                             <label class="control-label">Phone</label>
-                            <input type="text" class="form-control" value="<?php echo set_value('ship_phone'); ?>" name="ship_phone" autocomplete="off" required>
-                        </div>
-                        <div class="checkbox">
-                            <label><input type="checkbox" value="1" name="chkCopy">
-                                My Shipping are the same with My Personal Detail.
-                            </label>
+                            <input type="text" class="trgPhone form-control" value="<?php echo set_value('ship_phone'); ?>" name="ship_phone" autocomplete="off" required>
                         </div>
                     </fieldset>
                 </div>
@@ -111,10 +157,7 @@
                 <div class="panel-body">
                     <p>Please select the preferred payment method to use on this order.</p>
                     <div class="radio">
-                        <label><input type="radio" checked="checked" name="chkPayment">Cash On Delivery</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="chkPayment">Bank Transfer</label>
+                        <label><input type="radio" value="1" checked="checked" name="chkPayment">Bank Transfer</label>
                     </div>
                 </div>
             </div>
@@ -172,15 +215,15 @@
             <h4 class="panel-title"><i class="fa fa-pencil"></i> Add Comments About Your Order</h4>
         </div>
         <div class="panel-body">
-            <textarea rows="4" class="form-control" name="comments"></textarea>
+            <textarea rows="4" class="form-control" name="comment"></textarea>
             <br>
             <label class="control-label" for="confirm_agree">
-                <input type="checkbox" value="1" required class="validate required" id="confirm_agree" name="confirm agree">
+                <input type="checkbox" id="chkCheck" name="chkCheck" onclick="CekList()">
                 <span>I have read and agree to the <a class="agree" href="<?php echo site_url('term_condition'); ?>"><b>Terms &amp; Conditions</b></a></span>
             </label>
             <div class="buttons">
                 <div class="pull-right">
-                    <input type="button" class="btn btn-primary" value="Confirm Order">
+                    <input type="submit" class="btn btn-primary" value="Confirm Order" name="btnSave" id="btnSave" disabled>
                 </div>
             </div>
         </div>

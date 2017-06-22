@@ -37,5 +37,17 @@ class Checkout_model extends CI_Model {
 		
 		return $this->db->get();
 	}
+
+	function select_detail_order($order_id) {
+		$this->db->select('o.*, u.*, r.region_name, s.*, n.region_name as negara');
+		$this->db->from('furnindo_order o');
+		$this->db->join('furnindo_users u', 'o.user_username = u.user_username'); // Users
+		$this->db->join('furnindo_shipping s', 's.order_id = o.order_id'); // Shipping
+		$this->db->join('furnindo_region r', 'u.region_id = r.region_id'); // Region
+		$this->db->join('furnindo_region n', 's.region_id = n.region_id'); // Region Shipping
+		$this->db->where('o.order_id', $order_id);
+		
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/admin/Checkout_model.php */

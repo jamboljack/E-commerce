@@ -14,7 +14,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'slider') {
     $dashboard      = '';
@@ -29,7 +32,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'social') {
     $dashboard      = '';
@@ -44,7 +50,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'contact') {
     $dashboard      = '';
@@ -59,7 +68,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'brand') {
     $dashboard      = '';
@@ -74,7 +86,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'maincategory') {
     $dashboard      = '';
@@ -89,7 +104,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'category') {
     $dashboard      = '';
@@ -104,7 +122,10 @@ if ($uri == 'home') {
     $category       = 'active';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 } elseif ($uri == 'product') {
     $dashboard      = '';
@@ -119,9 +140,12 @@ if ($uri == 'home') {
     $category       = '';
     $product        = 'active';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
-} elseif ($uri == 'orders') {
+} elseif ($uri == 'order_open') {
     $dashboard      = '';
     $content        = '';
     $slider         = '';
@@ -134,7 +158,64 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = 'active subdrop';
-    $orders         = 'active';
+    $order_open     = 'active';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
+    $users          = '';
+} elseif ($uri == 'order_process') {
+    $dashboard      = '';
+    $content        = '';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = 'active subdrop';
+    $order_open     = '';
+    $order_process  = 'active';
+    $order_shipping = '';
+    $order_closed   = '';
+    $users          = '';
+} elseif ($uri == 'order_shipping') {
+    $dashboard      = '';
+    $content        = '';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = 'active subdrop';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = 'active';
+    $order_closed   = '';
+    $users          = '';
+} elseif ($uri == 'order_closed') {
+    $dashboard      = '';
+    $content        = '';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = 'active subdrop';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = 'active';
     $users          = '';
 } elseif ($uri == 'users') {
     $dashboard      = '';
@@ -149,7 +230,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = 'active';
 } else {
     $dashboard      = 'active';
@@ -164,7 +248,10 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $orders         = '';
+    $order_open     = '';
+    $order_process  = '';
+    $order_shipping = '';
+    $order_closed   = '';
     $users          = '';
 }
 ?>
@@ -174,7 +261,7 @@ if ($uri == 'home') {
             <ul>
                 <li class="text-muted menu-title">Navigation</li>
                 <li>
-                    <a href="<?php echo base_url(); ?>" class="waves-effect <?php echo $dashboard; ?>"><i class="fa fa-home"></i> <span> Dashboard </span></a>
+                    <a href="<?php echo site_url('admin/home'); ?>" class="waves-effect <?php echo $dashboard; ?>"><i class="fa fa-home"></i> <span> Dashboard </span></a>
                 </li>
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect <?php echo $content; ?>"><i class="fa fa-tasks"></i> <span> Master Content </span> <span class="menu-arrow"></span> </a>
@@ -197,7 +284,10 @@ if ($uri == 'home') {
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect <?php echo $transaction; ?>"><i class="fa fa-edit"></i> <span> Transaction </span> <span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
-                        <li class="<?php echo $orders; ?>"><a href="<?php echo site_url('admin/orders'); ?>">Orders List</a></li>
+                        <li class="<?php echo $order_open; ?>"><a href="<?php echo site_url('admin/order_open'); ?>">Orders [Open]</a></li>
+                        <li class="<?php echo $order_process; ?>"><a href="<?php echo site_url('admin/order_process'); ?>">Orders [Process]</a></li>
+                        <li class="<?php echo $order_shipping; ?>"><a href="<?php echo site_url('admin/order_shipping'); ?>">Orders [Shipping]</a></li>
+                        <li class="<?php echo $order_closed; ?>"><a href="<?php echo site_url('admin/order_closed'); ?>">Orders [Closed]</a></li>
                     </ul>
                 </li>
                 <li>
