@@ -54,7 +54,7 @@ if ($this->session->flashdata('notification')) { ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
                                 <td><b>#<?php echo $r->order_id; ?></b></td>
-                                <td><?php echo date("d-m-Y", strtotime($r->order_date)).'<br>'.substr($r->order_time,0,5).' WIB'; ?></td>
+                                <td><?php echo date("d-m-Y", strtotime($r->order_date_closed)).'<br>'.substr($r->order_time,0,5).' WIB'; ?></td>
                                 <td><?php echo ucwords(strtolower($r->user_name)); ?></td>
                                 <td><?php echo ucwords(strtolower($r->user_address)); ?></td>
                                 <td><?php echo $r->user_phone; ?></td>
