@@ -36,10 +36,10 @@ class Administrator extends CI_Controller {
 
 				if ($num_account > 0) {
 					$array_item = array(
-									'username' 			=> $temp_account->user_username,
-									'nama' 				=> $temp_account->user_name,
-									'level' 			=> $temp_account->user_level,
-									'logged_in_furnindo' => TRUE
+									'username_admin' 		=> $temp_account->user_username,
+									'nama_admin' 			=> $temp_account->user_name,
+									'level_admin' 			=> $temp_account->user_level,
+									'logged_in_furnindo' 	=> TRUE
 					);
 					
 					$this->session->set_userdata($array_item);

@@ -94,7 +94,7 @@ if ($this->session->flashdata('notification')) { ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4 class="page-title">Master Data</h4>
+                <h4 class="page-title">Product</h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">Master Data</a>
@@ -103,7 +103,7 @@ if ($this->session->flashdata('notification')) { ?>
                         <a href="<?php echo site_url('admin/product'); ?>">Product</a>
                     </li>
                     <li>
-                        List Image Product
+                        <a href="#">List Image Product</a>
                     </li>
                     <li class="active">
                         <?php echo ucwords(strtolower($detail->product_name)); ?>

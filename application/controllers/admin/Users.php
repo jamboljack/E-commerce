@@ -22,7 +22,7 @@ class Users extends CI_Controller {
 	public function adddata() {
 		$data['listRegion'] = $this->users_model->select_region()->result();
 		$this->template->display('admin/users_add_view', $data); 
-	}	
+	}
 
 	public function savedata() {
 		$this->form_validation->set_rules('username','<b>Username</b>','trim|required|max_length[30]|is_unique[furnindo_users.user_username]');

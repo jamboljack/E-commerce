@@ -168,7 +168,7 @@ if ($this->session->flashdata('notification')) { ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4 class="page-title">Master Data</h4>
+                <h4 class="page-title">Main Category</h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">Master Data</a>

@@ -16,14 +16,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right pull-right">
                     <li class="dropdown top-menu-item-xs">
-                        <?php
-                        if ($this->session->userdata('avatar') <> '') {
-                            $image = "img/avatar/".$this->session->userdata('avatar');
-                        } else {
-                            $image = "img/avatar.png";
-                        }
-                        ?>
-                        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><?php echo ucwords(strtolower($this->session->userdata('nama'))); ?> <img src="<?php echo base_url().$image; ?>" alt="user-img" class="img-circle"></a>
+                        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><?php echo ucwords(strtolower($this->session->userdata('nama_admin'))); ?> <img src="<?php echo base_url(); ?>img/avatar.png" alt="user-img" class="img-circle"></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="<?php echo site_url('admin/profile'); ?>"><i class="ti-user m-r-10 text-custom"></i> Profile</a>

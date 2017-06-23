@@ -15,7 +15,7 @@ class Profile_model extends CI_Model {
 	}
 
 	function select_detail() {
-		$user_username = $this->session->userdata('username');
+		$user_username = $this->session->userdata('username_admin');
 		
 		$this->db->select('*');
 		$this->db->from('furnindo_users');

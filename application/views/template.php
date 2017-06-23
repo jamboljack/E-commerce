@@ -71,6 +71,7 @@
         <script src="<?php echo base_url(); ?>backadmin/assets/plugins/datatables/dataTables.bootstrap.js"></script>
         <script src="<?php echo base_url(); ?>backadmin/assets/plugins/datatables/dataTables.responsive.min.js"></script>
         <script src="<?php echo base_url(); ?>backadmin/assets/pages/datatables.init.js"></script>
+        <script src="<?php echo base_url(); ?>backadmin/assets/plugins/bootstrap-filestyle/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
         <!-- Folder Plugins -->        
         <script src="<?php echo base_url(); ?>backadmin/assets/plugins/peity/jquery.peity.min.js"></script>
         <script src="<?php echo base_url(); ?>backadmin/assets/plugins/waypoints/lib/jquery.waypoints.js"></script>

@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4 class="page-title">Master Data</h4>
+                <h4 class="page-title">Product</h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">Master Data</a>
@@ -33,7 +33,7 @@
 
                     <form class="form-horizontal" role="form" action="<?php echo site_url('admin/product/updatedata'); ?>" method="post" enctype="multipart/form-data"> 
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-                    <input type="hidden" class="form-control" name="id" value="<?php echo $detail->product_id; ?>">
+                    <input type="hidden" name="id" value="<?php echo $detail->product_id; ?>">
 
                     <div class="row">
                         <div class="col-md-12">                                    

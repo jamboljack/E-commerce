@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Category extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
-		if(!$this->session->userdata('logged_in_furnindo')) redirect(base_url());		
+		if(!$this->session->userdata('logged_in_furnindo')) redirect(base_url());
 		$this->load->library('template');
 		$this->load->model('admin/category_model');
 	}

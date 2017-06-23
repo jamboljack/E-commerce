@@ -7,6 +7,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -14,10 +15,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'slider') {
     $dashboard      = '';
@@ -25,6 +24,7 @@ if ($uri == 'home') {
     $slider         = 'active';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -32,10 +32,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'social') {
     $dashboard      = '';
@@ -43,6 +41,7 @@ if ($uri == 'home') {
     $slider         = 'active';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -50,10 +49,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'contact') {
     $dashboard      = '';
@@ -61,6 +58,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = 'active';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -68,10 +66,25 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
+    $users          = '';
+} elseif ($uri == 'bank') {
+    $dashboard      = '';
+    $content        = 'active subdrop';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $bank           = 'active';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'brand') {
     $dashboard      = '';
@@ -79,6 +92,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = 'active subdrop';
     $brand          = 'active';
     $maincategory   = '';
@@ -86,10 +100,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'maincategory') {
     $dashboard      = '';
@@ -97,6 +109,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = 'active subdrop';
     $brand          = '';
     $maincategory   = 'active';
@@ -104,10 +117,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'category') {
     $dashboard      = '';
@@ -115,6 +126,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = 'active subdrop';
     $brand          = '';
     $maincategory   = '';
@@ -122,10 +134,8 @@ if ($uri == 'home') {
     $category       = 'active';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 } elseif ($uri == 'product') {
     $dashboard      = '';
@@ -133,6 +143,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = 'active subdrop';
     $brand          = '';
     $maincategory   = '';
@@ -140,17 +151,16 @@ if ($uri == 'home') {
     $category       = '';
     $product        = 'active';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
-} elseif ($uri == 'order_open') {
+} elseif ($uri == 'orders') {
     $dashboard      = '';
     $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -158,17 +168,16 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = 'active subdrop';
-    $order_open     = 'active';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = 'active';
+    $invoices       = '';
     $users          = '';
-} elseif ($uri == 'order_process') {
+} elseif ($uri == 'invoices') {
     $dashboard      = '';
     $content        = '';
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -176,46 +185,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = 'active subdrop';
-    $order_open     = '';
-    $order_process  = 'active';
-    $order_shipping = '';
-    $order_closed   = '';
-    $users          = '';
-} elseif ($uri == 'order_shipping') {
-    $dashboard      = '';
-    $content        = '';
-    $slider         = '';
-    $social         = '';
-    $contact        = '';
-    $data           = '';
-    $brand          = '';
-    $maincategory   = '';
-    $subcategory    = '';
-    $category       = '';
-    $product        = '';
-    $transaction    = 'active subdrop';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = 'active';
-    $order_closed   = '';
-    $users          = '';
-} elseif ($uri == 'order_closed') {
-    $dashboard      = '';
-    $content        = '';
-    $slider         = '';
-    $social         = '';
-    $contact        = '';
-    $data           = '';
-    $brand          = '';
-    $maincategory   = '';
-    $subcategory    = '';
-    $category       = '';
-    $product        = '';
-    $transaction    = 'active subdrop';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = 'active';
+    $orders         = '';
+    $invoices       = 'active';
     $users          = '';
 } elseif ($uri == 'users') {
     $dashboard      = '';
@@ -223,6 +194,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -230,10 +202,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = 'active';
 } else {
     $dashboard      = 'active';
@@ -241,6 +211,7 @@ if ($uri == 'home') {
     $slider         = '';
     $social         = '';
     $contact        = '';
+    $bank           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -248,10 +219,8 @@ if ($uri == 'home') {
     $category       = '';
     $product        = '';
     $transaction    = '';
-    $order_open     = '';
-    $order_process  = '';
-    $order_shipping = '';
-    $order_closed   = '';
+    $orders         = '';
+    $invoices       = '';
     $users          = '';
 }
 ?>
@@ -269,6 +238,7 @@ if ($uri == 'home') {
                         <li class="<?php echo $slider; ?>"><a href="<?php echo site_url('admin/slider'); ?>">Slider</a></li>
                         <li class="<?php echo $social; ?>"><a href="<?php echo site_url('admin/social'); ?>">Social Media</a></li>
                         <li class="<?php echo $contact; ?>"><a href="<?php echo site_url('admin/contact'); ?>">Contact Us</a></li>
+                        <li class="<?php echo $bank; ?>"><a href="<?php echo site_url('admin/bank'); ?>">Bank</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">
@@ -284,10 +254,8 @@ if ($uri == 'home') {
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect <?php echo $transaction; ?>"><i class="fa fa-edit"></i> <span> Transaction </span> <span class="menu-arrow"></span> </a>
                     <ul class="list-unstyled">
-                        <li class="<?php echo $order_open; ?>"><a href="<?php echo site_url('admin/order_open'); ?>">Orders [Open]</a></li>
-                        <li class="<?php echo $order_process; ?>"><a href="<?php echo site_url('admin/order_process'); ?>">Orders [Process]</a></li>
-                        <li class="<?php echo $order_shipping; ?>"><a href="<?php echo site_url('admin/order_shipping'); ?>">Orders [Shipping]</a></li>
-                        <li class="<?php echo $order_closed; ?>"><a href="<?php echo site_url('admin/order_closed'); ?>">Orders [Closed]</a></li>
+                        <li class="<?php echo $orders; ?>"><a href="<?php echo site_url('admin/orders'); ?>">Orders</a></li>
+                        <li class="<?php echo $invoices; ?>"><a href="<?php echo site_url('admin/invoices'); ?>">Invoices</a></li>
                     </ul>
                 </li>
                 <li>

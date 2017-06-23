@@ -13,12 +13,16 @@ class Home extends CI_Controller{
         if($this->session->userdata('logged_in_furnindo')) {
             $data['listOpen']       = $this->home_model->select_open()->result();
             $data['Qty1']           = $this->home_model->select_qty_open()->row();
+            $data['Total1']         = $this->home_model->select_total_open()->row();
             $data['listProcess']    = $this->home_model->select_process()->result();
             $data['Qty2']           = $this->home_model->select_qty_process()->row();
+            $data['Total2']         = $this->home_model->select_total_process()->row();
             $data['listShipping']   = $this->home_model->select_shipping()->result();
             $data['Qty3']           = $this->home_model->select_qty_shipping()->row();
+            $data['Total3']         = $this->home_model->select_total_shipping()->row();
             $data['listClosed']     = $this->home_model->select_closed()->result();
             $data['Qty4']           = $this->home_model->select_qty_closed()->row();
+            $data['Total4']         = $this->home_model->select_total_closed()->row();
             $data['listOrders']     = $this->home_model->select_orders()->result(); // Last Orders
             $this->template->display('admin/home_view', $data);
         } else {

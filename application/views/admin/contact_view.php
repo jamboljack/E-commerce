@@ -17,7 +17,14 @@ if ($this->session->flashdata('notification')) { ?>
          <div class="row">
             <div class="col-sm-12">
                 <h4 class="page-title">Contact Us</h4>
-                <ol class="breadcrumb"></ol>
+                <ol class="breadcrumb">
+                    <li>
+                        <a href="#">Master Content</a>
+                    </li>
+                    <li class="active">
+                        Contact Us
+                    </li>
+                </ol>
             </div>
         </div>
         
@@ -88,6 +95,26 @@ if ($this->session->flashdata('notification')) { ?>
                                     <input type="text" class="form-control" name="work" value="<?php echo $detail->contact_work; ?>" required autocomplete="off">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Due Date (Day)*</label>
+                                <div class="col-md-1">
+                                    <input type="text" class="form-control" name="due" value="<?php echo $detail->contact_tempo; ?>" required autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Upload Logo</label> 
+                                <div class="col-md-9">
+                                    <input type="file" class="filestyle" data-input="false" name="userfile">
+                                </div>
+                            </div>
+                            <?php if (!empty($detail->contact_logo)) { ?>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Logo</label> 
+                                <div class="col-md-9">
+                                    <img src="<?php echo base_url(); ?>img/logo/<?php echo $detail->contact_logo; ?>">
+                                </div>
+                            </div>
+                            <?php } ?>
                         </div>
                     </div> 
 
