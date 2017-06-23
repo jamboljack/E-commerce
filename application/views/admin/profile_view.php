@@ -1,3 +1,17 @@
+<!-- Notifikasi -->
+<?php
+if ($this->session->flashdata('notification')) { ?>
+<script>
+    swal({
+        title: "Done",
+        text: "<?php echo $this->session->flashdata('notification'); ?>",
+        timer: 2000,
+        showConfirmButton: false,
+        type: 'success'
+    });
+</script>
+<? } ?>
+
 <div class="content">
     <div class="wraper container">
         <div class="row">
@@ -10,220 +24,155 @@
             </div>
         </div>
         <div class="row">
+            <?php if ($error == 'true') { ?>
+            <div class="alert alert-danger">
+                <i class="fa fa-exclamation-circle"></i> <b>ERROR !!</b> <br>
+                <?php echo validation_errors(); ?>
+            </div>
+            <?php } ?>
+
             <div class="col-md-4 col-lg-3">
                 <div class="profile-detail card-box">
                     <div>
                         <img src="<?php echo base_url(); ?>img/profil.png" class="img-circle" alt="profile-image">
                         <hr>
                         <div class="text-left">
-                            <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15">Johnathan Deo</span></p>
-                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15">(123) 123 1234</span></p>
-                            <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">coderthemes@gmail.com</span></p>
-                            <p class="text-muted font-13"><strong>Location :</strong> <span class="m-l-15">USA</span></p>
+                            <p class="text-muted font-13"><strong>Full Name :</strong> <span class="m-l-15"><?php echo $detail->user_name; ?></span></p>
+                            <p class="text-muted font-13"><strong>Mobile :</strong><span class="m-l-15"><?php echo $detail->user_mobile; ?></span></p>
+                            <p class="text-muted font-13"><strong>Phone :</strong><span class="m-l-15"><?php echo $detail->user_phone; ?></span></p>
+                            <p class="text-muted font-13"><strong>Last Update :</strong><span class="m-l-15"><?php echo $detail->user_update; ?></span></p>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9 col-md-8">
-                                <form method="post" class="well">
-                                    <span class="input-icon icon-right">
-                                        <textarea rows="2" class="form-control"
-                                                  placeholder="Post a new message"></textarea>
-                                    </span>
-                                    <div class="p-t-10 pull-right">
-                                        <a class="btn btn-sm btn-primary waves-effect waves-light">Send</a>
+                <ul class="nav nav-tabs tabs tabs-top" style="width: 100%;">
+                    <li class="tab active" style="width: 25%;"> 
+                        <a href="#personal" data-toggle="tab" aria-expanded="true" class="active"> 
+                            <span class="visible-xs"><i class="fa fa-user"></i></span> 
+                            <span class="hidden-xs">Personal Detail</span> 
+                        </a> 
+                    </li> 
+                    <li class="tab" style="width: 25%;"> 
+                        <a href="#password" data-toggle="tab" aria-expanded="false" class=""> 
+                            <span class="visible-xs"><i class="fa fa-envelope-o"></i></span> 
+                            <span class="hidden-xs">Change Password</span> 
+                        </a> 
+                    </li> 
+                    <div class="indicator" style="right: 244px; left: 123px;"></div>
+                </ul>
+                <div class="tab-content"> 
+                    <div class="tab-pane active" id="personal" style="display: block;">
+                        <form class="form-horizontal" role="form" action="<?php echo site_url('admin/profile/updatedata'); ?>" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        <input type="hidden" name="username" value="<?php echo $detail->user_username; ?>">
+
+                        <div class="row">
+                            <div class="col-md-12">                                    
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Username</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" value="<?php echo $detail->user_username; ?>"  disabled>
                                     </div>
-                                    <ul class="nav nav-pills profile-pills m-t-10">
-                                        <li>
-                                            <a href="#"><i class="fa fa-user"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-location-arrow"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class=" fa fa-camera"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-smile-o"></i></a>
-                                        </li>
-                                    </ul>
-
-                                </form>
-                                <div class="card-box">
-                                    <div class="comment">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="" class="comment-avatar">
-                                        <div class="comment-body">
-                                            <div class="comment-text">
-                                                <div class="comment-header">
-                                                    <a href="#" title="">Adam Jansen</a><span>about 2 minuts ago</span>
-                                                </div>
-                                                Story based around the idea of time lapse, animation to post soon!
-
-                                                <div class="m-t-15">
-                                                    <a href="">
-                                                        <img src="assets/images/small/img1.jpg" class="thumb-md">
-                                                    </a>
-                                                    <a href="">
-                                                        <img src="assets/images/small/img2.jpg" class="thumb-md">
-                                                    </a>
-                                                    <a href="">
-                                                        <img src="assets/images/small/img3.jpg" class="thumb-md">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="comment-footer">
-                                                <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="comment">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="comment-avatar">
-                                            <div class="comment-body">
-                                                <div class="comment-text">
-                                                    <div class="comment-header">
-                                                        <a href="#" title="">John Smith</a><span>about 1 hour ago</span>
-                                                    </div>
-                                                    Wow impressive!
-                                                </div>
-                                                <div class="comment-footer">
-                                                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                    <a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="comment">
-                                            <img src="assets/images/users/avatar-3.jpg" alt=""
-                                                 class="comment-avatar">
-                                            <div class="comment-body">
-                                                <div class="comment-text">
-                                                    <div class="comment-header">
-                                                        <a href="#" title="">Matt
-                                                            Cheuvront</a><span>about 2 hours ago</span>
-                                                    </div>
-                                                    Wow, that is really nice.
-                                                </div>
-                                                <div class="comment-footer">
-                                                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                    <a href="#">Reply</a>
-                                                </div>
-                                            </div>
-
-                                            <div class="comment">
-                                                <img src="assets/images/users/avatar-4.jpg" alt=""
-                                                     class="comment-avatar">
-                                                <div class="comment-body">
-                                                    <div class="comment-text">
-                                                        <div class="comment-header">
-                                                            <a href="#" title="">Stephanie
-                                                                Walter</a><span>3 hours ago</span>
-                                                        </div>
-                                                        Nice work, makes me think of The Money Pit.
-                                                    </div>
-                                                    <div class="comment-footer">
-                                                        <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                        <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                        <a href="#">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Name *</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="name" placeholder="Input Name" value="<?php echo $detail->user_name; ?>"  autocomplete="off" required>
                                     </div>
-                                    <div class="comment">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="" class="comment-avatar">
-                                        <div class="comment-body">
-                                            <div class="comment-text">
-                                                <div class="comment-header">
-                                                    <a href="#" title="">Kim Ryder</a><span>about 4 hours ago</span>
-                                                </div>
-                                                i'm in the middle of a timelapse animation myself! (Very different
-                                                though.) Awesome stuff.
-                                            </div>
-                                            <div class="comment-footer">
-                                                <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Address *</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="address" placeholder="Input Address" value="<?php echo $detail->user_address; ?>"  autocomplete="off" required>
                                     </div>
-                                    <div class="comment">
-                                        <img src="assets/images/users/avatar-7.jpg" alt="" class="comment-avatar">
-                                        <div class="comment-body">
-                                            <div class="comment-text">
-                                                <div class="comment-header">
-                                                    <a href="#" title="">Nicolai Larson</a><span>10 hours ago</span>
-                                                </div>
-                                                the parallax is a little odd but O.o that house build is awesome!!
-                                            </div>
-                                            <div class="comment-footer">
-                                                <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group"> 
+                                    <label class="col-md-3 control-label">Region *</label> 
+                                    <div class="col-md-4">
+                                        <select class="form-control select2" name="lstRegion" id="lstRegion" required>
+                                            <option value="">- Choose Region -</option>
+                                            <?php
+                                            foreach($listRegion as $r) { 
+                                                if ($detail->region_id == $r->region_id) {
+                                            ?>
+                                            <option value="<?php echo $r->region_id; ?>" selected><?php echo $r->region_name; ?></option>
+                                            <?php } else { ?>
+                                            <option value="<?php echo $r->region_id; ?>"><?php echo $r->region_name; ?></option>
+                                            <?php 
+                                                }
+                                            } 
+                                            ?>
+                                        </select>
                                     </div>
-                                    <div class="comment">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="" class="comment-avatar">
-                                        <div class="comment-body">
-                                            <div class="comment-text">
-                                                <div class="comment-header">
-                                                    <a href="#" title="">Adam Jansen</a><span>about 2 minuts ago</span>
-                                                </div>
-                                                Story based around the idea of time lapse, animation to post soon!
-
-                                                <div class="m-t-15">
-                                                    <a href="">
-                                                        <img src="assets/images/small/img1.jpg" class="thumb-md">
-                                                    </a>
-                                                    <a href="">
-                                                        <img src="assets/images/small/img2.jpg" class="thumb-md">
-                                                    </a>
-                                                    <a href="">
-                                                        <img src="assets/images/small/img3.jpg" class="thumb-md">
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="comment-footer">
-                                                <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="comment">
-                                            <img src="assets/images/users/avatar-2.jpg" alt="" class="comment-avatar">
-                                            <div class="comment-body">
-                                                <div class="comment-text">
-                                                    <div class="comment-header">
-                                                        <a href="#" title="">John Smith</a><span>about 1 hour ago</span>
-                                                    </div>
-                                                    Wow impressive!
-                                                </div>
-                                                <div class="comment-footer">
-                                                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>
-                                                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                                                    <a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">City *</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="city" placeholder="Input City" value="<?php echo $detail->user_city; ?>" autocomplete="off" required>
                                     </div>
-
-                                    <div class="m-t-30 text-center">
-                                        <a href="" class="btn btn-default waves-effect waves-light btn-sm">Load More...</a>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Zip Code</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="zipcode" placeholder="Input Zip Code" value="<?php echo $detail->user_zipcode; ?>" maxlength="5" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Mobile *</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="mobile" placeholder="Input Mobile Number" value="<?php echo $detail->user_mobile; ?>" pattern="^[0-9]{1,12}$" title="Don't Use SPACE, Max. 12 Character" maxlength="12"  autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Phone *</label>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" name="phone" placeholder="Input Phone Number" value="<?php echo $detail->user_phone; ?>" autocomplete="off" required>
                                     </div>
                                 </div>
                             </div>
+                        </div> 
 
+                        <div class="row">
+                            <div class="col-md-12" align="center">
+                                <button type="submit" class="btn btn-info btn-custom waves-effect waves-light btn-sm"><i class="fa fa-floppy-o"></i> Update</button>
+                            </div>
                         </div>
 
+                        </form>
+                    </div> 
+                    <div class="tab-pane" id="password" style="display: none;">
+                        <form class="form-horizontal" role="form" action="<?php echo site_url('admin/profile/updatepassword'); ?>" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        <input type="hidden" name="username" value="<?php echo $detail->user_username; ?>">
 
+                        <div class="row">
+                            <div class="col-md-12">                                    
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">New Password *</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="newpassword" placeholder="Input New Password" autocomplete="off" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Confirm Password *</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="confirmpassword" placeholder="Input Confirm Password"  autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
 
-                    </div> <!-- container -->
-                               
-                </div> <!-- content -->
+                        <div class="row">
+                            <div class="col-md-12" align="center">
+                                <button type="submit" class="btn btn-info btn-custom waves-effect waves-light btn-sm"><i class="fa fa-floppy-o"></i> Change</button>
+                            </div>
+                        </div>
+
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
