@@ -69,7 +69,6 @@
                                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                                     <input type="hidden" name="order_id" value="<?php echo $order_id; ?>">
                                     <input type="hidden" name="email" value="<?php echo $r->user_username; ?>">
-
                                         <button type="submit" class="btn btn-danger btn-custom waves-effect waves-light btn-xs" title="Create Invoice">
                                         <i class="fa fa-plus-circle"></i> Create
                                         </button>

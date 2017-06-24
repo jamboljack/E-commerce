@@ -1,17 +1,3 @@
-/**
- * WHMCS Bootstrap Override Sheet
- *
- * These styles override Bootstrap's defaults.
- *
- * @project   WHMCS
- * @cssdoc    version 1.0-pre
- * @package   WHMCS
- * @author    WHMCS Limited <development@whmcs.com>
- * @copyright Copyright (c) WHMCS Limited 2005-2015
- * @license   http://www.whmcs.com/license/
- * @link      http://www.whmcs.com/
-*/
-
 @import url("//fonts.googleapis.com/css?family=Open+Sans:400,600|Raleway:400,700");
 
 body,

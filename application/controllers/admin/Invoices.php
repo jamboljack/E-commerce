@@ -7,6 +7,7 @@ class Invoices extends CI_Controller {
 		if(!$this->session->userdata('logged_in_furnindo')) redirect(base_url());
 		$this->load->library('template');
 		$this->load->model('admin/invoices_model');
+		$this->load->model('admin/print_model');
 	}
 	
 	public function index() {

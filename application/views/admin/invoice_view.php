@@ -46,7 +46,7 @@ if ($this->session->flashdata('notification')) { ?>
                                 <th width="10%">Order No</th>
                                 <th>Name</th>
                                 <th width="5%">Status</th>
-                                <th width="8%">Action</th>
+                                <th width="15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -79,6 +79,7 @@ if ($this->session->flashdata('notification')) { ?>
                                         <i class="icon-pencil"></i> Edit
                                         </button>
                                     </a>
+                                    <a href="<?php echo site_url('admin/printinvoice/id/'.$r->invoice_id); ?>" class="btn btn-danger btn-custom waves-effect waves-light btn-xs" target="_blank"><i class="fa fa-print"></i> Print</a>
                                 </td>
                             </tr>
                             <?php
