@@ -25,7 +25,7 @@ class Chart extends CI_Controller{
 			$Qty   		= $this->input->post('qty', 'true'); // Qty
 
 			$checkData = $this->chart_model->check_product($product_id)->row();
-			if (count($checkData)) { // Jika Ada, Tambahkan Qty saja
+			if (count($checkData) > 0) { // Jika Ada, Tambahkan Qty saja
 				$temp_id 	= $checkData->temp_id;
 				$oldQTy 	= $checkData->temp_qty;
 				$newQty 	= ($oldQTy+$Qty);
@@ -34,9 +34,8 @@ class Chart extends CI_Controller{
 				$this->chart_model->insert_order_temp($product_id, $Qty);
 			}
 
-			$data['listItem'] 	= $this->chart_model->select_all_item()->result();
 			$this->session->set_flashdata('notificationchart','Success, Product Added to Chart.');
-			$this->template_front->display('chart_v', $data);
+			redirect(site_url('chart'));
 		} else {
 			redirect(site_url('login'));
 		}
@@ -46,12 +45,10 @@ class Chart extends CI_Controller{
 		if($this->session->userdata('logged_in_member')) { // Jika Sudah Login, Maka Tambahkan Item Produk
 			$temp_id 	= $this->input->post('temp_id', 'true'); // Product ID
 			$Qty   		= $this->input->post('qty', 'true'); // Qty
-			// Update Item
+			
 			$this->chart_model->update_order_temp($temp_id, $Qty);
-			// List
-			$data['listItem'] 	= $this->chart_model->select_all_item()->result();
 			$this->session->set_flashdata('notificationchart','Success, Product Quantity Update.');
-			$this->template_front->display('chart_v', $data);
+			redirect(site_url('chart'));
 		} else {
 			redirect(site_url('login'));
 		}

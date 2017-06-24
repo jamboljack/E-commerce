@@ -21,7 +21,11 @@
                 <button class="btn-primary" type="submit"><span>Add to Cart</span></button>
                 </form>
                 <div class="add-to-links">
-                    <a href="<?php echo site_url('whistlist/addtowhistlist/'.$f->product_id.'/'.$f->product_name_seo); ?>"><button type="button" data-toggle="tooltip" title="" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button></a>
+                    <form action="<?php echo site_url('wishlist/addtowishlist'); ?>" method="post">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                    <input type="hidden" name="product_id" value="<?php echo $f->product_id; ?>">
+                        <button type="submit" data-toggle="tooltip" data-original-title="Add to Wish List"><i class="fa fa-heart"></i></button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -34,4 +34,4 @@ class Maincategory_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Maincategory_model.php */
+/* Location: ./application/models/Maincategory_model.php */

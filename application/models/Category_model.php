@@ -35,4 +35,4 @@ class Category_model extends CI_Model {
 	}
 
 }
-/* Location: ./application/models/admin/Category_model.php */
+/* Location: ./application/models/Category_model.php */

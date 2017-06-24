@@ -41,4 +41,4 @@ class Payment_model extends CI_Model {
 		$this->db->update('furnindo_payment', $data);
 	}
 }
-/* Location: ./application/models/admin/Payment_model.php */
+/* Location: ./application/models/Payment_model.php */

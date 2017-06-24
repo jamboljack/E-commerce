@@ -36,4 +36,4 @@ class Product_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Product_model.php */
+/* Location: ./application/models/Product_model.php */

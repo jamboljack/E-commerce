@@ -41,7 +41,11 @@
                             </form>
                         </div>
                         <div>
-                            <a href="<?php echo site_url('whistlist/addtowhistlist/'.$detail->product_id.'/'.$detail->product_name_seo); ?>"><button type="button" class="wishlist"><i class="fa fa-heart"></i> Add to Wish List</button></a>
+                            <form action="<?php echo site_url('wishlist/addtowishlist'); ?>" method="post">
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                            <input type="hidden" name="product_id" value="<?php echo $detail->product_id; ?>">
+                                <button type="submit" class="wishlist"><i class="fa fa-heart"></i> Add to Wish List</button>
+                            </form>
                         </div>
                     </div>
                 </div>

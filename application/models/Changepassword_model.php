@@ -28,4 +28,4 @@ class Changepassword_model extends CI_Model {
 		$this->db->update('furnindo_users', $data);
 	}
 }
-/* Location: ./application/models/admin/Changepassword_model.php */
+/* Location: ./application/models/Changepassword_model.php */

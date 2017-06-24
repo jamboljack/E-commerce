@@ -50,4 +50,4 @@ class Checkout_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Checkout_model.php */
+/* Location: ./application/models/Checkout_model.php */

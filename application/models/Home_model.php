@@ -24,4 +24,4 @@ class Home_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Home_model.php */
+/* Location: ./application/models/Home_model.php */

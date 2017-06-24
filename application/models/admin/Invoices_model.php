@@ -119,11 +119,14 @@ class Invoices_model extends CI_Model {
 		$rowbank		= $querybank->row();
 
 		// Send Invoice Email
+		$path 			= $_SERVER["DOCUMENT_ROOT"]; //Path Local
+		$gambar 		= $path."/kcfurnindo/img/logo/".$image; // Logo Perusahaan
 		$email 			= trim($this->input->post('email', 'true')); // Email Member
 		$sender_email 	= 'no-reply@hotelhomkudus.com';
 		$sender_name 	= 'no-reply';
 		$subject 		= 'Customer Invoice #'.$invoice_id;
-		$message 		= '<p>
+		$message 		= '<html><body>
+							<p>
 							Email ini adalah pemeberitahuan bahwa Invoice untuk pemesanan anda telah dibuat pada '.date('d-m-Y').'
 							<br>
 							<b>Invoice #'.$invoice_id.'</b><br>
@@ -145,7 +148,7 @@ class Invoices_model extends CI_Model {
 							.$row->contact_region.'<br>
 							PHONE :'.$row->contact_phone.'<br>
 							WA :'.$row->contact_wa.'<br>
-							</p>';
+							</p></body></html>';
 
 		$this->load->library('email');
 		$this->load->helper('path');
@@ -155,7 +158,6 @@ class Invoices_model extends CI_Model {
 		$this->email->subject($subject);
 		$this->email->message($message);
 		// Attachment
-		$path = $_SERVER["DOCUMENT_ROOT"];
     	$file = $path."/kcfurnindo/download/".$filename.".pdf";
 		$this->email->attach($file);
 		$this->email->send();

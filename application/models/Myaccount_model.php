@@ -42,4 +42,4 @@ class Myaccount_model extends CI_Model {
 		$this->db->update('furnindo_users', $data);
 	}
 }
-/* Location: ./application/models/admin/Myaccount_model.php */
+/* Location: ./application/models/Myaccount_model.php */

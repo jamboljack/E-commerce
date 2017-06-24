@@ -27,4 +27,4 @@ class Subcategory_model extends CI_Model {
 
 
 }
-/* Location: ./application/models/admin/Subcategory_model.php */
+/* Location: ./application/models/Subcategory_model.php */

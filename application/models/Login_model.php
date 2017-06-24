@@ -25,4 +25,4 @@ class Login_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Login_model.php */
+/* Location: ./application/models/Login_model.php */

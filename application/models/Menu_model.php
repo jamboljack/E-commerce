@@ -124,5 +124,17 @@ class Menu_model extends CI_Model {
 		
 		return $this->db->get();
 	}
+
+	function select_wishlist() {
+		$username = $this->session->userdata('username');
+
+		$this->db->select('w.*, p.*, c.category_name');
+		$this->db->from('furnindo_wishlist w');
+		$this->db->join('furnindo_product p', 'w.product_id = p.product_id');
+		$this->db->join('furnindo_category c', 'p.category_id = c.category_id');
+		$this->db->where('w.user_username', $username);
+		
+		return $this->db->get();
+	}
 }
-/* Location: ./application/models/admin/Menu_model.php */
+/* Location: ./application/models/Menu_model.php */

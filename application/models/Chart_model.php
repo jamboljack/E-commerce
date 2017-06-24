@@ -74,4 +74,4 @@ class Chart_model extends CI_Model {
 		$this->db->delete('furnindo_order_temp');
 	}
 }
-/* Location: ./application/models/admin/Chart_model.php */
+/* Location: ./application/models/Chart_model.php */

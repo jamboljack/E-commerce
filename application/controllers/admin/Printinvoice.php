@@ -4,13 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Printinvoice extends CI_Controller{
     public function __construct(){
         parent::__construct();
-        if(!$this->session->userdata('logged_in_furnindo')) redirect(base_url());
         $this->load->library('template');
         $this->load->model('admin/print_model');
     }
 
     public function index() {
-        $this->session->sess_destroy();
         redirect(base_url());
     }
 
@@ -23,15 +21,8 @@ class Printinvoice extends CI_Controller{
         $this->load->view('admin/invoice_template_view', $data);
     }
 
-    public function pdf() {
-        $invoice_id = trim($this->uri->segment(4));
-
-        /*$data['bank']       = $this->print_model->select_detail_bank()->row();
-        $data['detail']     = $this->print_model->select_detail($invoice_id)->row();
-        $data['contact']    = $this->print_model->select_contact()->row();
-        $data['listItem']   = $this->print_model->select_all_item($invoice_id)->result();
-        $this->load->view('admin/invoice_pdf', $data);
-        */
+    public function pdf($invoice_id) {
+        //$invoice_id = trim($this->uri->segment(4));
         
         $time = time();
         $filename = 'Invoice_'.$invoice_id.'_'.$time;

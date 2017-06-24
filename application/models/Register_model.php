@@ -22,4 +22,4 @@ class Register_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Register_model.php */
+/* Location: ./application/models/Register_model.php */

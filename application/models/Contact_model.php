@@ -14,4 +14,4 @@ class Contact_model extends CI_Model {
 		return $this->db->get();
 	}
 }
-/* Location: ./application/models/admin/Contact_model.php */
+/* Location: ./application/models/Contact_model.php */

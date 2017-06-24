@@ -1,5 +1,6 @@
 <?php 
-$detailKontak = $this->menu_model->select_contact()->row();
+$detailKontak   = $this->menu_model->select_contact()->row();
+$wishlist       = $this->menu_model->select_wishlist()->result();
 ?>
 <div id="header">
     <nav id="top" class="htop">
@@ -11,7 +12,7 @@ $detailKontak = $this->menu_model->select_contact()->row();
                             <li class="mobile"><i class="fa fa-phone"></i><?php echo $detailKontak->contact_phone; ?></li>
                             <li class="email"><a href="mailto:<?php echo $detailKontak->contact_email; ?>"><i class="fa fa-envelope"></i><?php echo $detailKontak->contact_email; ?></a></li>
                             <?php if ($this->session->userdata('logged_in_member')) { ?>
-                            <li><a href="<?php echo site_url('wishlist'); ?>">Wish List (0)</a></li>
+                            <li><a href="<?php echo site_url('wishlist'); ?>">Wish List (<?php echo count($wishlist); ?>)</a></li>
                             <li><a href="<?php echo site_url('checkout'); ?>">Checkout</a></li>
                             <?php } ?>
                         </ul>
