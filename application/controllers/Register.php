@@ -38,7 +38,7 @@ class Register extends CI_Controller{
 			$this->db->insert('furnindo_users', $data);
 
 			// Send Email
-			$sender_email 	= 'no-reply@hotelhomkudus.com';
+			$sender_email 	= 'eregister@hotelhomkudus.com';
 			$sender_name 	= 'no-reply';
 			$subject 		= 'Email Confirmation';
 			$message 		= '<html><body>';
@@ -53,7 +53,7 @@ class Register extends CI_Controller{
 									$email.'
 									<br>
 									Before you can use your account, please verify your account by clicking on the following link :<br>
-									<a href="http://www.kcfurnindo.com/register/create_account/'.$kode_aktivasi.'">Verify</a>
+									<a href="http://www.kcfurnindo.hotelhomkudus.com/register/create_account/'.$kode_aktivasi.'">Verify</a>
 									<br><br>
 									Or you can copy and paste the link below to your browser : <br>
 									http://www.kcfurnindo.com/register/create_account/'.$kode_aktivasi.'
@@ -71,9 +71,11 @@ class Register extends CI_Controller{
 			$this->email->to($email);
 			$this->email->subject($subject);
 			$this->email->message($message);
-			$this->email->send();
-
-			$this->session->set_flashdata('notificationregister','Send Email Confirmation Successfull.');
+			if ($this->email->send()) {
+				$this->session->set_flashdata('notificationregister','Send Email Confirmation Successfull.');
+			} else {
+				$this->session->set_flashdata('notificationregerror','Send Email Confirmation Not Successfull.');
+			}
 	 		redirect(site_url('register'));
 	 	}
 	}
@@ -124,7 +126,7 @@ class Register extends CI_Controller{
 			$this->db->insert('furnindo_payment', $data);
 
 			// Send Email
-			$sender_email 	= 'no-reply@hotelhomkudus.com';
+			$sender_email 	= 'eregister@hotelhomkudus.com';
 			$sender_name 	= 'no-reply';
 			$subject 		= 'Registration Success';
 			$message 		= '<html><body>';

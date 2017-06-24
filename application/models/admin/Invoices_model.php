@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Invoices_model extends CI_Model {
 	function __construct() {
-		parent::__construct();	
+		parent::__construct();
 	}
 		
 	function select_all() {
@@ -119,10 +119,8 @@ class Invoices_model extends CI_Model {
 		$rowbank		= $querybank->row();
 
 		// Send Invoice Email
-		$path 			= $_SERVER["DOCUMENT_ROOT"]; //Path Local
-		$gambar 		= $path."/kcfurnindo/img/logo/".$image; // Logo Perusahaan
 		$email 			= trim($this->input->post('email', 'true')); // Email Member
-		$sender_email 	= 'no-reply@hotelhomkudus.com';
+		$sender_email 	= 'eregister@hotelhomkudus.com';
 		$sender_name 	= 'no-reply';
 		$subject 		= 'Customer Invoice #'.$invoice_id;
 		$message 		= '<html><body>
@@ -151,15 +149,16 @@ class Invoices_model extends CI_Model {
 							</p></body></html>';
 
 		$this->load->library('email');
-		$this->load->helper('path');
 		$this->email->set_mailtype("html");
 		$this->email->from($sender_email, $sender_name);
 		$this->email->to($email);
 		$this->email->subject($subject);
 		$this->email->message($message);
 		// Attachment
-    	$file = $path."/kcfurnindo/download/".$filename.".pdf";
+		$path 	= $_SERVER["DOCUMENT_ROOT"]; //Path Local
+    	$file 	= $path."/download"."/".$filename.".pdf";
 		$this->email->attach($file);
+		
 		$this->email->send();
 	}
 

@@ -8,6 +8,7 @@ class Invoices extends CI_Controller {
 		$this->load->library('template');
 		$this->load->model('admin/invoices_model');
 		$this->load->model('admin/print_model');
+		$this->load->helper('path');
 	}
 	
 	public function index() {

@@ -71,7 +71,7 @@ class Checkout extends CI_Controller{
 			$detailOrder    = $this->checkout_model->select_detail_order($order_id)->row();
 			// Send Email
 			$email 			= $this->session->userdata('username'); // Email
-			$sender_email 	= 'no-reply@hotelhomkudus.com';
+			$sender_email 	= 'eregister@hotelhomkudus.com';
 			$sender_name 	= 'no-reply';
 			$subject 		= 'Order No [#'.$order_id.'] - KcFurnindo Jepara';
 			$message 		= '<html><body>';

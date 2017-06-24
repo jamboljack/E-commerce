@@ -17,7 +17,21 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/responsive.css" />
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
 <!-- CSS Part End-->
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/594e5973e9c6d324a473721e/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </head>
+
 <body>
 <div class="wrapper-wide">
     <?php echo $_header; ?>
@@ -135,10 +149,13 @@
                 <li><a href="<?php echo site_url('chart'); ?>">Shopping Chart</a></li>
                 <li><a href="<?php echo site_url('checkout'); ?>">Checkout</a></li>
                 <?php } if ($this->uri->segment(1) == 'orders') { ?>
+                <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('orders'); ?>">Orders History</a></li>
                 <?php } if ($this->uri->segment(1) == 'invoices') { ?>
+                <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('invoice'); ?>">Invoices List</a></li>
                 <?php } if ($this->uri->segment(1) == 'wishlist') { ?>
+                <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('wishlist'); ?>">Wish List</a></li>
                 <?php } ?>
             </ul>

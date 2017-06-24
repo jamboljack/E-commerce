@@ -24,6 +24,17 @@
             <?php
             }
             ?>
+
+            <?php
+            if ($this->session->flashdata('notificationregerror')) {
+            ?>
+            <div class="alert alert-danger">
+                <i class="fa fa-exclamation-circle"></i> <?php echo $this->session->flashdata('notificationregerror'); ?>
+            </div>
+            <?php
+            }
+            ?>
+
             <p><strong>Register Account</strong></p>
             <p>Put your email below to register in KcFurnindo Jepara</p>
             <form action="<?php echo site_url('register/sendemail'); ?>" method="post">
@@ -62,7 +73,7 @@
                 <label class="control-label">Password</label>
                 <input type="password" name="password"  placeholder="Password" class="form-control" autocomplete="off" required />
                 <br />
-                <a href="<?php echo site_url('forgotpassword'); ?>">Forgotten Password</a>
+                <a href="<?php echo site_url('forgotpassword'); ?>">Forgot Password ?</a>
             </div>
             <input type="submit" value="Login" class="btn btn-primary" />
             </form>

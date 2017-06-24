@@ -8,7 +8,6 @@
             <li><a href="<?php echo site_url('wishlist'); ?>">Wish List</a></li>
             <li><a href="<?php echo site_url('orders'); ?>">Orders History</a></li>
             <li><a href="<?php echo site_url('invoices'); ?>">Invoices List</a></li>
-            <li><a href="<?php echo site_url('wishlist'); ?>">Wish List</a></li>
             <li><a href="<?php echo site_url('myaccount/logout'); ?>">Logout</a></li>
         </ul>
     </div>

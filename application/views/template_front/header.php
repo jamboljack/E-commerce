@@ -27,8 +27,7 @@ $wishlist       = $this->menu_model->select_wishlist()->result();
                         <li class="dropdown" id="my_account"><a href="#">Halo, <?php echo ucwords(strtolower($this->session->userdata('nama')));  ?> <i class="fa fa-caret-down"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
                             <li><a href="<?php echo site_url('myaccount'); ?>">My Account</a></li>
-                            <li><a href="<?php echo site_url('order_history'); ?>">Order History</a></li>
-                            <li><a href="<?php echo site_url('order_information'); ?>">Order Information</a></li>
+                            <li><a href="<?php echo site_url('orders'); ?>">Orders History</a></li>
                         </ul>
                         </li>
                         <li><a href="<?php echo site_url('myaccount/logout'); ?>">Logout</a></li>
