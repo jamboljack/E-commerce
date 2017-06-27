@@ -83,7 +83,7 @@ if ($this->session->flashdata('notification')) { ?>
                                 <td><b>#<?php echo $r->order_id; ?></b></td>
                                 <td><?php echo date("d-m-Y", strtotime($r->order_date)).'<br>'.substr($r->order_time,0,5).' WIB'; ?></td>
                                 <td><?php echo ucwords(strtolower($r->user_name)); ?></td>
-                                <td><?php echo ucwords(strtolower($r->user_address)); ?></td>
+                                <td><?php echo ucwords(strtolower($r->user_address)).'<br>'.ucwords(strtolower($r->user_city)).' '.$r->user_zipcode; ?></td>
                                 <td><?php echo $status; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('admin/orders/detaildata').'/'.$order_id; ?>">

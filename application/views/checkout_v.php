@@ -219,7 +219,7 @@ function CekList() {
             <br>
             <label class="control-label" for="confirm_agree">
                 <input type="checkbox" id="chkCheck" name="chkCheck" onclick="CekList()">
-                <span>I have read and agree to the <a class="agree" href="<?php echo site_url('term_condition'); ?>"><b>Terms &amp; Conditions</b></a></span>
+                <span>I have read and agree to the <b>Terms &amp; Conditions</b></span>
             </label>
             <div class="buttons">
                 <div class="pull-right">

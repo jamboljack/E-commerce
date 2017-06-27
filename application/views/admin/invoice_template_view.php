@@ -130,7 +130,7 @@
         
     </div>
 
-    <p class="text-center hidden-print"><a href="<?php echo site_url('admin/home'); ?>">&laquo; Kembali ke Admin Page</a></a></p>
+    <!--<p class="text-center hidden-print"><a href="<?php // echo site_url('admin/home'); ?>">&laquo; Kembali ke Admin Page</a></a></p> -->
 
 </body>
 </html>

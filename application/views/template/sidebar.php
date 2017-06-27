@@ -18,6 +18,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'slider') {
     $dashboard      = '';
@@ -36,6 +39,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'social') {
     $dashboard      = '';
@@ -54,6 +60,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'contact') {
     $dashboard      = '';
@@ -72,6 +81,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'bank') {
     $dashboard      = '';
@@ -90,6 +102,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'menu') {
     $dashboard      = '';
@@ -108,6 +123,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'brand') {
     $dashboard      = '';
@@ -126,6 +144,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'maincategory') {
     $dashboard      = '';
@@ -144,6 +165,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'category') {
     $dashboard      = '';
@@ -162,6 +186,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'product') {
     $dashboard      = '';
@@ -180,6 +207,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'orders') {
     $dashboard      = '';
@@ -198,6 +228,9 @@ if ($uri == 'home') {
     $transaction    = 'active subdrop';
     $orders         = 'active';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 } elseif ($uri == 'invoices') {
     $dashboard      = '';
@@ -216,6 +249,51 @@ if ($uri == 'home') {
     $transaction    = 'active subdrop';
     $orders         = '';
     $invoices       = 'active';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
+    $users          = '';
+} elseif ($uri == 'orders_report') {
+    $dashboard      = '';
+    $content        = '';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $bank           = '';
+    $menu           = '';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = '';
+    $orders         = '';
+    $invoices       = '';
+    $report         = 'active subdrop';
+    $orders_report  = 'active';
+    $invoices_report= '';
+    $users          = '';
+} elseif ($uri == 'invoices_report') {
+    $dashboard      = '';
+    $content        = '';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $bank           = '';
+    $menu           = '';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = '';
+    $orders         = '';
+    $invoices       = '';
+    $report         = 'active subdrop';
+    $orders_report  = '';
+    $invoices_report= 'active';
     $users          = '';
 } elseif ($uri == 'users') {
     $dashboard      = '';
@@ -234,6 +312,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = 'active';
 } else {
     $dashboard      = 'active';
@@ -252,6 +333,9 @@ if ($uri == 'home') {
     $transaction    = '';
     $orders         = '';
     $invoices       = '';
+    $report         = '';
+    $orders_report  = '';
+    $invoices_report= '';
     $users          = '';
 }
 ?>
@@ -288,6 +372,13 @@ if ($uri == 'home') {
                     <ul class="list-unstyled">
                         <li class="<?php echo $orders; ?>"><a href="<?php echo site_url('admin/orders'); ?>">Orders</a></li>
                         <li class="<?php echo $invoices; ?>"><a href="<?php echo site_url('admin/invoices'); ?>">Invoices</a></li>
+                    </ul>
+                </li>
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect <?php echo $report; ?>"><i class="fa fa-file"></i> <span> Report </span> <span class="menu-arrow"></span> </a>
+                    <ul class="list-unstyled">
+                        <li class="<?php echo $orders_report; ?>"><a href="<?php echo site_url('reports/orders_report'); ?>">Orders Report</a></li>
+                        <li class="<?php echo $invoices_report; ?>"><a href="<?php echo site_url('reports/invoices_report'); ?>">Invoices Report</a></li>
                     </ul>
                 </li>
                 <li>

@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="col-md-4 control-label">Status Order</label>
+                                <label class="col-md-4 control-label">Order Status</label>
                                 <div class="col-md-5">
                                     <select class="form-control" name="lstStatus" required autofocus>
                                         <option value="Open" <?php if ($detail->order_status == 'Open') { echo 'selected'; } ?>>Open</option>

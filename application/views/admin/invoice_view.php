@@ -12,6 +12,20 @@ if ($this->session->flashdata('notification')) { ?>
 </script>
 <? } ?>
 
+<!-- Notifikasi -->
+<?php
+if ($this->session->flashdata('notificationerror')) { ?>
+<script>
+    swal({
+        title: "Error",
+        text: "<?php echo $this->session->flashdata('notificationerror'); ?>",
+        timer: 2000,
+        showConfirmButton: false,
+        type: 'error'
+    });
+</script>
+<? } ?>
+
 <div class="content">
     <div class="container">
         <div class="row">
@@ -45,6 +59,7 @@ if ($this->session->flashdata('notification')) { ?>
                                 <th width="10%">Date Inv.</th>
                                 <th width="10%">Order No</th>
                                 <th>Name</th>
+                                <th width="13%">Total (IDR)</th>
                                 <th width="5%">Status</th>
                                 <th width="15%">Action</th>
                             </tr>
@@ -72,6 +87,7 @@ if ($this->session->flashdata('notification')) { ?>
                                     <?php echo ucwords(strtolower($r->user_name)); ?><br>
                                     <?php echo ucwords(strtolower($r->user_address)); ?>
                                 </td>
+                                <td align="right"><?php echo number_format($r->order_total); ?></td>
                                 <td><?php echo $status; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('admin/invoices/editdata').'/'.$invoice_id; ?>">

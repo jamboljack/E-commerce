@@ -99,7 +99,7 @@ function CekList() {
     <div class="buttons">
         <div class="pull-right">
             <input type="checkbox" name="chkReg" id="chkReg" onclick="CekList()">
-            &nbsp;I have read and agree to the <a class="agree" href="<?php echo site_url('privacy_policy'); ?>"><b>Privacy Policy</b></a> &nbsp;
+            &nbsp;I have read and agree to the <b>Privacy Policy</b> &nbsp;
             <input type="submit" class="btn btn-primary" name="btnSave" id="btnSave" disabled value="Create Account">
         </div>
     </div>

@@ -8,4 +8,6 @@ $config['smtp_pass']	= 'jambolj4ck';
 $config['charset']		= 'utf-8'; 
 $config['newline']		= "\r\n"; 
 $config['mailtype'] 	= 'html';
+
+/* File ini hanya untuk Lokal, tidak perlu di Upload ke Hosting */
 /* Location: ./system/application/config/email.php */

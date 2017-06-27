@@ -168,18 +168,19 @@ class Checkout extends CI_Controller{
 			$message 		.= '<p>Your Detail Item :</p>';
 			$message 		.= '<table width="100%" border="1" align="center" cellpadding="0" cellspacing="0">';
 			$message 		.= '<tr>
-									<td>Product Name</td>
-                                	<td width="30%">Category</td>
-                                	<td width="10%">Quantity</td>
+									<td><b>Product Name</b></td>
+                                	<td width="30%"><b>Category</b></td>
+                                	<td width="10%"><b>Quantity</b></td>
 								</tr>';
 
 			foreach($listItem as $p) {
 			$message 		.= '<tr>';
 			$message 		.= '<td>'.$p->product_name.'</td>';
 			$message 		.= '<td>'.$p->category_name.'</td>';
-			$message 		.= '<td>'.$p->temp_qty.'</td>';
+			$message 		.= '<td align="right">'.$p->temp_qty.'</td>';
 			$message 		.= '<tr>';
 			}
+
 			$message 		.= '</table>';
 			$message 		.= '</body></html>';
 

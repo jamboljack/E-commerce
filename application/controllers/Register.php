@@ -56,9 +56,9 @@ class Register extends CI_Controller{
 									<a href="http://www.kcfurnindo.hotelhomkudus.com/register/create_account/'.$kode_aktivasi.'">Verify</a>
 									<br><br>
 									Or you can copy and paste the link below to your browser : <br>
-									http://www.kcfurnindo.com/register/create_account/'.$kode_aktivasi.'
+									http://www.kcfurnindo.hotelhomkudus.com/register/create_account/'.$kode_aktivasi.'
 									<br><br>
-									For more information, please go to <a href="http://www.kcfurnindo.com">kcfurnindo.com</a>
+									For more information, please go to <a href="http://www.kcfurnindo.hotelhomkudus.com">kcfurnindo.com</a>
 									</p>
 									</td>
 								</tr>';
@@ -142,9 +142,9 @@ class Register extends CI_Controller{
 									<br>has been successfully <b>verified</b>.
 									<br><br>
 									You can now login and start using your account.<br>
-									<a href="http://www.kcfurnindo.com/login">Login to My Account</a>
+									<a href="http://www.kcfurnindo.hotelhomkudus.com/login">Login to My Account</a>
 									<br><br>
-									For more information, please go to <a href="http://www.kcfurnindo.com">kcfurnindo.com</a>
+									For more information, please go to <a href="http://www.kcfurnindo.hotelhomkudus.com">kcfurnindo.com</a>
 									</p>
 									</td>
 								</tr>';

@@ -53,6 +53,12 @@ if ($this->session->flashdata('notification')) { ?>
                                 } else {
                                     $status = '<span class="label label-danger">Non Active</span>';
                                 }
+
+                                if ($r->user_level == 'Admin') {
+                                    $level = '<span class="label label-warning">Admin</span>';
+                                } else {
+                                    $level = '<span class="label label-primary">Member</span>';
+                                }
                             ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
@@ -60,7 +66,7 @@ if ($this->session->flashdata('notification')) { ?>
                                 <td><?php echo ucwords(strtolower($r->user_name)); ?></td>
                                 <td><?php echo ucwords(strtolower($r->region_name)); ?></td>
                                 <td><?php echo $r->user_phone; ?></td>
-                                <td align="center"><?php echo $r->user_level; ?></td>
+                                <td align="center"><?php echo $level; ?></td>
                                 <td align="center"><?php echo $status; ?></td>
                                 <td>
                                     <a href="<?php echo site_url('admin/users/editdata').'/'.$user_username; ?>">
