@@ -2,6 +2,7 @@
     $(document).ready(function () {
         $("#lstCategory").select2({});
         $("#lstCollection").select2({});
+        $("#lstBrand").select2({});
     });
 </script>
 
@@ -61,6 +62,17 @@
                                         <option value="">- Choose Collection -</option>
                                         <?php foreach($listCollection as $c) { ?>
                                         <option value="<?php echo $c->category_id; ?>" <?php echo set_select('lstCollection', $c->category_id); ?>><?php echo $c->category_name; ?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group"> 
+                                <label class="col-md-3 control-label">Brand (Opsional)</label> 
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="lstBrand" id="lstBrand">
+                                        <option value="">- Choose Brand -</option>
+                                        <?php foreach($listBrand as $b) { ?>
+                                        <option value="<?php echo $b->brand_id; ?>" <?php echo set_select('lstBrand', $b->brand_id); ?>><?php echo $b->brand_name; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>

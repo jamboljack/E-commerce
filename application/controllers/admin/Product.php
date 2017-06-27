@@ -22,6 +22,7 @@ class Product extends CI_Controller {
 	public function adddata() {
 		$data['listSubCategory'] 	= $this->product_model->select_subcategory()->result();
 		$data['listCollection']		= $this->product_model->select_collection()->result();
+		$data['listBrand']			= $this->product_model->select_brand()->result();
 		$this->template->display('admin/product_add_view', $data);
 	}
 
@@ -54,6 +55,7 @@ class Product extends CI_Controller {
 	public function editdata($product_id) {
 		$data['listSubCategory'] 	= $this->product_model->select_subcategory()->result();
 		$data['listCollection']		= $this->product_model->select_collection()->result();
+		$data['listBrand']			= $this->product_model->select_brand()->result();
 		$data['detail'] 			= $this->product_model->select_detail($product_id)->row();
 		$this->template->display('admin/product_edit_view', $data);
 	}

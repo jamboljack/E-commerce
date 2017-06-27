@@ -16,13 +16,13 @@ if ($this->session->flashdata('notification')) { ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h4 class="page-title">Orders Report</h4>
+                <h4 class="page-title">Invoices Report</h4>
                 <ol class="breadcrumb">
                     <li>
                         <a href="#">Reports</a>
                     </li>
                     <li class="active">
-                        Orders Report
+                        Invoices Report
                     </li>
                 </ol>
             </div>
@@ -31,9 +31,9 @@ if ($this->session->flashdata('notification')) { ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-box">
-                    <h4 class="m-t-0 header-title"><b><i class="fa fa-search"></i> Criteria Orders</b></h4>
-                    <p class="text-muted m-b-30 font-13">Choose Criteria Orders</p>
-                    <form class="form-horizontal" role="form" action="<?php echo site_url('reports/orders_report/search'); ?>" method="post"> 
+                    <h4 class="m-t-0 header-title"><b><i class="fa fa-search"></i> Criteria Invoices</b></h4>
+                    <p class="text-muted m-b-30 font-13">Choose Criteria Invoices</p>
+                    <form class="form-horizontal" role="form" action="<?php echo site_url('reports/invoices_report/search'); ?>" method="post"> 
                     <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     <div class="row">
                         <div class="col-md-6">                                    
@@ -42,10 +42,8 @@ if ($this->session->flashdata('notification')) { ?>
                                 <div class="col-md-8">
                                     <select class="form-control" name="lstStatus" required autofocus>
                                         <option value="all" <?php echo set_select('lstStatus', 'all'); ?>>- All Status -</option>
-                                        <option value="Open" <?php echo set_select('lstStatus', 'Open'); ?>>Open</option>
-                                        <option value="Process" <?php echo set_select('lstStatus', 'Process'); ?>>Process</option>
-                                        <option value="Shipping" <?php echo set_select('lstStatus', 'Shipping'); ?>>Shipping</option>
-                                        <option value="Closed" <?php echo set_select('lstStatus', 'Closed'); ?>>Closed</option>
+                                        <option value="PAID" <?php echo set_select('lstStatus', 'PAID'); ?>>PAID</option>
+                                        <option value="UNPAID" <?php echo set_select('lstStatus', 'UNPAID'); ?>>UNPAID</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,9 +77,9 @@ if ($this->session->flashdata('notification')) { ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="card-box table-responsive">
-                    <h4 class="m-t-0 header-title"><b><i class="fa fa-search"></i> Orders Report Result</b></h4>
+                    <h4 class="m-t-0 header-title"><b><i class="fa fa-search"></i> Invoices Report Result</b></h4>
                     <br>
-                    <a href="<?php echo site_url('reports/orders_report/'); ?>/preview/<?php echo $Rpt['Status']; ?>/<?php echo $Rpt['From']; ?>/<?php echo $Rpt['To']; ?>" target="_blank">
+                    <a href="<?php echo site_url('reports/invoices_report/'); ?>/preview/<?php echo $Rpt['Status']; ?>/<?php echo $Rpt['From']; ?>/<?php echo $Rpt['To']; ?>" target="_blank">
                         <button type="button" class="btn btn-warning btn-custom waves-effect waves-light btn-sm" title="Print Report"><i class="fa fa-print"></i> Print
                         </button>
                     </a>
@@ -90,10 +88,11 @@ if ($this->session->flashdata('notification')) { ?>
                         <thead>
                             <tr>
                                 <th width="5%">No</th>
-                                <th width="10%">Order No.</th>
-                                <th width="12%">Date Order</th>
-                                <th width="20%">Name</th>
-                                <th>Address</th>
+                                <th width="10%">Inv. No.</th>
+                                <th width="10%">Date Inv.</th>
+                                <th width="10%">Order No</th>
+                                <th>Name</th>
+                                <th width="10%">Total (IDR)</th>
                                 <th width="5%">Status</th>
                             </tr>
                         </thead>
@@ -101,23 +100,22 @@ if ($this->session->flashdata('notification')) { ?>
                             <?php 
                             $no = 1;
                             foreach($listData as $r) {
-                                $order_id = $r->order_id;
-                                if ($r->order_status == 'Open') {
-                                    $status = '<span class="label label-warning">Open</span>';
-                                } elseif ($r->order_status == 'Process') {
-                                    $status = '<span class="label label-danger">Process</span>';
-                                } elseif ($r->order_status == 'Shipping') {
-                                    $status = '<span class="label label-success">Shipping</span>';
-                                } elseif ($r->order_status == 'Closed') {
-                                    $status = '<span class="label label-info">Closed</span>';
+                                if ($r->invoice_status == 'PAID') {
+                                    $status = '<span class="label label-success">PAID</span>';
+                                } else {
+                                    $status = '<span class="label label-danger">UNPAID</span>';
                                 }
                             ?>
                             <tr>
                                 <td><?php echo $no; ?></td>
-                                <td><b>#<?php echo $r->order_id; ?></b></td>
-                                <td><?php echo date("d-m-Y", strtotime($r->order_date)).'<br>'.substr($r->order_time,0,5).' WIB'; ?></td>
-                                <td><?php echo ucwords(strtolower($r->user_name)); ?></td>
-                                <td><?php echo ucwords(strtolower($r->user_address)).'<br>'.ucwords(strtolower($r->user_city)).' '.$r->user_zipcode; ?></td>
+                                <td><b>#<?php echo $r->invoice_id; ?></b></td>
+                                <td><?php echo date("d-m-Y", strtotime($r->invoice_date)); ?></td>
+                                <td>#<?php echo $r->order_id; ?></td>
+                                <td>
+                                    <?php echo ucwords(strtolower($r->user_name)); ?><br>
+                                    <?php echo ucwords(strtolower($r->user_address)); ?>
+                                </td>
+                                <td align="right"><?php echo number_format($r->order_total); ?></td>
                                 <td><?php echo $status; ?></td>
                             </tr>
                             <?php

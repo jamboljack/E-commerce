@@ -41,6 +41,14 @@ class Product_model extends CI_Model {
 		return $this->db->get();
 	}
 
+	function select_brand() {
+		$this->db->select('*');
+		$this->db->from('furnindo_brand');
+		$this->db->order_by('brand_id', 'asc');
+		
+		return $this->db->get();
+	}
+
 	function select_category($subcategory_id) {
 		$this->db->select('*');
 		$this->db->from('furnindo_category');
@@ -54,6 +62,7 @@ class Product_model extends CI_Model {
 		if (!empty($_FILES['userfile']['name'])) {
 			$data = array(	'category_id'		=> $this->input->post('lstCategory', 'true'),
 							'collection_id'		=> $this->input->post('lstCollection', 'true'),
+							'brand_id'			=> $this->input->post('lstBrand', 'true'),
 							'product_name'		=> strtoupper(trim($this->input->post('name', 'true'))),
 							'product_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
 							'product_desc'		=> $this->input->post('desc', 'true'),
@@ -66,6 +75,7 @@ class Product_model extends CI_Model {
 		} else {
 			$data = array(	'category_id'		=> $this->input->post('lstCategory', 'true'),
 							'collection_id'		=> $this->input->post('lstCollection', 'true'),
+							'brand_id'			=> $this->input->post('lstBrand', 'true'),
 							'product_name'		=> strtoupper(trim($this->input->post('name', 'true'))),
 							'product_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
 							'product_desc'		=> $this->input->post('desc', 'true'),
@@ -93,6 +103,7 @@ class Product_model extends CI_Model {
 		if (!empty($_FILES['userfile']['name'])) {
 			$data = array(	'category_id'		=> $this->input->post('lstCategory', 'true'),
 							'collection_id'		=> $this->input->post('lstCollection', 'true'),
+							'brand_id'			=> $this->input->post('lstBrand', 'true'),
 							'product_name'		=> strtoupper(trim($this->input->post('name', 'true'))),
 							'product_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
 							'product_desc'		=> $this->input->post('desc', 'true'),
@@ -105,6 +116,7 @@ class Product_model extends CI_Model {
 		} else {
 			$data = array(	'category_id'		=> $this->input->post('lstCategory', 'true'),
 							'collection_id'		=> $this->input->post('lstCollection', 'true'),
+							'brand_id'			=> $this->input->post('lstBrand', 'true'),
 							'product_name'		=> strtoupper(trim($this->input->post('name', 'true'))),
 							'product_name_seo'	=> seo_title(trim($this->input->post('name', 'true'))),
 							'product_desc'		=> $this->input->post('desc', 'true'),

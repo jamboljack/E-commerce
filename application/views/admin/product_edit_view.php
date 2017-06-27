@@ -2,6 +2,7 @@
     $(document).ready(function () {
         $("#lstCategory").select2({});
         $("#lstCollection").select2({});
+        $("#lstBrand").select2({});
     });
 </script>
 
@@ -73,6 +74,25 @@
                                         <option value="<?php echo $c->category_id; ?>" selected><?php echo $c->category_name; ?></option>
                                         <?php } else { ?>
                                         <option value="<?php echo $c->category_id; ?>"><?php echo $c->category_name; ?></option>
+                                        <?php 
+                                            }
+                                        } 
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group"> 
+                                <label class="col-md-3 control-label">Brand (Opsional)</label> 
+                                <div class="col-md-9">
+                                    <select class="form-control select2" name="lstBrand" id="lstBrand">
+                                        <option value="">- Choose Brand -</option>
+                                        <?php 
+                                        foreach($listBrand as $b) { 
+                                            if ($detail->brand_id == $b->brand_id) {
+                                        ?>
+                                        <option value="<?php echo $b->brand_id; ?>" selected><?php echo $b->brand_name; ?></option>
+                                        <?php } else { ?>
+                                        <option value="<?php echo $b->brand_id; ?>"><?php echo $b->brand_name; ?></option>
                                         <?php 
                                             }
                                         } 

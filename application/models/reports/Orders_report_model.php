@@ -29,4 +29,4 @@ class Orders_report_model extends CI_Model {
 		}
 	}
 }
-/* Location: ./application/models/admin/Orders_report_model.php */
+/* Location: ./application/models/reports/Orders_report_model.php */
