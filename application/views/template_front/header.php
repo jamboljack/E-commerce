@@ -90,9 +90,10 @@ $wishlist       = $this->menu_model->select_wishlist()->result();
                     </div>
                 </div>
                 <div class="col-table-cell col-lg-3 col-md-3 col-sm-6 col-xs-12 inner">
-                    <form action="<?php echo site_url('search'); ?>" method="post">
+                    <form action="<?php echo site_url('search/keyword'); ?>" method="post">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                         <div id="search" class="input-group">
-                            <input id="filter_name" type="text" name="search" value="" placeholder="Search" class="form-control input-lg" />
+                            <input id="filter_name" type="text" name="search" value="<?php echo set_value('search'); ?>" placeholder="Search Product" class="form-control input-lg" autocomplete="off" />
                             <button type="button" class="button-search"><i class="fa fa-search"></i></button>
                         </div>
                     </form>

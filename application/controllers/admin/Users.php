@@ -46,29 +46,6 @@ class Users extends CI_Controller {
 	}
 
 	public function updatedata() {
-		if (!empty($_FILES['userfile']['name'])) {
-			$jam 	= time();
-			$name 	= seo_title(trim($this->input->post('username')));
-					
-			$config['file_name']    = 'Users_'.$name.'_'.$jam.'.jpg';
-			$config['upload_path'] = './img/avatar/';
-			$config['allowed_types'] = 'jpg|jpeg|png|gif|png';
-			$config['overwrite'] = TRUE;
-			$this->load->library('upload', $config);
-			$this->upload->do_upload('userfile');
-			$config['image_library'] = 'gd2';
-			$config['source_image'] = $this->upload->upload_path.$this->upload->file_name;
-			$config['maintain_ratio'] = TRUE;
-											
-			$config['width'] = 60;
-			$config['height'] = 60;
-			$this->load->library('image_lib',$config);
-					 
-			$this->image_lib->resize();
-		} elseif (empty($_FILES['userfile']['name'])){
-			$config['file_name'] = '';
-		}
-		
 		$this->users_model->update_data();
 		$this->session->set_flashdata('notification','Update Data Success.');
  		redirect(site_url('admin/users'));

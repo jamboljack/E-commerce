@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Orders extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
-		if(!$this->session->userdata('logged_in_member')) redirect(base_url());	
+		if(!$this->session->userdata('logged_in_member')) redirect(site_url('login'));
 		$this->load->library('template_front');
 		$this->load->model('orders_model');
 		$this->load->model('menu_model');
@@ -16,7 +16,7 @@ class Orders extends CI_Controller{
 			$this->template_front->display('orders_v', $data);
 		} else {
 			$this->session->sess_destroy();
-			redirect(base_url());
+			redirect(site_url('login'));
 		}
 	}
 

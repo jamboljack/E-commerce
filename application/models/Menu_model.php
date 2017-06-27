@@ -136,5 +136,21 @@ class Menu_model extends CI_Model {
 		
 		return $this->db->get();
 	}
+
+	function select_menu() {
+		$this->db->select('*');
+		$this->db->from('furnindo_menu');
+		$this->db->order_by('menu_id', 'asc');
+		
+		return $this->db->get();
+	}
+
+	function select_detail_menu($menu_id) {
+		$this->db->select('*');
+		$this->db->from('furnindo_menu');
+		$this->db->where('menu_id', $menu_id);
+		
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/Menu_model.php */

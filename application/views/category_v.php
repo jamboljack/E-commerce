@@ -13,6 +13,7 @@
                     <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="Grid"><i class="fa fa-th"></i></button>
                 </div>
             </div>
+            <!--
             <div class="col-sm-2 text-right">
                 <label class="control-label" for="input-limit">Short by :</label>
             </div>
@@ -23,6 +24,7 @@
                     <option value="">Name (Z - A)</option>
                 </select>
             </div>
+            -->
         </div>
     </div>
     <br />

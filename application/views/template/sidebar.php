@@ -8,6 +8,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -25,6 +26,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -42,6 +44,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -59,6 +62,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = 'active';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -76,6 +80,25 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = 'active';
+    $menu           = '';
+    $data           = '';
+    $brand          = '';
+    $maincategory   = '';
+    $subcategory    = '';
+    $category       = '';
+    $product        = '';
+    $transaction    = '';
+    $orders         = '';
+    $invoices       = '';
+    $users          = '';
+} elseif ($uri == 'menu') {
+    $dashboard      = '';
+    $content        = 'active subdrop';
+    $slider         = '';
+    $social         = '';
+    $contact        = '';
+    $bank           = '';
+    $menu           = 'active';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -93,6 +116,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = 'active subdrop';
     $brand          = 'active';
     $maincategory   = '';
@@ -110,6 +134,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = 'active subdrop';
     $brand          = '';
     $maincategory   = 'active';
@@ -127,6 +152,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = 'active subdrop';
     $brand          = '';
     $maincategory   = '';
@@ -144,6 +170,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = 'active subdrop';
     $brand          = '';
     $maincategory   = '';
@@ -161,6 +188,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -178,6 +206,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -195,6 +224,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -212,6 +242,7 @@ if ($uri == 'home') {
     $social         = '';
     $contact        = '';
     $bank           = '';
+    $menu           = '';
     $data           = '';
     $brand          = '';
     $maincategory   = '';
@@ -239,6 +270,7 @@ if ($uri == 'home') {
                         <li class="<?php echo $social; ?>"><a href="<?php echo site_url('admin/social'); ?>">Social Media</a></li>
                         <li class="<?php echo $contact; ?>"><a href="<?php echo site_url('admin/contact'); ?>">Contact Us</a></li>
                         <li class="<?php echo $bank; ?>"><a href="<?php echo site_url('admin/bank'); ?>">Bank</a></li>
+                        <li class="<?php echo $menu; ?>"><a href="<?php echo site_url('admin/menu'); ?>">Menu</a></li>
                     </ul>
                 </li>
                 <li class="has_sub">

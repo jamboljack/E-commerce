@@ -18,10 +18,12 @@ $detailKontak = $this->menu_model->select_contact()->row();
                 <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
                 <h5>Information</h5>
                 <ul>
-                    <li><a href="<?php echo site_url('about_us'); ?>">About Us</a></li>
-                    <li><a href="<?php echo site_url('faq'); ?>">FAQ</a></li>
-                    <li><a href="<?php echo site_url('privacy_policy'); ?>">Privacy Policy</a></li>
-                    <li><a href="<?php echo site_url('term_condition'); ?>">Terms &amp; Conditions</a></li>
+                    <?php 
+                    $listMenu = $this->menu_model->select_menu()->result();
+                    foreach($listMenu as $m) {
+                    ?>
+                    <li><a href="<?php echo site_url('menu/id/'.$m->menu_id.'/'.$m->menu_name_seo); ?>"><?php echo $m->menu_name; ?></a></li>
+                    <?php } ?>
                 </ul>
                 </div>
             </div>

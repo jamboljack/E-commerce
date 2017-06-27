@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Chart extends CI_Controller{
 	public function __construct(){
-		parent::__construct();		
+		parent::__construct();
+		if(!$this->session->userdata('logged_in_member')) redirect(site_url('login'));
 		$this->load->library('template_front');
 		$this->load->model('chart_model');
 		$this->load->model('menu_model');
@@ -15,6 +16,7 @@ class Chart extends CI_Controller{
 			$this->template_front->display('chart_v', $data);
 		} else {
 			// Jika Belum, Tampil Halaman Login/Register
+			$this->session->sess_destroy();
 			redirect(site_url('login'));
 		}
 	}

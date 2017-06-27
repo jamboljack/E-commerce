@@ -31,11 +31,9 @@ s0.parentNode.insertBefore(s1,s0);
 </script>
 <!--End of Tawk.to Script-->
 </head>
-
 <body>
 <div class="wrapper-wide">
     <?php echo $_header; ?>
-
     <div id="container">
         <div class="container">
             <?php if ($this->uri->segment(1) == '') { ?>
@@ -157,11 +155,16 @@ s0.parentNode.insertBefore(s1,s0);
                 <?php } if ($this->uri->segment(1) == 'wishlist') { ?>
                 <li><a href="#">Account</a></li>
                 <li><a href="<?php echo site_url('wishlist'); ?>">Wish List</a></li>
+                <?php 
+                } if ($this->uri->segment(1) == 'menu') { // Menu
+                ?>
+                <li><a href="<?php echo site_url('menu/id/'.$detail->menu_id.'/'.$detail->menu_name_seo); ?>"><?php echo $detail->menu_name; ?></a></li>
+                <?php } if ($this->uri->segment(1) == 'search') { ?>
+                <li><a href="#">Search</a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
         </div>
-        
         <div class="container">
             <div class="row">
                 <?php
@@ -173,14 +176,14 @@ s0.parentNode.insertBefore(s1,s0);
                     echo $_sidebar; 
                 }
                 ?>                
+                
                 <!--Middle Part Start-->
                 <?php echo $content; ?>
                 <!--Middle Part End-->
+
             </div>
         </div>
-
     </div>
-  
     <?php echo $_footer; ?>
 <!--    <div id="facebook" class="fb-left sort-order-1">
         <div class="facebook_icon"><i class="fa fa-facebook"></i></div>
@@ -238,6 +241,5 @@ $("#zoom_01").bind("click", function(e) {
 });
 </script>
 <!-- JS Part End-->
-
 </body>
 </html>

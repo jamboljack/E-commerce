@@ -3,7 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Wishlist extends CI_Controller{
 	public function __construct(){
-		parent::__construct();		
+		parent::__construct();
+		if(!$this->session->userdata('logged_in_member')) redirect(site_url('login'));
 		$this->load->library('template_front');
 		$this->load->model('wishlist_model');
 		$this->load->model('menu_model');
