@@ -6,7 +6,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel="shortcut icon" href="<?php echo base_url(); ?>img/shortcut.png">
 <title>KcFurnindo Jepara</title>
-<meta name="description" content="Responsive and clean html template design for any kind of ecommerce webshop">
+<meta property="og:title" content="KcFurnindo Jepara" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://www.kcfurnindojepara.com/" />
+<meta property="og:image" content="http://www.kcfurnindojepara.com/img/logo-header.png" />
+<meta name="keywords" content="Meubel, Ukir, Furniture, Jepara, Sofa, Bed, Wood, Bed Minimalis, Furniture Kayu, Kayu">
+<meta name="description" content="Specialized in Wood Furniture And Sofa Jepara">
+<meta name="Developer" content="Jama' Rochmad M. - 085640969727">
+<meta name="Author" content="KcFurnindo Jepara">
+<meta name="robots" content="all" />
+<meta name="robots" content="index, follow" />
+<meta name="Googlebot" content="index,follow" />
 <!-- CSS Part Start-->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/js/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/font-awesome/css/font-awesome.min.css" />
@@ -37,7 +47,7 @@ s0.parentNode.insertBefore(s1,s0);
     <div id="container">
         <div class="container">
             <?php if ($this->uri->segment(1) == '') { ?>
-            <div class="custom-feature-box row">
+            <!--<div class="custom-feature-box row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="feature-box fbox_1">
                         <div class="title">Free Shipping</div>
@@ -62,7 +72,7 @@ s0.parentNode.insertBefore(s1,s0);
                         <p>Earn and spend with ease</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <?php } else { ?>
             <ul class="breadcrumb">
                 <li><a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i></a></li>
@@ -161,6 +171,9 @@ s0.parentNode.insertBefore(s1,s0);
                 <li><a href="<?php echo site_url('menu/id/'.$detail->menu_id.'/'.$detail->menu_name_seo); ?>"><?php echo $detail->menu_name; ?></a></li>
                 <?php } if ($this->uri->segment(1) == 'search') { ?>
                 <li><a href="#">Search</a></li>
+                <?php } if ($this->uri->segment(1) == 'brand') { ?>
+                <li><a href="#">Our Brand</a></li>
+                <li><a href="#"><?php echo $detail->brand_name; ?></a></li>
                 <?php } ?>
             </ul>
             <?php } ?>

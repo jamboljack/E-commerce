@@ -84,7 +84,7 @@
         foreach($listBrand as $r) { 
         ?>
             <div class="item">
-                <img src="<?php echo base_url(); ?>img/brand/<?php echo $r->brand_image; ?>" alt="<?php echo $r->brand_name; ?>" class="img-responsive" width="100%" /></a>
+                <a href="<?php echo site_url('brand/id/'.$r->brand_id.'/'.$r->brand_name_seo); ?>"><img src="<?php echo base_url(); ?>img/brand/<?php echo $r->brand_image; ?>" alt="<?php echo $r->brand_name; ?>" class="img-responsive" width="100%" /></a>
             </div>
         <?php } ?>
     </div>
