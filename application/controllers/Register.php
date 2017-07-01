@@ -38,7 +38,7 @@ class Register extends CI_Controller{
 			$this->db->insert('furnindo_users', $data);
 
 			// Send Email
-			$sender_email 	= 'eregister@hotelhomkudus.com';
+			$sender_email 	= 'no-reply@kcfurnindo.com';
 			$sender_name 	= 'no-reply';
 			$subject 		= 'Email Confirmation';
 			$message 		= '<html><body>';
@@ -53,12 +53,12 @@ class Register extends CI_Controller{
 									$email.'
 									<br>
 									Before you can use your account, please verify your account by clicking on the following link :<br>
-									<a href="http://www.kcfurnindo.hotelhomkudus.com/register/create_account/'.$kode_aktivasi.'">Verify</a>
+									<a href="http://www.kcfurnindo.com/register/create_account/'.$kode_aktivasi.'">Verify</a>
 									<br><br>
 									Or you can copy and paste the link below to your browser : <br>
-									http://www.kcfurnindo.hotelhomkudus.com/register/create_account/'.$kode_aktivasi.'
+									http://www.kcfurnindo.com/register/create_account/'.$kode_aktivasi.'
 									<br><br>
-									For more information, please go to <a href="http://www.kcfurnindo.hotelhomkudus.com">kcfurnindo.com</a>
+									For more information, please go to <a href="http://www.kcfurnindo.com">kcfurnindo.com</a>
 									</p>
 									</td>
 								</tr>';
@@ -126,7 +126,7 @@ class Register extends CI_Controller{
 			$this->db->insert('furnindo_payment', $data);
 
 			// Send Email
-			$sender_email 	= 'eregister@hotelhomkudus.com';
+			$sender_email 	= 'no-reply@kcfurnindo.com';
 			$sender_name 	= 'no-reply';
 			$subject 		= 'Registration Success';
 			$message 		= '<html><body>';
@@ -142,9 +142,9 @@ class Register extends CI_Controller{
 									<br>has been successfully <b>verified</b>.
 									<br><br>
 									You can now login and start using your account.<br>
-									<a href="http://www.kcfurnindo.hotelhomkudus.com/login">Login to My Account</a>
+									<a href="http://www.kcfurnindo.com/login">Login to My Account</a>
 									<br><br>
-									For more information, please go to <a href="http://www.kcfurnindo.hotelhomkudus.com">kcfurnindo.com</a>
+									For more information, please go to <a href="http://www.kcfurnindo.com">kcfurnindo.com</a>
 									</p>
 									</td>
 								</tr>';

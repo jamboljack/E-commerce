@@ -105,7 +105,7 @@ class Invoices extends CI_Controller {
 
 		// Send Invoice Email
 		$email 			= trim($this->input->post('email', 'true')); // Email Member
-		$sender_email 	= 'eregister@hotelhomkudus.com';
+		$sender_email 	= 'no-reply@kcfurnindo.com';
 		$sender_name 	= 'no-reply';
 		$subject 		= 'Customer Invoice #'.$invoice_id;
 		$message 		= '<html><body>
