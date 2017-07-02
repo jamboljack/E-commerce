@@ -52,6 +52,16 @@
         <div class="col-sm-6">
             <h2 class="subtitle">Returning Customer</h2>
             <?php
+            if ($this->session->flashdata('notificationforgot')) {
+            ?>
+            <div class="alert alert-success">
+                <i class="fa fa-check-circle"></i> <?php echo $this->session->flashdata('notificationforgot'); ?>
+            </div>
+            <?php
+            }
+            ?>
+
+            <?php
             if ($this->session->flashdata('notificationerror')) {
             ?>
             <div class="alert alert-danger">
@@ -73,10 +83,39 @@
                 <label class="control-label">Password</label>
                 <input type="password" name="password"  placeholder="Password" class="form-control" autocomplete="off" required />
                 <br />
-                <a href="<?php echo site_url('forgotpassword'); ?>">Forgot Password ?</a>
+                <!--\<a href="<?php echo site_url('forgotpassword'); ?>">Forgot Password ?</a> -->
+                <a data-toggle="modal" href="#forgotpassword">Forgot Password ?</a>
             </div>
             <input type="submit" value="Login" class="btn btn-primary" />
             </form>
         </div>
     </div>
+</div>
+
+<!-- Forgto Password Modal -->
+<div class="modal fade" id="forgotpassword" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="<?php echo site_url('login/forgotpassword'); ?>" class="form-horizontal" method="post">
+            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        
+            <div class="modal-header">                      
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                <h4 class="modal-title"><i class="fa fa-email"></i> Please Insert Your Email :</h4>
+            </div>
+            <div class="modal-body">                
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Email</label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control"  name="email" autocomplete="off" required>
+                    </div>
+                </div>                
+            </div>
+                        
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+            </form>
+        </div>        
+    </div>    
 </div>

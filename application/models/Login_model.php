@@ -24,5 +24,15 @@ class Login_model extends CI_Model {
 
 		return $this->db->get();
 	}
+
+	function select_email($email) {
+		$this->db->select('*');
+		$this->db->from('furnindo_users');
+		$this->db->where('user_username', $email);
+		$this->db->where('user_level', 'Member');
+		$this->db->where('user_status', 'Active');
+		
+		return $this->db->get();
+	}
 }
 /* Location: ./application/models/Login_model.php */

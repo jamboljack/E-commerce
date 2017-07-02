@@ -56,6 +56,62 @@ class Login extends CI_Controller{
 			}
 		}
 	}
+
+	public function forgotpassword() {
+        $this->form_validation->set_rules('email','<b>Email</b>','trim|required|valid_email'); // Email harus Valid
+        
+        if ($this->form_validation->run() == FALSE) {
+            $data['error'] = 'true';
+            $this->template_front->display('login_v', $data);
+        } else {
+            // Check Email Member
+            $email      = trim($this->input->post('email'));
+            $CheckEmail = $this->login_model->select_email($email)->row();
+            
+            if (count($CheckEmail) > 0) {
+                $kode_forgot = trim(md5(uniqid(rand())));
+
+                $data = array( 	'user_key_forgot'   => $kode_forgot,
+                				'user_update'  		=> date('Y-m-d H:i:s')
+                );
+
+                $this->db->where('user_username', $email);
+                $this->db->update('furnindo_users', $data);
+
+                $sender_email   = 'no-reply@kcfurnindo.com';
+                $sender_name    = 'no-reply';
+                $account        = trim($CheckEmail->user_username);
+                $name           = ucwords(strtolower(trim($CheckEmail->user_name)));
+                $subject        = "Forgot Password";
+                $message 		= '<html><body>';
+                $message        .= "Hello, ".$name."
+                                <br>
+                                <p>Your Email    : ".$account."<br><br>
+                                To reset your password please follow the link below : <br>
+                                http://www.kcfurnindo.com/resetpassword/key/".$kode_forgot."<br><br>
+                                If you need help or have any questions, please visit <a href='https://kcfurnindo.com'>kcfurnindo.com</a>
+                                <br><br>
+                                Thanks !<br>
+                                KcFurnindo Jepara
+                                </p>";
+                $message 		.= '</body></html>';
+
+                $this->load->library('email');
+                $this->email->set_mailtype("html");
+                $this->email->from($sender_email, $sender_name);
+                $this->email->to($email);
+                $this->email->subject($subject);
+                $this->email->message($message);
+                $this->email->send();
+
+                $this->session->set_flashdata('notificationforgot','<b>Link Reset Password Send to Your Email.</b>');
+                redirect(site_url('login'));
+            } else {
+                $this->session->set_flashdata('notificationerror','<b>Your Email not Registered.</b>');
+                redirect(site_url('login'));
+            }
+        }
+    }
 }
 /* Location: ./application/controller/Login.php */
 ?>

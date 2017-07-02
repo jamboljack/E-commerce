@@ -174,6 +174,8 @@ s0.parentNode.insertBefore(s1,s0);
                 <?php } if ($this->uri->segment(1) == 'brand') { ?>
                 <li><a href="#">Our Brand</a></li>
                 <li><a href="#"><?php echo $detail->brand_name; ?></a></li>
+                <?php } if ($this->uri->segment(1) == 'resetpassword') { ?>
+                <li><a href="#">Reset Password</a></li>
                 <?php } ?>
             </ul>
             <?php } ?>
