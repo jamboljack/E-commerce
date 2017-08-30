@@ -37,6 +37,7 @@ class Invoices extends CI_Controller {
 		
 		$username 		= $this->session->userdata('username_admin'); // User Admin
 		$tgl_invoice	= date('Y-m-d');
+		
 		// Cari Due Date
 		$query 			= $this->db->query("SELECT * FROM furnindo_contact WHERE contact_id = 1");
 		$row 			= $query->row();

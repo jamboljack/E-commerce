@@ -20,8 +20,16 @@
                 <ul class="list-unstyled description">
                     <li><a href="<?php echo site_url('maincategory/item/'.$detail->maincategory_id.'/'.$detail->maincategory_name_seo); ?>"><span itemprop="brand"><?php echo ucwords(strtolower($detail->maincategory_name)); ?></span></a></li>
                     <li><span itemprop="brand"><?php echo ucwords(strtolower($detail->product_name)); ?></span></li>
+                    <li><b>Description :</b> <br><?php echo $detail->product_desc; ?></li>
                     <li><b>Price :</b> <span itemprop="brand">Contact Us</span></li>
                     <li><b>Availability :</b> <span class="instock">In Stock</span></li>
+                    <li>
+                    <div class="fb-share-button" data-href="<?php echo base_url('product/item/'.$detail->product_id.'/'.$detail->product_name_seo); ?>" data-layout="button_count" data-size="small" data-mobile-iframe="false"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo base_url('product/item/'.$detail->product_id.'/'.$detail->product_name_seo); ?>&amp;src=sdkpreparse">Share</a>
+                    </div>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-via="kata_huda" data-hashtags="kcfurnindojepara" data-show-count="false">Tweet</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </li>
                 </ul>
                 <div id="product">
                 <h3 class="subtitle">Available Options</h3>
@@ -51,16 +59,18 @@
                 </div>
             </div>
         </div>
-        <ul class="nav nav-tabs">
+
+        <!--<ul class="nav nav-tabs">
             <li class="active"><a href="#tab-description" data-toggle="tab">Description</a></li>
         </ul>
         <div class="tab-content">
             <div itemprop="description" id="tab-description" class="tab-pane active">
                 <div>
-                    <?php echo $detail->product_desc; ?>
+                    <?php // echo $detail->product_desc; ?>
                 </div>
             </div>
         </div>
+        -->
         <h3 class="subtitle">Related Products</h3>
         <div class="owl-carousel related_pro">
             <?php

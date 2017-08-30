@@ -8,7 +8,8 @@
 <title>KcFurnindo Jepara</title>
 <meta property="og:title" content="KcFurnindo Jepara" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://www.kcfurnindojepara.com/" />
+<meta property="og:url" content="http://www.kcfurnindojepara.com" />
+<meta property="og:description" content="Specialized in Wood Furniture And Sofa Jepara" />
 <meta property="og:image" content="http://www.kcfurnindojepara.com/img/logo-header.png" />
 <meta name="keywords" content="Meubel, Ukir, Furniture, Jepara, Sofa, Bed, Wood, Bed Minimalis, Furniture Kayu, Kayu">
 <meta name="description" content="Specialized in Wood Furniture And Sofa Jepara">
@@ -27,6 +28,18 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/responsive.css" />
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans' type='text/css'>
 <!-- CSS Part End-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-59838993-7', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -42,6 +55,14 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 </head>
 <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/id_ID/sdk.js#xfbml=1&version=v2.9";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="wrapper-wide">
     <?php echo $_header; ?>
     <div id="container">
@@ -256,5 +277,15 @@ $("#zoom_01").bind("click", function(e) {
 });
 </script>
 <!-- JS Part End-->
+
+<script type="text/javascript">
+  var vglnk = { key: 'b056849115894734a0f5126fc091bf31' };
+
+  (function(d, t) {
+    var s = d.createElement(t); s.type = 'text/javascript'; s.async = true;
+    s.src = '//cdn.viglink.com/api/vglnk.js';
+    var r = d.getElementsByTagName(t)[0]; r.parentNode.insertBefore(s, r);
+  }(document, 'script'));
+</script>
 </body>
 </html>
