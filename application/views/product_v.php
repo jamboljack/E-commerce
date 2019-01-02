@@ -37,7 +37,7 @@
                         <div>
                             <form action="<?php echo site_url('chart/addtochart'); ?>" method="post">
                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-                            <input type="hidden" name="product_id" value="<?php echo $detail->product_id; ?>">                            
+                            <input type="hidden" name="product_id" value="<?php echo $detail->product_id; ?>">
                             <div class="qty">
                                 <label class="control-label" for="input-quantity">Qty</label>
                                 <input type="text" name="qty" value="1" size="2" id="input-quantity" class="form-control" autocomplete="off" />

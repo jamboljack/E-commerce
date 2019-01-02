@@ -20,7 +20,7 @@ class Resetpassword_model extends CI_Model {
 		$key 	= $this->uri->segment(3);
 
 		$data = array(	
-				'user_password'		=> sha1(trim($this->input->post('password', 'true'))),
+				'user_password'		=> sha1(trim($this->input->post('newpassword', 'true'))),
 				'user_update' 		=> date('Y-m-d H:i:s')
 		);
 
